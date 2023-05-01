@@ -1,0 +1,49 @@
+.nav{
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: rgba(233, 102, 161, .4);
+  border-top: 1px solid rgb(233, 102, 161);
+  padding: 20px 50px;
+  box-sizing: border-box;
+}
+
+.nav__list{
+  display: flex;
+  justify-content: space-between;
+}
+
+.nav__link{
+  color: #fff;
+  position: relative;
+}
+
+.fa-user{
+  color: rgb(233, 102, 161);
+}
+
+.nav_commentShow{
+  background-color: tomato;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  position: relative;
+  font-weight: 600;
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+  font-size: 12px;
+}
+
+.nav_bot{
+  background-color: tomato;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  position: absolute;
+  left: 20px;
+  bottom: 15px;
+}

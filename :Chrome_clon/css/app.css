@@ -1,0 +1,60 @@
+html,body,p,h1,h2,h3{
+  margin: 0;
+  padding: 0;
+}
+
+body{
+  overflow: hidden;
+}
+
+.hidden{
+  display: none;
+}
+
+img{
+  width: 100%;
+  height: 100vh;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  z-index: -1;
+  opacity: .5;
+}
+
+.title{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  text-align: center;
+}
+
+.title-name{
+  font-size: 28px;
+  color: #6e6e6e;
+}
+
+.title-clock{
+  color: #fff;
+  font-size: 150px;
+  text-shadow: 1px 1px 10px #6e6e6e;
+}
+
+#quote{
+  position: absolute;
+  top: auto;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+}
+
+#quote div{
+  font-size: 14px;
+  font-weight: bold;
+}
+
+#quote span{
+  color: #6e6e6e;
+  font-size: 12px;
+}
