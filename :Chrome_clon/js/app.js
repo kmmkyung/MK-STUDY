@@ -25,7 +25,7 @@ const saveUsername = localStorage.getItem("USERNAME_KEY");
 // 저장한 username value값을 넣어 인사해줘
 function paintFreenting(username){
   greeting.classList.remove(HIDDEN_CLASS)
-  greeting.innerText = `Hello ${username}`;
+  greeting.innerText = `Hello ${username} 🌺`;
 }
 
 // 1. saveUsername에 값이 없으면 form을 보여주고 submit이벤트를 통해 logunsubmit 함수 호출해줘!
