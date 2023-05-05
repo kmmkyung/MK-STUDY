@@ -79,7 +79,8 @@ img{
   list-style: "🍀";
 }
 
-#todo-list>li>botton{
+#todo-list>li botton{
   font-size: 10px;
   margin-left: 10px;
+  cursor: pointer;
 }
