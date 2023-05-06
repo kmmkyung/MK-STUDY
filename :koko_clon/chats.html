@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Friends - Kokoa Clone</title>
+  <title>Chats - Kokoa Clone</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/FortAwesome/Font-Awesome@5.14.0/css/all.min.css">
   <link rel="stylesheet" href="./css/style.css">
 </head>
@@ -24,65 +24,46 @@
     </div>
   </div>
 
-<!-- friends -->
+<!-- chats -->
 <header class="screen-header">
-  <h1 class="screen-header__title">Friends</h1>
+  <h1 class="screen-header__title">Chats</h1>
   <div class="screen-header__icons">
     <i class="fa-solid fa-magnifying-glass"></i>
+    <i class="fa-solid fa-comment-dots"></i>
     <i class="fa-solid fa-music"></i>
     <i class="fa-solid fa-gear"></i>
   </div>
 </header>
 <div class="space"></div>
-<a id="friend-display-link" href="#">
-  <i class="fa-solid fa-circle-info"></i>
-  Friends' Names Display
-  <i class="fa-solid fa-chevron-right"></i>
-</a>
-<main class="friends-screen">
+
+<main class="main-screen">
   <div class="user-component">
     <div class="user-component__column ">
-      <img src="./imges/logo.png" class="user-component__avatar user-component__avatar--xl">
+      <img src="./imges/logo.png" class="user-component__avatar user-component__avatar">
       <div class="user-component__text">
         <h4 class="user-component__title">peripera</h4>
-        <!-- <h6 class="user-component__subtitle">this text whatever</h6> -->
+        <h6 class="user-component__subtitle">this text whatever</h6>
       </div>
     </div>
-    <div class="user-component__column"></div>
-  </div>
-  <div class="friend-screen__channel">
-    <div class="friends-screen__channel-header">
-      <span>Channel</span>
-    </div>
-    <div class="user-component">
-      <div class="user-component__column ">
-        <img src="./imges/logo.png" class="user-component__avatar user-component__avatar--sm">
-        <div class="user-component__text">
-          <h4 class="user-component__title user-component__title--not-bold">Channel</h4>
-        </div>
-      </div>
-      <div class="user-component__column">
-        <div>
-          <span>2</span>
-          <i class="fa-solid fa-chevron-right fa-xs"></i>
-        </div>
-      </div>
+    <div class="user-component__column">
+      <span class="user-component__time">21:22</span>
+      <div class="badge">1</div>
     </div>
   </div>
 </main>
-<!-- friends -->
+<!-- chats -->
 
   <nav class="nav">
     <ul class="nav__list">
       <li class="nav__btn">
         <a class="nav__link" href="friends.html">
-          <i class="fa-solid fa-user fa-lg"></i>
+          <i class="fa-regular fa-user fa-lg"></i>
         </a>
       </li>
       <li class="nav__btn">
         <a class="nav__link" href="chats.html">
         <span class="nav_commentShow badge">1</span>
-        <i class="fa-regular fa-comment fa-lg"></i>
+        <i class="fa-solid fa-comment fa-lg"></i>
       </a>
     </li>
       <li class="nav__btn">
