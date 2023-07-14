@@ -1,19 +1,11 @@
-const Eng = ["A", "B", "C", "D", "E", "F", "G"];
+let hcode= "" // 코드저장변수
+let text = `for of문으로 텍스트감싸기`
 
-for(let alphabet of Eng ){
-  console.log(alphabet); // A,B,C,D,E,F,G
-}
-
-for(let alphabet of Eng ){
-  if(alphabet == "D"){
-    break
+for(let x of text ){
+  console.log(x); // text 글씨가 한글자씩 나온다!
+  if(x === " "){ // 만약 x의 글자가 공백이라면 띄어쓰기 해줘
+    x = "&nbsp;"
   }
-  else{
-    console.log(alphabet);
-  }
+  hcode += `<span>${x}</span>`; // x의 글자를 span 태그에 담아줘
 }
-// A,B,C
-
-for(let txt of "text to long" ){
-  console.log(txt); // t,e,x,t, ,t,o, ,l,o,n,g
-}
+document.querySelector(".stage").innerHTML = hcode;
