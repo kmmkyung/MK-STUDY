@@ -8,7 +8,3 @@
 //     return answer;
 // }
 // console.log(a(10,3));
-
-const num = [4, 1, 2, 3];
-console.log(Array.isArray(num));
-console.log(num); // [4, 1, 2, 3]
