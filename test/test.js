@@ -1,25 +1,4 @@
-// 숫자형을 문자형으로 변환하기
-// function nonum(n){
-//     let answer = '';
-//     answer = String(n)
-//     return answer;
-// }
-// console.log(nonum(123));
-// console.log(typeof(nonum(567)));
-
-function ENG(alphabet){
-    return alphabet.toUpperCase();
-}
-
-console.log(ENG("AbCdEfG"));
-
-// function aa(n) {
-//     return n+"";
-// }
-
-
-// Number()
-// String()
+// 1씩 감소하는 배열 만들기
 
 // function a(start, end) {
 //     var answer = [];
@@ -29,3 +8,7 @@ console.log(ENG("AbCdEfG"));
 //     return answer;
 // }
 // console.log(a(10,3));
+
+const num = [4, 1, 2, 3];
+console.log(Array.isArray(num));
+console.log(num); // [4, 1, 2, 3]
