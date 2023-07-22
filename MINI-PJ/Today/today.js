@@ -3,6 +3,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
   const day = document.querySelector(".day");
   const clock = document.querySelector(".clock");
+  const noon = document.querySelector(".noon");
   // console.log(clock);
 
   // 0. 날짜, 시간 등 현재 정보를 가져오기 위해 Date() object를 사용!
@@ -18,7 +19,7 @@ window.addEventListener("DOMContentLoaded", () => {
     const weekday = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday",];
     let changeday = weekday[new Date().getDay()];
     
-    // 1-2. 월을 두자리로 맞추기
+    // 1-2. 2자리수 만들기
     // type가 String일때 사용할 수 있는 padStart() 사용!
     // 현재 Number인 월을 String로 바꾸기
     let month = String(new Date().getMonth()+1)
@@ -35,10 +36,28 @@ window.addEventListener("DOMContentLoaded", () => {
 
   // 2. 시간 함수
   function nowClock() {
-    let hours = String(new Date().getHours()).padStart(2,"0")
-    let minutes = String(new Date().getMinutes()).padStart(2,"0")
-    let seconds = String(new Date().getSeconds()).padStart(2,"0")
+    // 2-1. 오전/오후 업데이트
+    let changenoon = "AM"
+    let noonhours = new Date().getHours()
+    if(noonhours>12){
+      changenoon = "PM"
+    }
+
+    // 2-2-1. 2자리수 만들기 
+    // let hours = String(new Date().getHours()).padStart(2,"0")
+    // let minutes = String(new Date().getMinutes()).padStart(2,"0")
+    // let seconds = String(new Date().getSeconds()).padStart(2,"0")
+
+    // 2-2-2. 2자리수 만들기
+    const addZero = function(num){
+      return num<10?"0"+num:num;
+    }
+    let hours = addZero(new Date().getHours());
+    let minutes = addZero(new Date().getMinutes());
+    let seconds = addZero(new Date().getSeconds());
+    
     // 최종 출력!
+    noon.innerText = changenoon;
     clock.innerText = `${hours}:${minutes}:${seconds}`;
   }
 
