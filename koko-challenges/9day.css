@@ -1,0 +1,82 @@
+body{
+  margin: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: lightseagreen;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.circle, .rectangle{
+  width: 20%;
+  height: 30%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.c{
+  width: 20px;
+  height: 20px;
+  background-color: #fff;
+  border-radius: 50%;
+}
+
+.c_ani{
+animation: cirAni 1.5s cubic-bezier(0.22, 0.61, 0.36, 1) infinite;
+}
+
+.r{
+  width: 20px;
+  height: 60px;
+  background-color: #fff;
+}
+
+.r1_ani{
+  animation: rAni 1.5s ease-in .2s infinite;
+}
+.r2_ani{
+  animation: rAni 1.5s ease-in .4s infinite;
+}
+.r3_ani{
+  animation: rAni 1.5s ease-in .6s infinite;
+}
+.r4_ani{
+  animation: rAni 1.5s ease-in .8s infinite;
+}
+.r5_ani{
+  animation: rAni 1.5s ease-in 1s infinite;
+}
+
+@keyframes cirAni {
+  0%{
+    transform: rotate(0deg);
+  }
+  50%{
+    transform: rotate(180deg);
+  }
+  100%{
+    transform: rotate(180deg);
+  }
+}
+
+@keyframes rAni{
+  0% {
+    transform: scaleY(1);
+  }
+  25%{
+    transform: scaleY(2);
+  }
+  50%{
+    transform: scaleY(1);
+  }
+  75%{
+    transform: scaleY(1);
+  }
+  100%{
+    transform: scaleY(1);
+  }
+}

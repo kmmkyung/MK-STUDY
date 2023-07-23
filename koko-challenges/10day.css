@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Tilt+Warp&display=swap');
+
+body{
+  margin: 0;
+  font-family: 'Tilt Warp', cursive;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: aquamarine;
+}
+
+.playlist{
+  height: 600px;
+  width: 400px;
+  background-color: #fff;
+  padding: 50px 40px;
+}
+
+.top-bar{
+  width: 100%;
+  position: relative;
+}
+
+.top-bar__column{
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.top-bar__column .fa-xmark{
+  position: absolute;
+  left: 0;
+}
+
+.top-bar__column h2{
+  display: flex;
+  justify-content: center;
+}
+
+.playlist-main{
+  display: flex;
+}
+.playlist-main__img{
+  width: 150px;
+  height: 150px;
+  border: 1px solid block;
+  background-color: gold;
+  position: relative;
+  border-radius: 20%;
+}
+
+.fa-image{
+  font-size: 100px;
+  position: absolute;
+  top: 25px;
+  left: 25px;
+}
+
+.playlist-main__text{
+margin-left: 30px;
+}
+
+.playlist-main__text>h1{
+  font-size: 30px;
+  margin-bottom: 100px;
+}
+
+.playlist-main__text>p{
+  font-size: 15px;
+}
+
+.playlist-button{
+  display: flex;
+}
+
+.playlist-list__con{
+  display: flex;
+}
+
+.playlist-list__con>.img{
+  width: 80px;
+  height: 80px;
+  background-color: blanchedalmond;
+  border-radius: 20%;
+  margin-right: 20px;
+}
+
