@@ -36,26 +36,28 @@ window.addEventListener("DOMContentLoaded", () => {
 
   // 2. 시간 함수
   function nowClock() {
-    // 2-1. 오전/오후 업데이트
-    let changenoon = "AM"
-    let noonhours = new Date().getHours()
-    if(noonhours>12){
-      changenoon = "PM"
-    }
 
-    // 2-2-1. 2자리수 만들기 
+    // 2-1-1. 2자리수 만들기 
     // let hours = String(new Date().getHours()).padStart(2,"0")
     // let minutes = String(new Date().getMinutes()).padStart(2,"0")
     // let seconds = String(new Date().getSeconds()).padStart(2,"0")
 
-    // 2-2-2. 2자리수 만들기
+    // 2-1-2. 2자리수 만들기
     const addZero = function(num){
       return num<10?"0"+num:num;
     }
-    let hours = addZero(new Date().getHours());
+
+    let hours = new Date().getHours();
     let minutes = addZero(new Date().getMinutes());
     let seconds = addZero(new Date().getSeconds());
-    
+
+    // 2-2. 오전/오후 업데이트
+    let changenoon = "AM"
+    if(hours>11){
+      hours = addZero(new Date().getHours()-12)
+      changenoon = "PM"
+    }
+
     // 최종 출력!
     noon.innerText = changenoon;
     clock.innerText = `${hours}:${minutes}:${seconds}`;
