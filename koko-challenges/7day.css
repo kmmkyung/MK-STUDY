@@ -93,12 +93,14 @@ margin-left: 30px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding-bottom: 5px;
 }
 
 .playlist-button__play{
   padding: 10px 40px;
   border: 2px solid black;
   border-radius: 10px;
+  box-shadow: 0 5px 0 black;
 }
 
 .playlist-button__play span{
@@ -110,6 +112,7 @@ margin-left: 30px;
   padding: 10px;
   border: 2px solid black;
   border-radius: 50%;
+  box-shadow: 0 5px 0 black;
 }
 
 .playlist-list__con{
