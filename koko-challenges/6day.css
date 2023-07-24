@@ -26,37 +26,35 @@ body{
 }
 
 .c_ani{
-animation: cirAni 1.5s cubic-bezier(0.22, 0.61, 0.36, 1) infinite;
+animation: cirAni 1s ease-in-out infinite;
 }
 
 .r{
   width: 20px;
   height: 60px;
   background-color: #fff;
+  animation: rAni 1s ease-in-out infinite
 }
 
 .r1_ani{
-  animation: rAni 1.5s ease-in .2s infinite;
+  animation-delay: 1s;
 }
 .r2_ani{
-  animation: rAni 1.5s ease-in .4s infinite;
+  animation-delay: 1.2s;
 }
 .r3_ani{
-  animation: rAni 1.5s ease-in .6s infinite;
+  animation-delay: 1.4s;
 }
 .r4_ani{
-  animation: rAni 1.5s ease-in .8s infinite;
+  animation-delay: 1.6s;
 }
 .r5_ani{
-  animation: rAni 1.5s ease-in 1s infinite;
+  animation-delay: 1.8s;
 }
 
 @keyframes cirAni {
   0%{
     transform: rotate(0deg);
-  }
-  50%{
-    transform: rotate(180deg);
   }
   100%{
     transform: rotate(180deg);
@@ -71,12 +69,6 @@ animation: cirAni 1.5s cubic-bezier(0.22, 0.61, 0.36, 1) infinite;
     transform: scaleY(2);
   }
   50%{
-    transform: scaleY(1);
-  }
-  75%{
-    transform: scaleY(1);
-  }
-  100%{
     transform: scaleY(1);
   }
 }
