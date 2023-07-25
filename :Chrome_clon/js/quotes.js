@@ -1,5 +1,5 @@
 const quotes = [
-  { quote:"완벽함이 아니라 탁월함을 위해서 애써라.!",
+  { quote:"완벽함이 아니라 탁월함을 위해서 애써라!",
     author:"H. 잭슨 브라운 주니어 / H. Jackson Brown Jr."
   },
   { quote:"어디를 가든지 마음을 다해 가라.",
