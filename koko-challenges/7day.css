@@ -1,9 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Tilt+Warp&display=swap');
 
-body *{
-  border: 1px solid tomato;
-}
-
 body{
   margin: 0;
   font-family: 'Tilt Warp', cursive;
@@ -56,12 +52,12 @@ body{
 
 .playlist-main{
   display: flex;
+  justify-content: space-between;
 }
 
 .playlist-main__img{
   width: 100px;
   height: 100px;
-  border: 1px solid block;
   background-color: gold;
   position: relative;
   border-radius: 20%;
@@ -76,12 +72,13 @@ body{
 }
 
 .playlist-main__text{
-margin-left: 30px;
+flex-basis: 60%;
 }
 
 .playlist-main__text>h1{
   font-size: 30px;
   height: 80%;
+  line-height: 35px;
 }
 
 .playlist-main__text>p{
@@ -93,14 +90,13 @@ margin-left: 30px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-bottom: 5px;
 }
 
 .playlist-button__play{
   padding: 10px 40px;
-  border: 2px solid black;
+  border: solid black;
   border-radius: 10px;
-  box-shadow: 0 5px 0 black;
+  border-width: 2px 2px 6px 2px;
 }
 
 .playlist-button__play span{
@@ -110,9 +106,9 @@ margin-left: 30px;
 .fa-heart,
 .fa-plus{
   padding: 10px;
-  border: 2px solid black;
+  border: solid black;
   border-radius: 50%;
-  box-shadow: 0 5px 0 black;
+  border-width: 2px 2px 6px 2px;
 }
 
 .playlist-list__con{
@@ -127,17 +123,33 @@ margin-left: 30px;
 .playlist-list__con>.img{
   width: 80px;
   height: 80px;
-  background-color: blanchedalmond;
   border-radius: 20%;
   margin-right: 20px;
   border: 2px solid black;
 }
 
+.playlist-list__con:first-child .img{
+  background-color: tomato;
+}
+
+.playlist-list__con:nth-child(2) .img{
+  background-color: pink;
+}
+
+.playlist-list__con:nth-child(3) .img{
+  background-color: blue;
+}
+
+.playlist-list__con:last-child .img{
+  background-color: teal;
+}
+
 .playlist-list__con>.text h3{
   font-size: 18px;
+  line-height: 30px;
 }
 
 .playlist-list__con>.text p{
-  margin-top: 10px;
   font-size: 15px;
+  line-height: 30px;
 }
