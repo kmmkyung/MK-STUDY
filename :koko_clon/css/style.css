@@ -5,11 +5,14 @@
 @import "../components/screen-header.css";
 @import "../components/user-component.css";
 @import "../components/badge.css";
+@import "../components/icon-row.css";
 
 @import "./reset.css";
 @import "./variavles.css";
 @import "../css/friends.css";
 @import "../css/chats.css";
+@import "../css/find.css";
+@import "../css/more.css";
 
 body{
   font-family: 'Roboto', sans-serif;
