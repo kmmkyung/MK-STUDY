@@ -52,6 +52,7 @@ function logoutBtn(username){
   logout.innerText=`${username} Louout`
   logout.addEventListener('click',()=>{
     localStorage.removeItem("USERNAME_KEY")
+    localStorage.removeItem("todos")
     greeting.innerText = ``;
     loginForm.classList.remove(HIDDEN_CLASS)
     logout.classList.add(HIDDEN_CLASS)
