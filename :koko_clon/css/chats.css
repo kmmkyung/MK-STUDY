@@ -1,7 +1,7 @@
-.fa-user {
+.nav__btn .fa-user {
   color: #fff;
 }
 
-.fa-comment{
+.nav__btn .fa-comment{
   color: rgb(233, 102, 161);
 }

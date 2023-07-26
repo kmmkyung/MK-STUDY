@@ -6,6 +6,7 @@
 @import "../components/user-component.css";
 @import "../components/badge.css";
 @import "../components/icon-row.css";
+@import "../components/alt-screen-header.css";
 
 @import "./reset.css";
 @import "./variavles.css";
@@ -13,6 +14,8 @@
 @import "../css/chats.css";
 @import "../css/find.css";
 @import "../css/more.css";
+@import "../css/setting.css";
+@import "../css/chatroom.css";
 
 body{
   font-family: 'Roboto', sans-serif;
