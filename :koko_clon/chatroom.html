@@ -50,7 +50,7 @@
       <div class="chat__timestamp">
         Tuesday, June 30, 2023
       </div>
-      <div class="message-row">
+      <div class="message-row fadeInSideLfte">
         <img src="./imges/friend_1.jpg">
         <div class="message-row__content">
           <span class="message__author">lip💋</span>
@@ -60,7 +60,7 @@
           </div>
         </div>
       </div>
-      <div class="message-row message-row__own">
+      <div class="message-row message-row__own fadeInSideRight">
         <div class="message-row__content">
           <div class="message__info">
             <span class="message__bubble">❤️</span>
@@ -68,7 +68,7 @@
           </div>
         </div>
       </div>
-      <div class="message-row">
+      <div class="message-row fadeInSideLfte">
         <img src="./imges/friend_1.jpg">
         <div class="message-row__content">
           <span class="message__author">lip💋</span>
@@ -79,33 +79,18 @@
         </div>
       </div>
     </main>
-
-    <nav class="nav">
-      <ul class="nav__list">
-        <li class="nav__btn">
-          <a class="nav__link" href="friends.html">
-            <i class="fa-regular fa-user fa-lg"></i>
-          </a>
-        </li>
-        <li class="nav__btn">
-          <a class="nav__link" href="chats.html">
-            <span class="nav_commentShow badge">1</span>
-            <i class="fa-regular fa-comment fa-lg"></i>
-          </a>
-        </li>
-        <li class="nav__btn">
-          <a class="nav__link" href="chats.html">
-            <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-          </a>
-        </li>
-        <li class="nav__btn">
-          <a class="nav__link" href="more.html">
-            <div class="nav_bot"></div>
-            <i class="fa-solid fa-ellipsis fa-lg"></i>
-          </a>
-        </li>
-      </ul>
-    </nav>
+    <form class="reply">
+      <div class="reply__column">
+        <i class="fa-solid fa-plus"></i>
+      </div>
+      <div class="reply__column">
+        <input type="text" placeholder="write a message...">
+        <i class="fa-regular fa-face-smile"></i>
+        <button>
+          <i class="fa-solid fa-circle-arrow-up"></i>
+        </button>
+      </div>
+    </form>
     <script
       src="https://kit.fontawesome.com/77fc3db515.js"
       crossorigin="anonymous"

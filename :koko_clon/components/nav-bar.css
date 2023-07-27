@@ -26,6 +26,11 @@
   position: absolute;
   left: 10px;
   bottom: 10px;
+  animation: notification 1s ease-in-out infinite;  
+}
+
+.nav__list:hover .nav_commentShow{
+  animation: none;
 }
 
 .nav_bot{
@@ -36,4 +41,16 @@
   position: absolute;
   left: 20px;
   bottom: 15px;
+}
+
+@keyframes notification {
+  0%{
+    transform: none;
+  }
+  50%{
+    transform: translateY(-3px);
+  }
+  100%{
+    transform: none;
+  }
 }
