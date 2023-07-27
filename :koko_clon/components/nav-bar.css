@@ -2,8 +2,8 @@
   position: fixed;
   bottom: 0;
   width: 100%;
-  background-color: rgba(233, 102, 161, .4);
-  border-top: 1px solid rgb(233, 102, 161);
+  background-color: #ffb4d6;
+  border-top: 1px solid #e966a1;
   padding: 20px 50px;
   box-sizing: border-box;
 }
