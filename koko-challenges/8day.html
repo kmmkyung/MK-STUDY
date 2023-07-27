@@ -1,87 +1,142 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css"
-/>
-<link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/gh/FortAwesome/Font-Awesome@5.14.0/css/all.min.css"
-/>
-  <title>Document</title>
-  <link rel="stylesheet" href="8day.css">
-</head>
-<body>
-  <header>
-    <i class="fa-solid fa-star"></i>
-    <i class="fa-regular fa-star"></i>
-    <h3>library</h3>
-    <!-- icon -->
-    <!-- icon -->
-  </header>
-  <div class="search">
-    <h5>Search books...</h5>
-    <!-- icon -->
-  </div>
-  <section class="main">
-    <div class="main_con1">
-      <h2>Book of the day</h2>
-      <img src="" alt="">
-      <div class="main_con1-text">
-        <p>No Fixed Abode</p>
-        <p>Journey Through</p>
-        <div class="star">
-          <!-- 아이콘 -->
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/FortAwesome/Font-Awesome@5.14.0/css/all.min.css"
+    />
+    <title>Document</title>
+    <link rel="stylesheet" href="8day.css" />
+  </head>
+  <body>
+    <!-- 시작~ -->
+    <header id="header">
+      <div class="header-nav">
+        <i class="fa-solid fa-bars bar"></i>
+        <h1>library</h1>
+        <i class="fa-solid fa-bag-shopping bag"></i>
+      </div>
+      <div class="header-search">
+        <input type="text" placeholder="Search books..." />
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </div>
+    </header>
+    <main>
+      <!-- conponent-1 -->
+      <section class="conponent-1">
+        <h2>Book of the day</h2>
+        <div class="conponent-1__con1">
+          <div class="conponent-1__con1__wrap">
+            <div class="conponent-1__con1__img"></div>
+            <div class="conponent-1__con1__content">
+              <div class="conponent-1__con1__text">
+                <h3>No Fixed Abode</h3>
+                <p>Journey Through</p>
+              </div>
+              <div class="conponent-star fa-1x">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+              </div>
+              <div class="conponent-1__con1__tag">
+                <h5>Journey</h5>
+                <h5>Biography</h5>
+              </div>
+              <div class="conponent-1__con1__button">
+                <i class="fa-solid fa-bookmark"></i>
+                <form>
+                  <input type="submit" value="Book Now" />
+                </form>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-      <div class="main_con1-tag">
-        <p>Journey</p>
-        <p>Biography</p>
-      </div>
-      <div class="main_con1-botton">
-        <!-- 아이콘 -->
-        <form>
-          <input type="submit" value="Book Now">
-        </form>
-      </div>
-    </div>
-  </section>
-  <section>
-    <h2>Top Adventures</h2>
-    <div>
-      <img src="" alt="">
-      <!-- 아이콘 -->
-    </div>
-    <div>
-      <img src="" alt="">
-      <!-- 아이콘 -->
-    </div>
-    <div>
-      <img src="" alt="">
-      <!-- 아이콘 -->
-    </div>
-    <div>
-      <img src="" alt="">
-      <!-- 아이콘 -->
-    </div>
-  </section>
-  <section>
-    <h2>Popular authors</h2>
-    <div>
-      <img src="" alt="">
-      <div class="con3">
-        <h3>George Raymond<br>Richard Martin</h3>
-        <p>Modern American science fiction writer, screenwriter, producer and editor, winner of many literary awards.</p>
-      </div>
-    </div>
-  </section>
-  <script
-  src="https://kit.fontawesome.com/77fc3db515.js"
-  crossorigin="anonymous"
-></script>
-</body>
+      </section>
+      <section class="conponent-2">
+        <h2>Top Adventures</h2>
+        <ul>
+          <li class="conponent-2__wrap">
+            <div class="conponent-2__img-1"></div>
+            <div class="conponent-star sx">
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+            </div>
+          </li>
+          <li class="conponent-2__wrap">
+            <div class="conponent-2__img-2"></div>
+            <div class="conponent-star sx">
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-regular fa-star"></i>
+              <i class="fa-regular fa-star"></i>
+            </div>
+          </li>
+          <li class="conponent-2__wrap">
+            <div class="conponent-2__img-3"></div>
+            <div class="conponent-star sx">
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-regular fa-star"></i>
+            </div>
+          </li>
+          <li class="conponent-2__wrap">
+            <div class="conponent-2__img-4"></div>
+            <div class="conponent-star sx">
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-regular fa-star"></i>
+            </div>
+          </li>
+          <li class="conponent-2__wrap">
+            <div class="conponent-2__img-5"></div>
+            <div class="conponent-star sx">
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-regular fa-star"></i>
+            </div>
+          </li>
+        </ul>
+      </section>
+      <section class="conponent-1">
+        <h2>Popular authors</h2>
+        <div class="conponent-1__con1">
+          <div class="conponent-1__con1__wrap">
+            <div class="conponent-1__con1__img bgblack"></div>
+            <div class="conponent-1__con1__content">
+              <div class="conponent-1__con1__text">
+                <h3 class="lh">George Raymond Richard Martin</h3>
+                <p>
+                  Modern American science fiction writer, screenwriter, producer
+                  and editor, winner of many literary awards.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <script
+      src="https://kit.fontawesome.com/77fc3db515.js"
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>
