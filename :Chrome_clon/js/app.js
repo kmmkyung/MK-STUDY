@@ -2,6 +2,7 @@ const loginForm = document.querySelector("#login-form");
 const loginInput = loginForm.querySelector("input");
 const logout = document.querySelector('.title-logout');
 const greeting = document.querySelector("#greeting");
+const Listli = document.querySelectorAll('#todo-list li')
 
 const saveUsername = localStorage.getItem("USERNAME_KEY");
 
@@ -53,8 +54,6 @@ function logoutBtn(username){
   logout.addEventListener('click',()=>{
     localStorage.removeItem("USERNAME_KEY")
     localStorage.removeItem("todos")
-    greeting.innerText = ``;
-    loginForm.classList.remove(HIDDEN_CLASS)
-    logout.classList.add(HIDDEN_CLASS)
+    location.reload()
   })
 }

@@ -1,19 +1,19 @@
 const toDoForm = document.querySelector("#todo-form");
 const toDoInput = document.querySelector("#todo-form input");
 const toDoList = document.querySelector("#todo-list");
-
 let toDos =[];
 
-function saveToDos(){
-  localStorage.setItem("todos",JSON.stringify(toDos));
-}
-
+toDoForm.addEventListener("submit",ToDoSubmit);
 function ToDoSubmit(event){
   event.preventDefault();
   const newTodo = toDoInput.value; 
-  toDoInput.value = "";
-  toDos.push(newTodo);
-  paintToDo(newTodo);
+  toDoInput.value = ""; // 쓰고 나서 비우고
+  const newTodoOBJ = {
+    text:newTodo,
+    id: Date.now()
+  }
+  toDos.push(newTodoOBJ); // obj 담기
+  paintToDo(newTodoOBJ); // 화면 출력
   saveToDos();
 }
 
@@ -21,24 +21,32 @@ function paintToDo(newTodo){
   const li = document.createElement("li");
   const span = document.createElement("span");
   const botton = document.createElement("botton");
-  span.innerText=newTodo;
-  botton.innerText="❌";
+  span.innerText = newTodo.text;
+  li.id = newTodo.id;
+  botton.innerText="___X___";
+  toDoList.appendChild(li);
   li.appendChild(span);
   li.appendChild(botton);
-  toDoList.appendChild(li);
   botton.addEventListener("click",delToDo);
+}
+
+// 로컬에 저장
+function saveToDos(){
+  localStorage.setItem("todos",JSON.stringify(toDos)); //로컬에 string으로 넣기
+}
+
+const savedToDos = localStorage.getItem("todos")
+if(savedToDos !== null){
+  const parsedToDos = JSON.parse(savedToDos);
+  toDos = parsedToDos; // 기존 리스트 포함해서 로컬에 저장
+  parsedToDos.forEach(paintToDo);
 }
 
 function delToDo(event){
   const li = event.target.parentElement;
   li.remove();
+  // 내가 클릭한 li의 id가 같지 않은것을 남기고 싶어
+  toDos = toDos.filter(toDo => toDo.id !== parseInt(li.id));
+  saveToDos()
 }
 
-toDoForm.addEventListener("submit",ToDoSubmit);
-
-const savedToDos = localStorage.getItem("todos")
-if(savedToDos!==null){
-  const parsedToDos = JSON.parse(savedToDos);
-  toDos = parsedToDos;
-  parsedToDos.forEach(paintToDo);
-}
