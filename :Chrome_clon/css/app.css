@@ -3,28 +3,21 @@ html,body,p,h1,h2,h3{
   padding: 0;
 }
 
+input{
+  outline: none;
+  border: none;
+  width: 200px;
+  padding: 10px;
+  background-color: transparent;
+  border-bottom: 1px solid;
+}
+
 body{
   overflow: hidden;
 }
 
 .hidden{
   display: none;
-}
-
-#login-form input{
-  border: none;
-  padding: 10px;
-  background-color: transparent;
-  border-bottom: 1px solid;
-}
-
-#login-form button{
-  border: none;
-  color: block;
-  text-decoration: underline;
-  padding: 10px;
-  border-radius: 10px;
-  background-color: transparent;
 }
 
 img{
@@ -56,6 +49,32 @@ img{
   text-shadow: 1px 1px 10px #6e6e6e;
 }
 
+.title button{
+  border: none;
+  color: black;
+  text-decoration: underline;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.title>button{
+margin: 0;
+padding: 0;
+}
+
+
+#todo-form{
+  overflow-x: auto;
+  width: 300px;
+  height: auto;
+  position: absolute;
+  top: 50px;
+  right: 50px;
+  text-align: center;
+}
+
 #quote{
   position: absolute;
   top: auto;
@@ -76,11 +95,22 @@ img{
 }
 
 #todo-list li{
-  list-style: "🍀  ";
+  list-style: "🍀 ";
 }
 
-#todo-list>li botton{
-  font-size: 10px;
+#todo-list span:last-child{
+  font-size: 12px;
   margin-left: 10px;
   cursor: pointer;
+  border: none;
+  background-color: transparent;
+  color: red;
+}
+
+@media screen and (max-width:500px){
+  #todo-form{
+    right: auto;
+    left: 50%;
+    transform:translateX(-50%);
+  }
 }

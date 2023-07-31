@@ -17,18 +17,36 @@ function ToDoSubmit(event){
   saveToDos();
 }
 
-function paintToDo(newTodo){
+// function paintToDo(newTodo){
+//   const li = document.createElement("li");
+//   const span = document.createElement("span");
+//   const listBtn = document.createElement("button");
+//   span.innerText = newTodo.text;
+//   li.id = newTodo.id;
+//   listBtn.innerText="___X___";
+//   toDoList.appendChild(li);
+//   li.appendChild(span);
+//   li.appendChild(listBtn);
+//   listBtn.addEventListener("click",delToDo);
+// }
+
+
+function paintToDo(newToDo){
+  // console.log("I will paint", newToDo);
+  // console.log(newToDo);
   const li = document.createElement("li");
   const span = document.createElement("span");
-  const botton = document.createElement("botton");
-  span.innerText = newTodo.text;
-  li.id = newTodo.id;
-  botton.innerText="___X___";
+  const button = document.createElement("span");
+  span.innerText = newToDo.text;
+  li.id = newToDo.id;
+  button.innerText = `___X___`
+  
   toDoList.appendChild(li);
-  li.appendChild(span);
-  li.appendChild(botton);
-  botton.addEventListener("click",delToDo);
+  li.appendChild(span); //li > span
+  li.appendChild(button);
+  button.addEventListener("click", delToDo);
 }
+
 
 // 로컬에 저장
 function saveToDos(){
@@ -49,4 +67,3 @@ function delToDo(event){
   toDos = toDos.filter(toDo => toDo.id !== parseInt(li.id));
   saveToDos()
 }
-

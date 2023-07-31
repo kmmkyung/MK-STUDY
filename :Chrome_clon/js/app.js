@@ -14,7 +14,6 @@ const USERNAME_KEY = "username";
 if(saveUsername === null){
   // show the form
   loginForm.classList.remove(HIDDEN_CLASS)
-  logout.classList.add(HIDDEN_CLASS)
   loginForm.addEventListener("submit",loginSubmit);
 }
 // 만약 saveUsername에 값이 있으면 3번으로 바로 이동!
@@ -36,7 +35,6 @@ function loginSubmit(event){
   const username = loginInput.value;
   localStorage.setItem("USERNAME_KEY", username);
   paintFreenting(username)
-  logoutBtn(username)
 }
 
 // 3. paintFreenting 함수 호출
@@ -45,11 +43,15 @@ function loginSubmit(event){
 function paintFreenting(username){
   greeting.classList.remove(HIDDEN_CLASS)
   greeting.innerText = `Hello ${username} 🌺`;
+  logoutBtn(username)
 }
 
 // 4. 로그아웃
 function logoutBtn(username){
-  logout.classList.remove(HIDDEN_CLASS)
+  const logout =  document.createElement('button');
+  const from = document.querySelector('.title');
+  from.appendChild(logout)
+  // logout.classList.remove(HIDDEN_CLASS)
   logout.innerText=`${username} Louout`
   logout.addEventListener('click',()=>{
     localStorage.removeItem("USERNAME_KEY")
