@@ -6,6 +6,7 @@ body {
   color: var(--darkgray);
   font-weight: normal;
   line-height: 1.2;
+  height: 500vh;
 }
 
 img {
@@ -20,7 +21,8 @@ img {
 
 header {
   background-color: #f6f5ef;
-  position: relative;
+  position: fixed;
+  width: 100%;
 }
 
 header > .inner {
