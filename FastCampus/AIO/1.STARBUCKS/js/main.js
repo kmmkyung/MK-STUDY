@@ -24,4 +24,10 @@ window.addEventListener('DOMContentLoaded',function(){
       delay:(i+1)*.7
     })
   })
+
+  new Swiper('.notice-line .swiper',{
+    direction:'vertical',
+    autoplay: true,
+    loop: true
+  });
 })
