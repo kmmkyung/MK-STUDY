@@ -49,3 +49,7 @@
   bottom: 0;
   left: 275px;
 }
+
+.visual .fade-in{
+  opacity: 0;
+}

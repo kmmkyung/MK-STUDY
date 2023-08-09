@@ -16,4 +16,12 @@ window.addEventListener('DOMContentLoaded',function(){
       })
     }
   },300))
+  
+  const fadeEls = document.querySelectorAll('.fade-in')
+  fadeEls.forEach(function(v,i){
+    gsap.to(v,1,{
+      opacity:1,
+      delay:(i+1)*.7
+    })
+  })
 })
