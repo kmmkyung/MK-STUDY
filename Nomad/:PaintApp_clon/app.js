@@ -8,6 +8,7 @@ window.addEventListener('DOMContentLoaded',function(){
 
   //------------------------------------ 그리기
   let isPainting = false;
+  ctx.lineCap='round'
   function onMove(event){
     if(isPainting){
       ctx.lineTo(event.offsetX, event.offsetY);
@@ -99,4 +100,47 @@ window.addEventListener('DOMContentLoaded',function(){
     isFilling = false;
     modeBtn.innerText = 'Fill';
   }
-})
+
+    //------------------------------------ File
+    const fileInput = document.querySelector('#file')
+    fileInput.addEventListener('change',onFileChange);
+    function onFileChange(event){
+      console.log(event.target);
+      
+      const file = event.target.files[0]
+      const url = URL.createObjectURL(file);
+      const img = new Image()
+      img.src = url;
+      img.onload = function(){
+        ctx.drawImage(img,0,0,CANVAS_W,CANVAS_H)
+        fileInput.value = null;
+      }
+    }
+
+    //------------------------------------ Text
+    const textInput = document.querySelector('#text');
+    canvas.addEventListener('dblclick',onDoubleClick)
+    function onDoubleClick(event){
+      const text = textInput.value;
+      if(text !== ""){
+        ctx.save();
+        ctx.lineWidth = 1;
+        ctx.font = '48px serif'
+        ctx.fillText(text,event.offsetX,event.offsetY);
+        ctx.restore()
+      }
+    }
+
+    //------------------------------------ Save
+    const saveBtn =  document.querySelector('#save')
+    saveBtn.addEventListener('click',onSaveClick)
+    function onSaveClick(){
+      const url = canvas.toDataURL();
+      const a = document.createElement('a');
+      a.href = url
+      a.download = 'myDrawing.png'
+      a.click();
+    }
+    
+
+  })
