@@ -164,6 +164,11 @@
   position: absolute;
   top: 40px;
   left: 50%;
-  margin-left: -50%;
+  margin-left: calc((819px * 3 + 20px) / -2);
   background-color: orange;
+  font-size: 300px;
+  text-align: center;
+}
+
+.promotion .swiper .swiper-wrapper{
 }
