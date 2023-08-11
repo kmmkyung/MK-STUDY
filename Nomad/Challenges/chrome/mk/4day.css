@@ -1,0 +1,23 @@
+body{
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100vh;
+}
+
+h2{
+  margin: 0;
+  padding: 0;
+}
+
+.blue{
+  background-color: royalblue;
+}
+
+.purple{
+  background-color: purple;
+}
+
+.yellow{
+  background-color: gold;
+}
