@@ -26,7 +26,7 @@ function animateFrom(elem, direction) {
     elem,
     { x: x, y: y, autoAlpha: 0 },
     {
-      duration: 2,
+      duration: 5,
       x: 0,
       y: 0,
       autoAlpha: 1,
