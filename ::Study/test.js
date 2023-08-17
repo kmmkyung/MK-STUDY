@@ -6,22 +6,31 @@ let sections = gsap.utils.toArray(".panel");
 
 let scrollTween = gsap.to(sections, {
     xPercent: -100 * (sections.length - 1),
-    ease: "none",
+    ease: "none", // 이걸넣어야 가로스크롤 좌표가 안밀림!
     scrollTrigger: {
       trigger: ".container",
       start : "top top",
-      end: "+=100%",
+      end: "+=500%",
       pin: true,
-      scrub: 1
+      scrub: 1,
+      snap: 1 / (sections.length - 1),
+      invalidateOnRefresh: true, //화면 리사이징 
     }
   });
 
+function hide(elem) {
+  gsap.set(elem, {autoAlpha: 0});
+}
 
-// // purple section
-ScrollTrigger.create({
-  trigger: ".box",
-  containerAnimation: scrollTween,
-  toggleClass: "active",
-  start: "center 60%",
-  id: "3"
+gsap.utils.toArray(".gs_reveal").forEach(function(elem) {
+  hide(elem);
+  
+  ScrollTrigger.create({
+    containerAnimation: scrollTween,
+    toggleClass: "active",
+    star: "center 60%",
+    // onEnter: function() { animateFrom(elem) }, 
+    // onEnterBack: function() { animateFrom(elem, -1) },
+    onLeave: function() { hide(elem) }
+  });
 });
