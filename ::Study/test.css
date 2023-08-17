@@ -38,19 +38,21 @@ p{
 .box {
   position: absolute;
   width: 75vw;
-  height: 50vw;
+  height: 40vw;
   border-radius: 8px;
   will-change: transform;
-  opacity: 0.5;
+  /* opacity: 0.5; */
   text-align: center;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
+  position: relative;
+  top: 100px;
 }
 
-.box.active {
+/* .box.active {
   opacity: 1;
-}
+} */
 
 .description, .final{
 width: 100%;
@@ -82,4 +84,10 @@ height: 100vh;
 .panel1,
 .panel3{
   background-color: skyblue;
+}
+
+.gs_reveal {
+  opacity: 0;
+  visibility: hidden;
+  will-change: transform, opacity;
 }
