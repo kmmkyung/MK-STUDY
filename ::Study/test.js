@@ -1,23 +1,27 @@
-// document.getElementById('input').onkeyup = _.debounce(function() {
-//   document.getElementById('debounced').innerText = 'Debounced message!';
-// }, 500);
+// 안정화를 위해 불러주기!
+gsap.registerPlugin(ScrollTrigger);
 
-const input = document.querySelector('input');
-const eventSpan = document.querySelector('.event');
-const debounceSpan = document.querySelector('.debounce');
 
-let num = 0;
-let debouncednum = 0;
+let sections = gsap.utils.toArray(".panel");
 
-const keyeventFn = function(){
-  eventSpan.innerText = num++
-}
+let scrollTween = gsap.to(sections, {
+    xPercent: -100 * (sections.length - 1),
+    ease: "none",
+    scrollTrigger: {
+      trigger: ".container",
+      start : "top top",
+      end: "+=100%",
+      pin: true,
+      scrub: 1
+    }
+  });
 
-const debounceFn = _.debounce(function(){
-  debounceSpan.innerText=debouncednum++
-},300)
 
-input.addEventListener('keyup',function(){
-  keyeventFn()
-  debounceFn()
-})
+// // purple section
+ScrollTrigger.create({
+  trigger: ".box",
+  containerAnimation: scrollTween,
+  toggleClass: "active",
+  start: "center 60%",
+  id: "3"
+});
