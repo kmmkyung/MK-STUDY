@@ -9,13 +9,14 @@ let num = 0;
 let debouncednum = 0;
 
 function keyevent(){
-  keyevent.innerText=num++
+  keyevent.innerText = num++
 }
 
-function debounce = ._debounce(function(){
-  debounce.innerText=debouncednum++
-})
+// function debounce = ._debounce(function(){
+//   debounce.innerText=debouncednum++
+// })
+
 input.addEventListener('keyup',function(){
   keyevent()
-  debounce()
+  // debounce()
 })
