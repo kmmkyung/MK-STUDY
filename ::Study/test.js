@@ -3,20 +3,21 @@
 // }, 500);
 
 const input = document.querySelector('input');
-const keyevent = document.querySelector('.event');
-const debounce = document.querySelector('.debounce');
+const eventSpan = document.querySelector('.event');
+const debounceSpan = document.querySelector('.debounce');
+
 let num = 0;
 let debouncednum = 0;
 
-function keyevent(){
-  keyevent.innerText = num++
+const keyeventFn = function(){
+  eventSpan.innerText = num++
 }
 
-// function debounce = ._debounce(function(){
-//   debounce.innerText=debouncednum++
-// })
+const debounceFn = _.debounce(function(){
+  debounceSpan.innerText=debouncednum++
+},300)
 
 input.addEventListener('keyup',function(){
-  keyevent()
-  // debounce()
+  keyeventFn()
+  debounceFn()
 })
