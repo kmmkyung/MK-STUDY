@@ -81,4 +81,15 @@ function random(min, max) {
   floatingObj('.floating1',1,15)
   floatingObj('.floating2',.5,15)
   floatingObj('.floating3',1.5,20)
+
+  const spyEls = document.querySelectorAll('section .scroll-spy');
+  spyEls.forEach(function(spyEl){
+    new ScrollMagic
+      .Scene({
+        triggerElement: spyEl, // 보여짐 여부를 감시할 요소를 지정
+        triggerHook: 0.8, // 뷰포트 위-0 아래-1
+      })
+      .setClassToggle(spyEl,'show')
+      .addTo(new ScrollMagic.Controller());
+  })
 })

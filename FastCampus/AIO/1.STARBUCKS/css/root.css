@@ -18,23 +18,3 @@
   --font-size-L: 1.6rem;
 }
 /*----------*/
-/*-- CSS CLASS --*/
-.-hidden {
-  display: none;
-}
-
-.-show {
-  display: block;
-}
-
-.-center {
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.-opacity {
-  opacity: 0;
-}
-
-/*----- CSS -----*/
