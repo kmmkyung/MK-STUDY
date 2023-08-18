@@ -108,11 +108,35 @@ padding: 0;
   font-weight: 900;
 }
 
-@media screen and (max-width:500px){
+#weather{
+  position: absolute;
+  top: 50px;
+  left: 50px;
+  text-align: center;
+}
+
+#weather span:first-child{
+  text-decoration: underline;
+  line-height: 30px;
+}
+
+#weather span:last-child{
+  font-weight: bold;
+  font-size: 20px;
+}
+
+@media screen and (max-width:550px){
   #todo-form{
     right: auto;
     left: 50%;
     transform:translateX(-50%);
     width: 250px;
+  }
+
+  #weather{
+    top: auto;
+    bottom: 120px;
+    left: 50%;
+    transform:translateX(-50%);
   }
 }
