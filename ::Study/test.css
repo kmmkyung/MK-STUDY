@@ -1,4 +1,8 @@
 
+body *{
+  outline: 1px solid tomato;
+}
+
 body{
   overflow-x: hidden;
 }

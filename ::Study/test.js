@@ -16,6 +16,11 @@ let scrollTween = gsap.to(sections, {
   },
 });
 
+
+gsap.set(".box", {y: 100});
+ScrollTrigger.defaults({markers: {startColor: "black", endColor: "white"}});
+
+
 function animateFrom(elem, direction) {
   direction = direction || 1;
   var x = 0,
