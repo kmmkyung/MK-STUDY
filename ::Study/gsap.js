@@ -1,61 +1,43 @@
 gsap.registerPlugin(ScrollTrigger);
-const target = document.querySelector('.box');
 
-// gsap.to(target, {
-//   duration: 2,
-//   rotation: 360,
-//   y:1000,
-//   borderRadius: 100,
-//   scrollTrigger: {
-//     trigger: target,  //시작점 설정
-//     markers:"true",
-//     end: "+=400" // 요소의 상단이 스크롤의 300px 더 간 후 종료
-
-//   }
-// });
-
+const textAll = document.querySelector('div')
+const t1 = document.querySelector('.t1')
+const t2 = document.querySelector('.t2')
+const t3 = document.querySelector('.t3')
 
 const tl = gsap.timeline({
-  repeat: 1, // 반복횟수 총 2번
-  repeatDelay: 3, // 반복할때마다의 딜레이 3초
-  yoyo: true, // 재시작할때는 끝부터 시작
-  defaults: {duration: 2},
-  paused: true})  // timeline이 공통으로 가지는 속성
-  // 전체 박스들을!
-  tl.to(".box", {x: 50});
-  tl.to(".box", {backgroundColor:'white'})
-  tl.to(".box", {y: 50},'-=1'); // 앞 타임라인 END 1초전 진행(앞의 애니메이션과 겹침)
-  tl.to(".box", {backgroundColor:'tomato'},4) // 타임라인이 시작하고 4초 후 시작
-  tl.to(".box", {opacity: 0, stagger: 0.3}); // 요소들이 0.3초씩 딜레이해서 변경
-  tl.to(".box", {opacity: 1 ,stagger: 0.3});
-  tl.to(".box", {x: -50});
-  tl.to(".box", {rotation:360},"<"); // 앞의 START에 바로 진행
-  tl.to(".box", {y: -100});
-  tl.to(".box", {scale:.5},"+=4"); // 앞 타임라인 END 후 4초 후 진행
-  tl.to(".box", {y: 100});
+  default:{
+    duration:2,
+  }
+})
 
-  const play = document.querySelector('.play');
-  const pause = document.querySelector('.pause');
-  const resume = document.querySelector('.resume');
-  const reverse = document.querySelector('.reverse');
-  const restart = document.querySelector('.restart');
+function texteff(){
+  tl.to(".text",{duration: 3,ease:"steps(1.5)",delay: 2,color: "#000",stagger:1})
+}
 
-  play.onclick = function() {
-    tl.play();
-  }
-  
-  pause.onclick = function() {
-    tl.pause();
-  }
-  
-  resume.onclick = function() {
-    tl.resume();
-  }
-  
-  reverse.onclick = function() {
-    tl.reverse();
-  }
-  
-  restart.onclick = function() {
-    tl.restart();
-  }
+tl.from(textAll,2,{opacity:0,x:-50})
+texteff()
+tl.to(".text",{color:'#fff'},"+=1");
+tl.to("section",{backgroundColor:'gold'},"<");
+tl.to("section",{delay:2,backgroundColor:'#fff',ease:'expo'});
+tl.to(".text",{opacity:0,onComplete:chgtext1});
+tl.to(".text",{opacity:1,color:'#eee'});
+texteff()
+tl.to(".text",{color:'#fff'},"+=1");
+tl.to("section",{backgroundColor:'tomato'},"<");
+tl.to("section",{delay:2,backgroundColor:'#fff',ease:'expo'});
+tl.to(".text",{opacity:0,onComplete:chgtext2});
+tl.to(".text",{opacity:1,color:'#eee'});
+
+
+function chgtext1(){
+  t1.textContent=`DPR야`
+  t2.textContent=`그래도 내가`
+  t3.textContent=`체고체고지?`
+}
+
+function chgtext2(){
+  t1.textContent=`DPR야`
+  t2.textContent=`너도`
+  t3.textContent=`체고체고양=(^ㅈ^)=`
+}
