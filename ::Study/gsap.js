@@ -7,12 +7,12 @@ const t3 = document.querySelector('.t3')
 
 const tl = gsap.timeline({
   default:{
-    duration:2,
+    duration:2
   }
 })
 
 function texteff(){
-  tl.to(".text",{duration: 3,ease:"steps(1.5)",delay: 2,color: "#000",stagger:1})
+  tl.to(".text",{duration: 3,ease:"steps(1.5)",color: "#000",stagger:1})
 }
 
 tl.from(textAll,2,{opacity:0,x:-50})
