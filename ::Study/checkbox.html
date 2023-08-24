@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {background-color: #1E314F; color: #fff;}
+      /* .checkInput{
+        display: none;
+      } */
+      .checkLabel{
+        cursor: pointer;
+        display: block;
+        width: 90px;
+        height: 50px;
+        background-color: #83D8FF;
+        border-radius: 90px;
+        transition: .5s;
+      }
+      .checkLabel-handler{
+        display: block;
+        width: 40px;
+        height: 40px;
+        position: relative;
+        top: 50%;
+        left: 5px;
+        transform: translateY(-50%);
+        border-radius: 50%;
+        background-color: #fff;
+        box-shadow: 0 2px 6px rgba(0,0,0,.3);
+      }
+
+      input:checked .checkLabel{
+        background-color: #cbee1a;
+      }
+
+      input:checked .checkLabel-handler{
+        background-color: #ffa600;
+        transform: translate3d(40px, 0, 0) rotate(0);
+      }
+
+    </style>
+  </head>
+  <body>
+    <div class="toggleWrap">
+      <input type="checkbox" id="check" class="checkInput"/>
+      <label for="check" class="checkLabel">
+        <span class="checkLabel-handler"></span>
+      </label>
+    </div>
+  </body>
+</html>
