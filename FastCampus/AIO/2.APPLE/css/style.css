@@ -1,25 +1,25 @@
 /* 구글폰트 */
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&family=Roboto:wght@400;500;700&display=swap");
 
-body *{
+body * {
   /* outline: 1px solid tomato; */
 }
 
-html{
+html {
   --color-white: #fff;
   --color-black: #000;
   --color-font: #1d1d1d;
-  --color-font-darkgray : #6e6e6e;
-  --color-font-lightgray : #f5f5f5;
-  --color-link : #0071e3;
-  --color-link-focus : #81b9f1;
+  --color-font-darkgray: #6e6e6e;
+  --color-font-lightgray: #f5f5f5;
+  --color-link: #0071e3;
+  --color-link-focus: #81b9f1;
   --color-border: #d2d2d2;
   --color-header: #3a3a3a;
   --color-section: #f5f5f5;
-  --color-shadow: rgba(0,0,0,0.4);
+  --color-shadow: rgba(0, 0, 0, 0.4);
 }
 
-html.fixed{
+html.fixed {
   position: fixed;
   overflow-y: scroll;
   width: 100%;
@@ -35,30 +35,30 @@ body {
   color: var(--color-font);
 }
 
-a{
+a {
   text-decoration: none;
   color: var(--color-font);
 }
 
-img{
+img {
   display: block;
   user-select: none;
   -webkit-user-drag: none;
 }
 
-p{
+p {
   line-height: 1.6;
 }
 
 /* inner */
-.inner{
+.inner {
   max-width: 980px;
   margin: 0 auto;
   padding: 0 20px;
   position: relative;
 }
 /* Btn */
-.btn{
+.btn {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -74,16 +74,16 @@ p{
   cursor: pointer;
 }
 
-.btn:hover{
+.btn:hover {
   opacity: 0.7;
 }
 
-.btn:focus{
+.btn:focus {
   box-shadow: 0 0 0 4px var(--color-link-focus);
 }
 
 /* Background image text field */
-.bgtext{
+.bgtext {
   display: block;
   text-indent: -9999px;
   background-position: center;
@@ -92,79 +92,79 @@ p{
 }
 
 /* Links */
-.links{
+.links {
   display: flex;
   justify-content: center;
   gap: 40px;
 }
 
-a.link{
-  color:var(--color-link);
+a.link {
+  color: var(--color-link);
   font-size: 19px;
   line-height: 1.3;
 }
 
-a.link:hover{
+a.link:hover {
   text-decoration: underline;
 }
 
-a.link::after{
+a.link::after {
   content: " >";
 }
 
 /* feature */
-.feature{
+.feature {
   display: flex;
 }
 
 /*figures */
-.figures{
+.figures {
   flex-grow: 1;
   position: relative;
 }
 
 .figures figure,
-.figures figcaption{
+.figures figcaption {
   position: absolute;
   top: 0;
   left: 0;
 }
 
-.figures figcaption *{
+.figures figcaption * {
   position: absolute;
   top: 0;
   left: 0;
 }
 
 /* infos */
-.infos{
+.infos {
   display: flex;
   flex-direction: column;
   position: relative;
   z-index: 1;
 }
 
-.infos.infos--center{
+.infos.infos--center {
   justify-content: center;
 }
 
-.infos.infos--end{
+.infos.infos--end {
   justify-content: flex-end;
 }
 
-.info{
+.info {
   max-width: 330px;
   margin-bottom: 24px;
 }
 
-.info .icon{
+.info .icon {
   width: 100px;
   height: 100px;
   margin: 0 0 -15px -30px;
   background-image: url(../assets/images/sprite_apps.png);
 }
 
-.info p{
+.info p {
   font-size: 21.5px;
   font-weight: 600;
   line-height: 1.5;
@@ -175,7 +175,7 @@ header {
   background-color: var(--color-header);
   position: relative;
   z-index: 9;
-  --header-height: 44px
+  --header-height: 44px;
 }
 
 header .inner {
@@ -191,7 +191,7 @@ header ul.menu {
 header ul.menu > li {
   display: flex;
   position: relative;
-  transition: .4s;
+  transition: 0.4s;
 }
 
 header ul.menu > li > a {
@@ -246,7 +246,7 @@ header .basket {
   opacity: 0;
 }
 
-header .basket.show{
+header .basket.show {
   visibility: visible;
   opacity: 1;
 }
@@ -300,23 +300,23 @@ header .basket ul li a:hover {
 }
 
 /* 검색바 */
-.search-wrap{
+.search-wrap {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   visibility: hidden;
   opacity: 0;
-  transition: .4s;
+  transition: 0.4s;
 }
 
-.search-wrap .search{
+.search-wrap .search {
   max-width: 680px;
   margin: 0 auto;
   position: relative;
 }
 
-.search .shadow{
+.search .shadow {
   position: fixed;
   top: 0;
   left: 0;
@@ -325,11 +325,11 @@ header .basket ul li a:hover {
   background-color: var(--color-shadow);
 }
 
-.search .textfield{
+.search .textfield {
   position: relative;
 }
 
-.search .textfield input{
+.search .textfield input {
   width: 100%;
   height: var(--header-height);
   padding: 0 40px;
@@ -340,7 +340,7 @@ header .basket ul li a:hover {
   color: var(--color-white);
 }
 
-.search .textfield .search-icon{
+.search .textfield .search-icon {
   width: 40px;
   height: var(--header-height);
   background-image: url(../assets/images/header_search.svg);
@@ -351,7 +351,7 @@ header .basket ul li a:hover {
   left: 0;
   opacity: 0.4;
 }
-.search .textfield .search-closer{
+.search .textfield .search-closer {
   width: 40px;
   height: var(--header-height);
   background-image: url(../assets/images/header_close.svg);
@@ -364,11 +364,11 @@ header .basket ul li a:hover {
   cursor: pointer;
 }
 
-.search .textfield .search-closer:hover{
+.search .textfield .search-closer:hover {
   opacity: 1;
 }
 
-.search .autocompletes{
+.search .autocompletes {
   width: 100%;
   padding: 26px 40px 20px;
   border-radius: 0 0 18px 18px;
@@ -379,13 +379,13 @@ header .basket ul li a:hover {
   left: 0;
 }
 
-.search .autocompletes h3{
+.search .autocompletes h3 {
   font-size: 12px;
   color: var(--color-font-darkgray);
   margin-bottom: 12px;
 }
 
-.search .autocompletes ul li a{
+.search .autocompletes ul li a {
   display: block;
   margin: 0 -14px;
   padding: 10px 0 10px 30px;
@@ -393,18 +393,17 @@ header .basket ul li a:hover {
   cursor: pointer;
 }
 
-.search .autocompletes ul li:hover a{
+.search .autocompletes ul li:hover a {
   color: var(--color-link);
   background-color: var(--color-section);
 }
 
-
-header.searching ul.menu > li{
+header.searching ul.menu > li {
   opacity: 0;
-  transform: scale(.7);
+  transform: scale(0.7);
 }
 
-header.searching .search-wrap{
+header.searching .search-wrap {
   visibility: visible;
   opacity: 1;
   transition-delay: 0.2s;
@@ -413,22 +412,21 @@ header.searching .search-wrap{
 .search .textfield input,
 .search .textfield .search-icon,
 .search .autocompletes h3,
-.search .autocompletes ul li{
-  transition: .6s;
+.search .autocompletes ul li {
+  transition: 0.6s;
   transform: translate(100px, 0);
 }
 
 header.searching .search .textfield input,
 header.searching .search .textfield .search-icon,
 header.searching .search .autocompletes h3,
-header.searching .search .autocompletes ul li{
+header.searching .search .autocompletes ul li {
   transform: translate(0, 0);
   transition-delay: 0.2s;
 }
 
-
 /* navigation */
-nav{
+nav {
   background-color: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--color-border);
@@ -437,55 +435,54 @@ nav{
   z-index: 8;
 }
 
-nav .inner{
+nav .inner {
   max-width: 1000px;
   height: 52px;
   display: flex;
   align-items: center;
 }
 
-nav h1{
+nav h1 {
   flex-grow: 1;
   font-size: 22px;
   font-weight: 500;
 }
 
-nav .menu{
+nav .menu {
   display: flex;
   gap: 12px;
   margin-right: 18px;
 }
 
-nav .menu li a{
+nav .menu li a {
   padding: 6px;
   display: block;
   font-size: 11px;
 }
 
-nav .menu li:hover a{
+nav .menu li:hover a {
   color: var(--color-link);
 }
 
-nav .menu li.active a{
+nav .menu li.active a {
   opacity: 0.5;
   cursor: default;
 }
 
-nav .menu li.active:hover a{
+nav .menu li.active:hover a {
   color: var(--color-font);
 }
-
 
 /* hero */
 .hero {
   background-color: var(--color-section);
 }
 
-.hero .inner{
+.hero .inner {
   padding-bottom: 110px;
 }
 
-.hero h1{
+.hero h1 {
   background-image: url(../assets/images/hero_ipad_text.png);
   width: 221px;
   height: 91px;
@@ -494,116 +491,171 @@ nav .menu li.active:hover a{
   z-index: 3;
 }
 
-.hero .figures{
+.hero .figures {
   height: 808px;
 }
 
-.hero figure{
+.hero figure {
   transform: translate(74px, -64px);
 }
 
-.hero figure figcaption .caption-camera{
+.hero figure figcaption .caption-camera {
   transform: translate(43px, 580px);
   background-image: url(../assets/images/hero_ipad_caption_camera.png);
   width: 120px;
   height: 84px;
 }
 
-.hero figure figcaption .caption-chip{
+.hero figure figcaption .caption-chip {
   transform: translate(589px, 510px);
   background-image: url(../assets/images/hero_ipad_caption_chip.png);
   width: 95px;
   height: 43px;
 }
 
-.hero figure figcaption .caption-storage{
+.hero figure figcaption .caption-storage {
   transform: translate(627px, 631px);
   background-image: url(../assets/images/hero_ipad_caption_storage.png);
   width: 80px;
   height: 43px;
 }
 
-.hero h2{
+.hero h2 {
   width: 738px;
   height: 145px;
   margin: 0 auto;
   background-image: url(../assets/images/hero_headline.png);
 }
 
-.hero p.pricing{
+.hero p.pricing {
   margin-top: 40px;
   font-size: 24px;
   font-weight: 600;
   text-align: center;
 }
 
-.hero p.description{
+.hero p.description {
   width: 88%;
   margin: 18px auto 0;
   font-size: 19px;
   text-align: center;
 }
 
-.hero .links{
+.hero .links {
   margin-top: 30px;
 }
 
 /* power */
-.power{
+.power {
   margin-top: 110px;
 }
-.power .multiple-app h1{
+.power .multiple-app h1 {
   background-image: url(../assets/images/power_headline.png);
   width: 500px;
   height: 280px;
   transform: translate(104px, 0);
 }
 
-.multiple-app .figures{
+.multiple-app .figures {
   height: 773px;
 }
 
-.multiple-app figcaption{
+.multiple-app figcaption {
   background-image: url(../assets/images/power_multiple_apps_caption.png);
   width: 138px;
   height: 46px;
-  transform: translate(703px,-47px);
+  transform: translate(703px, -47px);
 }
 
 .power .arcade {
   margin-top: 55px;
 }
 
-.power .arcade .figures{
+.power .arcade .figures {
   height: 600px;
 }
 
-.power .arcade figure{
-  transform: translate(-347px, -90px);  
+.power .arcade figure {
+  transform: translate(-347px, -90px);
 }
 
-.power .arcade figcaption{
+.power .arcade figcaption {
   width: 150px;
   height: 77px;
   background-image: url(../assets/images/power_arcade_caption.png);
-  transform: translate(483px, 653px);  
+  transform: translate(483px, 653px);
 }
 
-.power .create{
+.power .create {
   margin-top: 55px;
 }
 
-.power .create .figures{
+.power .create .figures {
   height: 772px;
 }
 
-.power .create figure{
-  transform: translate(-25px, 50px);  
+.power .create figure {
+  transform: translate(-25px, 50px);
 }
 
-.power .create figcaption{
+.power .create figcaption {
   background-image: url(../assets/images/power_create_caption.png);
   width: 142px;
   height: 46px;
-  transform: translate(543px, 908px);  
+  transform: translate(543px, 908px);
+}
+
+.info .icon.icon--chip {
+  background-image: url("../assets/images/sprite_chip.png");
+}
+.info .icon.icon--faster {
+  background-image: url("../assets/images/sprite_faster.png");
+}
+.info .icon.icon--neural {
+  background-image: url("../assets/images/sprite_neural.png");
+}
+.info .icon.icon--apps {
+  background-image: url("../assets/images/sprite_apps.png");
+}
+.info .icon.icon--battery {
+  background-image: url("../assets/images/sprite_battery.png");
+}
+.info .icon.icon--display {
+  background-image: url("../assets/images/sprite_display.png");
+}
+.info .icon.icon--true-tone {
+  background-image: url("../assets/images/sprite_true_tone.png");
+}
+.info .icon.icon--center-stage {
+  background-image: url("../assets/images/sprite_center_stage.png");
+}
+.info .icon.icon--front-camera {
+  background-image: url("../assets/images/sprite_front_camera.png");
+}
+.info .icon.icon--back-camera {
+  background-image: url("../assets/images/sprite_back_camera.png");
+}
+.info .icon.icon--scan {
+  background-image: url("../assets/images/sprite_scan.png");
+}
+.info .icon.icon--download {
+  background-image: url("../assets/images/sprite_download.png");
+}
+.info .icon.icon--wifi {
+  background-image: url("../assets/images/sprite_wifi.png");
+}
+.info .icon.icon--lte {
+  background-image: url("../assets/images/sprite_lte.png");
+}
+.info .icon.icon--pencil {
+  background-image: url("../assets/images/sprite_pencil.png");
+}
+.info .icon.icon--keyboard {
+  background-image: url("../assets/images/sprite_keyboard.png");
+}
+.info .icon.icon--notes {
+  background-image: url("../assets/images/sprite_notes.png");
+}
+.info .icon.icon--covers {
+  background-image: url("../assets/images/sprite_covers.png");
 }
