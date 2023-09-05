@@ -30,6 +30,21 @@ window.addEventListener('click',function(){
   hideBasket()
 })
 
+// 요소 가시성 관찰
+const io = new IntersectionObserver(function(entries){
+  entries.forEach(function(entry){
+    if(!entry.isIntersecting){
+      return
+    }
+    entry.target.classList.add('show')
+  })
+})
+
+const infoEls = document.querySelectorAll('.info')
+infoEls.forEach(function(v){
+  io.observe(v)
+})
+
 
 // 검색
 const headerEl = document.querySelector('header');
