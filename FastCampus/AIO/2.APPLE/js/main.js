@@ -33,10 +33,12 @@ window.addEventListener('click',function(){
 // 요소 가시성 관찰
 const io = new IntersectionObserver(function(entries){
   entries.forEach(function(entry){
-    if(!entry.isIntersecting){
-      return
+    if(entry.isIntersecting){
+      entry.target.classList.add('show')
     }
-    entry.target.classList.add('show')
+    else{
+      entry.target.classList.remove('show')
+    }
   })
 })
 
