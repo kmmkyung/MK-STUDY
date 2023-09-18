@@ -27,7 +27,11 @@ jQuery() -> $()
 $(선택자).text(변경글자입력)
 
 7. animate()
-->animate({CSS설정},시간,이징,함수)
+: animate({CSS설정},시간,이징,함수)
+: 큐(Queue)?
+-> 애니메이션과 같은 실행코드를 메모리에 적재하여 실행을 유지할 수 있도록 관리하는 메모리영역
+애니메이션 메서드를 연달아 쓰면 순서대로 실행함
+$().animate({}).animate({})...
 
 8. html()
 : html 태그를 넣거나 읽어오는 메서드
@@ -89,5 +93,43 @@ $(선택자).html("<div>하하하</div>")
 25. empty()
 : 선택요소의 text 내용을 지움
 
+26. stop()
+: 이벤트나 효과를 중간에 멈출때 사용
+
+27. show()
+: display를 보이게 함
+
+28. hide()
+: display:none 으로 변경 함
+
+29. fadeIn()
+: display를 보이게 한 후 opacity를 0에서 1로 변경 애니메이션을 함
+
+30. fadeOut()
+: opacity를 1에서 0으로 변경 애니메이션 후 display:none으로 변경
+
+31. fadeToggle()
+: display:none 상태를 판단하여 adeIn()/fadeOut() 상태를 전환함
+
+32. fadeTo()
+: opacity값을 특정값으로 변경하여 애니메이션함
+: opacity값이 0이되어도 display:none되지 않음
+
+33. slideUp()
+: 선택요소의 height값을 0으로 변경하는 애니메이션 기능
+
+34. slideDown()
+: 선택요소의 height값을 원래의 높이값으로 애니메이션함
+
+35. slideToggle()
+: slideUp() / slideDown() 전환
+
+36. offset().방향값
+: 보이는 화면 기준 절대값 위치를 알 수 있음
+: .top .bottom .left .right
+
+37. position().방향값ㅊ
+: 부모자격 박스 기준 절대값 위치를 알 수 있음
+: .top .bottom .left .right
 
 */
