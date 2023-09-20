@@ -1,0 +1,19 @@
+constructor 문법
+: object를 여러개 만들때 사용한다(복사를 도와준다)
+constructor문법으로 속성들을 물려받는걸 상속이라고 한다
+
+prototype
+: 에 값을 추가하면 모든 자식들이 물려받는다(함수에만 생성됨)
+
+
+ function 기계(){
+    this.name = 'kim';    
+    this.age = 15;
+ }
+ this는 새로 생성되는 object를 뜻함
+
+기계.prototype.key = value;
+
+
+ new 기계(); <- 이러면 오브젝트 뽑힘
+ var 학생1 = new 기계() <- name,age,key 들어가 있음
