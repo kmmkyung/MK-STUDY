@@ -5,6 +5,7 @@ constructor문법으로 속성들을 물려받는걸 상속이라고 한다
 prototype
 : 에 값을 추가하면 모든 자식들이 물려받는다(함수에만 생성됨)
 
+const fruits
 
  function 기계(){
     this.name = 'kim';    
