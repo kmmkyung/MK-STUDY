@@ -15,15 +15,27 @@ gsap.to(container,{
   }
 })
 
-// container.forEach((v,i) => {
-//   ScrollTrigger.create({
-//     trigger:v,
-//     start: 'bottom 20%'+ (v.offsetLeft - window.innerWidth/2) * (document.querySelector("#main").offsetWidth/(v.offsetWidth * (container.length - 1))),
-//     // end: '+=' + v.offsetWidth * (document.querySelector("#main").offsetWidth/(v.offsetWidth * (container.length - 1))),
-//     markers:true,
-//     toggleClass:{
-//       targets:v,
-//       className: 'active'
-//     }
-//   })
-// });
+window.addEventListener('scroll',()=>{
+
+  console.log(window.scrollY);
+})
+
+container.forEach( v => {
+  
+  const main = document.querySelector('#main');
+  
+  console.log((v.offsetLeft - window.innerWidth/2) * (main.offsetWidth/(v.offsetWidth*(container.length-1))));
+  ScrollTrigger.create({
+    trigger:v,
+    // start: (v.offsetLift - 윈도우 가로 크기 반) * (main의 전체 가로 크기/(v의 가로 크기 * v갯수))
+    start: 'top top-='+ (v.offsetLeft - window.innerWidth/2) * (main.offsetWidth/(v.offsetWidth*(container.length-1))),
+    // start: 'top top',
+    
+    end: '+=' + v.offsetWidth*(main.offsetWidth/(v.offsetWidth*(container.length-1))),
+    markers:true,
+    toggleClass:{
+      targets:v,
+      className: 'active'
+    }
+  })
+});
