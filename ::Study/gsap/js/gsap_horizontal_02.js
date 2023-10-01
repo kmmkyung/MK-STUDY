@@ -1,41 +1,42 @@
 const arrow = document.querySelector('.arrow');
-const container = gsap.utils.toArray('.container')
+const item = gsap.utils.toArray('.item-wrap');
+const hiddenItem = gsap.utils.toArray('.hidden-item');
+const main = document.querySelector('#main');
+const kmmk = document.querySelector('#main h2');
 
 gsap.to(arrow,{ y:10, repeat:-1, yoyo:true });
 
-gsap.to(container,{
-  xPercent: -100 * (container.length-1),
+let tl = gsap.timeline({
   scrollTrigger:{
-    // markers:true,
-    trigger:'#main',
-    pin: true,
-    scrub: 1,
-    // snap: 1 / (container.length-1),
-    end:'+=' + document.querySelector('#main').offsetWidth,
+    trigger:main,
+    pin:true,
+    scrub:1,
+    end: () => main.scrollWidth - document.documentElement.clientWidth,
+    makers:true 
+  },
+  defaults: { ease: 'none', duration: 1, }
+})
+
+tl.to(kmmk,{ x: -800,})
+  .to(item,{ x: () => -(main.scrollWidth - document.documentElement.clientWidth+200)},0)
+  .from(hiddenItem,{
+  opacity:0,
+  y:100,
+  duration:0.2,
+  stagger:{
+  amount:0.5
   }
-})
+},0);
 
-window.addEventListener('scroll',()=>{
-
-  console.log(window.scrollY);
-})
-
-container.forEach( v => {
-  
-  const main = document.querySelector('#main');
-  
-  console.log((v.offsetLeft - window.innerWidth/2) * (main.offsetWidth/(v.offsetWidth*(container.length-1))));
-  ScrollTrigger.create({
-    trigger:v,
-    // start: (v.offsetLift - 윈도우 가로 크기 반) * (main의 전체 가로 크기/(v의 가로 크기 * v갯수))
-    start: 'top top-='+ (v.offsetLeft - window.innerWidth/2) * (main.offsetWidth/(v.offsetWidth*(container.length-1))),
-    // start: 'top top',
-    
-    end: '+=' + v.offsetWidth*(main.offsetWidth/(v.offsetWidth*(container.length-1))),
+gsap.from(document.querySelector('.show-item'),{
+  duration:1,
+  opacity:0,
+  scale:0.5,
+  scrollTrigger:{
     markers:true,
-    toggleClass:{
-      targets:v,
-      className: 'active'
-    }
-  })
+    trigger:main,
+    start:'top 60%',
+    end:'bottom 10%',
+    toggleActions: "play none none reverse"
+  }  
 });
