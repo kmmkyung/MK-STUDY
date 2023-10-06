@@ -28,15 +28,15 @@ tl.to(kmmk,{ x: -800,})
   }
 },0);
 
-gsap.from(document.querySelector('.show-item'),{
-  duration:1,
-  opacity:0,
-  scale:0.5,
-  scrollTrigger:{
-    markers:true,
-    trigger:main,
-    start:'top 60%',
-    end:'bottom 10%',
-    toggleActions: "play none none reverse"
-  }  
-});
+// gsap.from(document.querySelector('.show-item'),{
+//   duration:1,
+//   opacity:0,
+//   scale:0.5,
+//   scrollTrigger:{
+//     markers:true,
+//     trigger:main,
+//     start:'top 60%',
+//     end:'bottom 10%',
+//     toggleActions: "play none none reverse"
+//   }  
+// });
