@@ -38,7 +38,7 @@ setTimeout(function(){
 var age
 console.log(age); // undefined : 값이 없는 상태
 
-const user = {
+var user = {
   name : 'mk',
   age : 85
 }
@@ -47,3 +47,26 @@ console.log(user.age); // 85
 console.log(user.email); // undefined
 
 // Array
+var fruits = ['Apple','Banana','Cherry']
+console.log(fruits.length); // 3
+console.log(fruits[fruits.length-1]); // Cherry
+
+//Object
+var userA = { name:'abc', age:28 }
+var userB = { name:'def', age:28, parent:userA }
+var users = [userA,userB]
+console.log(userB.parent.name); // abc
+console.log(userB['parent']['name']); // abc
+console.log(users[0]['name']); //abc
+
+// 형 변환
+var a = 1 // Number
+var b = '1' // String
+console.log(a == b); // true
+// === 일치
+// == 동등
+// = 할당
+
+// 참 거짓
+// 참: 양수, 문자
+// 거짓: false, 0(음수), nill, undefined, NaM, '', 0n
