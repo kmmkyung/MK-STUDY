@@ -1,33 +1,38 @@
 <template>
   <div>
     <div class="menu">
-      <a v-for="(a, i) in 메뉴들" :key="i">{{ a }}</a>
+      <a v-for="( ele, idx ) in 메뉴들" :key="idx">{{ ele }}</a>
       <!-- 메뉴들 갯수만큼 반복되고 a는 메뉴들의 자료로 변경된다 -->
       <!-- 왼쪽은 하나하나의 데이터 오른쪽은 1씩 증가하는 정수가 된다 -->
     </div>
-    <div>
-      <h4>{{ products[0] }}</h4>
-      <p>50만원</p>
-    </div>
-    <div>
-      <h4>{{ products[1] }}</h4>
-      <p>50만원</p>
-    </div>
-    <div>
-      <h4>{{ products[2] }}</h4>
-      <p>50만원</p>
+    <div v-for="( ele, idx ) in products" :key="idx">
+      <h4>{{ products[idx].name }}</h4>
+      <p>{{ ele.price }}만원</p>
+      <button v-on:click="num[idx]++">허위매물신고</button>
+      <span>신고수: {{ num[idx] }}</span>
     </div>
   </div>
 </template>
 
 <script>
+
 export default {
   name: "App",
   data() {
     return {
-      products: ["역삼동원룸", "천호동원룸", "마포구원룸"],
       메뉴들: ["Home", "Shop", "About"],
+      products: [
+      { name: '역삼동원룸', price: '50'},
+      { name: '천호동원룸', price: '20'},
+      { name: '마포구원룸', price: '40'}
+      ],
+      num : [0,0,0]
     };
+  },
+  methods: {
+    btnNum(){
+      this.num += 1;
+    }
   },
   components: {},
 };
