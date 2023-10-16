@@ -198,3 +198,85 @@ function getCity(user){
 getCity(userA) // Seoul
 getCity(userB) // 주소없음
 
+// 12. 화살표 함수(Arrow function)
+// 파라미터값이 하나면 감싸는 소괄호 생략가능
+// 코드가 한줄이면 중괄호와 리턴키워드 생략 가능
+const a = () => {}
+const b = x => {}
+const c = (x,y) => {}
+const d = x => {return x*x}
+const e = x => x*x
+const f = () => {return {a:1}}
+const g = () => ({a:1})
+const h = () => [1,2,3]
+
+// 13. 즉시실행함수(IIFE)
+// 파라미터값은 뒤에 소가로에 넣는다
+(()=>{})(x) // (F)()
+(function(){})(x) // (F)()
+(function(){}(x)) // (F())
+!function(){}(x) // !F()
++function(){}(x) // +F()
+
+(function(){
+  console.log(a);
+  console.log(b);
+})(a,b) // 파라미터
+
+// 14. 콜백(callBack)
+// 함수를 인수로 넣어서 실행
+var a = function(callback){
+  console.log('A');
+  callback()
+}
+var b = function(){
+  console.log('B');
+}
+a(b) // A B
+
+// 15. 재귀(Recursive)
+// 하나의 함수가 자기 자신을 내부에서 호출
+// 무한 실행이 되므로 조건을 넣을것!
+var i = 0
+var a = () => {
+  console.log('A');
+  i += 1
+  if( i < 4 ){ // AAAA
+    a()
+  }
+}
+a()
+
+// 16. 호출 스케줄링
+// 시간이 지나고 코드를 한번 실행
+var a = setTimeout(function(){코드},시간)
+clearTimeout(a) // setTimeout 해제
+// 시간마다 코드를 실행
+var b = setInterval(function(){코드},시간)
+clearInterval(b)
+
+// 17. this
+// 일반 함수의 this는 호출 위치에서 정의ㅏ
+// 화살표 함수의 this는 자신이 선언된 함수(렉시컬) 범위에서 정의
+var user = {
+  firstName: 'A',
+  lastName: 'a',
+  fullName(){
+    return `${this.firstName} ${this.lastName}`
+  }
+}
+console.log(user.fullName()); // A a
+
+function user2(){
+  this.firstName = 'B'
+  this.lastName = 'b'
+  return{
+    firstName: 'A',
+    lastName: 'a',
+    fullName: ()=>{
+      return `${this.firstName} ${this.lastName}`
+    }
+  }
+}
+var u = user2()
+console.log(u.fullName()); // B b
