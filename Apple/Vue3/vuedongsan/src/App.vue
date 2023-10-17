@@ -1,33 +1,33 @@
 <template>
   <div>
+
+    <Modol v-bind:원룸="원룸들" :누른거="누른거" :모달창="모달창"/>
+
     <div class="menu">
       <a v-for="( ele, idx ) in 메뉴들" :key="idx">{{ ele }}</a>
-      <!-- 메뉴들 갯수만큼 반복되고 a는 메뉴들의 자료로 변경된다 -->
-      <!-- 왼쪽은 하나하나의 데이터 오른쪽은 1씩 증가하는 정수가 된다 -->
     </div>
-    <div v-for="( ele, idx ) in products" :key="idx">
-      <img :src= "ele.img" class="roomimg">
-      <h4>{{ products[idx].name }}</h4>
-      <p>{{ ele.price }}만원</p>
-      <button v-on:click="btnNum(idx)">허위매물신고</button>
-      <span>신고수: {{ num[idx] }}</span>
-    </div>
+
+    <discountBanner/>
+    <CardRoom v-bind:원룸들="원룸들[idx]" v-for="(ele,idx) in 원룸들" :key="idx"/>
   </div>
 </template>
 
 <script>
+import oneroom from './assets/oneroom.js';
+import discountBanner from './Discount.vue';
+import Modol from './Modal.vue';
+import CardRoom from './CardRoom.vue';
 
 export default {
   name: "App",
   data() {
     return {
+      // 사용자가 몇번쨰 상품을 눌렀는지 기록하는 data = 누른거
+      누른거: 0,
       메뉴들: ["Home", "Shop", "About"],
-      products: [
-      { name: '역삼동원룸', price: '50', img: require('./assets/room0.jpg')},
-      { name: '천호동원룸', price: '20', img: require('./assets/room1.jpg')},
-      { name: '마포구원룸', price: '40', img: require('./assets/room2.jpg')}
-      ],
-      num : [1,0,0],
+      원룸들 : oneroom,
+      num : [1,0,0,0,0,0],
+      모달창: false,
     };
   },
   methods: {
@@ -35,7 +35,11 @@ export default {
       this.num[idx] += 1;
     }
   },
-  components: {},
+  components: {
+    discountBanner : discountBanner,
+    Modol : Modol,
+    CardRoom:CardRoom
+  },
 };
 </script>
 
@@ -43,6 +47,13 @@ export default {
 #app {
   text-align: center;
   color: #2c3e50;
+}
+
+body {
+  margin : 0;
+}
+div {
+  box-sizing: border-box;
 }
 
 .menu {
@@ -54,8 +65,6 @@ export default {
   color: white;
   padding: 10px;
 }
-.roomimg{
-  width: 100%;
-  margin-top: 40px;
-}
+
+
 </style>
