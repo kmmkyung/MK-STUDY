@@ -66,7 +66,7 @@ console.log(str.slice(6)); // world!
 console.log(str); // Hello world!
 
 // .split()
-// 대상 믄자를 주어진 구분자로 나눠 배열로 반환한다.
+// 대상 문자를 주어진 구분자로 나눠 배열로 반환한다.
 var str = 'Apple, Banana, Cherry';
 console.log(str.split(', ')); // ['Apple', 'Banana', 'Cherry'] <- (, )으로 구별해서 배열에 담기 
 console.log(str.split(',')); // ['Apple', ' Banana', ' Cherry'] <- (,)으로 구별해서 배열에 담기(띄어쓰기도 문자다!) 
