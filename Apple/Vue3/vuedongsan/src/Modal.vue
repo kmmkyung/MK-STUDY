@@ -25,12 +25,27 @@ export default {
     }
   },
   watch:{
-    mouth(){}
+    month(a){ // a는 month의 변경 후 데이터 / b는 변경 후 데이터
+      // 사용자가 month에 입력한 데이터가 13보다 크면 경고문 띄우기
+      if(a >= 13){
+        alert('13이상 입력하지 마')
+      }
+      if(isNaN(a) == true){
+        alert('문자입력하지마');
+        this.month = 1;
+      }
+    }
   },
   props :{
     원룸:Array,
     누른거:Number,
     모달창:Boolean
+  },
+  beforeUpdate(){
+    if (this.month == 2){
+      alert('2개월은 너무 적음.. 안팝니다')
+      this.month = 3;
+    }
   }
 }
 </script>
