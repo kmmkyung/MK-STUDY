@@ -1,14 +1,14 @@
 <template>
   <div>
 
-    <Modol v-bind:원룸="원룸들" :누른거="누른거" :모달창="모달창"/>
-
+    
     <div class="menu">
       <a v-for="( ele, idx ) in 메뉴들" :key="idx">{{ ele }}</a>
     </div>
-
+    
+    <Modol @closeModal="모달창=false" v-bind:원룸="원룸들" :누른거="누른거" :모달창="모달창"/>
     <discountBanner/>
-    <CardRoom v-bind:원룸들="원룸들[idx]" v-for="(ele,idx) in 원룸들" :key="idx"/>
+    <CardRoom @openModal="모달창=true; 누른거=$event" v-bind:원룸들="원룸들[idx]" v-for="(ele,idx) in 원룸들" :key="idx"/>
   </div>
 </template>
 
