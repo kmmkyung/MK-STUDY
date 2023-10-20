@@ -8,7 +8,7 @@ console.log(str.length); // 12
 // .includes()
 // 대상 문자에 주어진 문자가 포함되어 있는지(불린) 확인.(소문자 대문자 구별)
 // 첫번째 인수: 찾는 단어, 두번째 인수: 찾는 위치
-var str = 'Hello world!';
+var str = 'Hello world!    ';
 console.log(str.includes('Hello')); // true
 console.log(str.includes('Hello',1)); // false
 if(!str.includes('aaa')){ // aaa가 포함되어 있지 않으면!
