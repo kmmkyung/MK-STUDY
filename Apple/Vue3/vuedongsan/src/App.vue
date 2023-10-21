@@ -10,7 +10,9 @@
     
     <discountBanner v-if="showDiscount == true"/>
     
-    <button @click="priceSort">가격순정렬</button>
+    <button @click="priceSort1">가격순</button>
+    <button @click="priceSort2">가격역순</button>
+    <button @click="priceSort3">가나다순</button>
     <button @click="sortBack">되돌리기</button>
 
     <CardRoom @openModal="모달창=true; 누른거=$event" v-bind:원룸들="원룸들[idx]" v-for="(ele,idx) in 원룸들" :key="idx"/>
@@ -42,9 +44,19 @@ export default {
     btnNum(idx){
       this.num[idx] += 1;
     },
-    priceSort(){
+    priceSort1(){
       this.원룸들.sort(function(a,b){
         return a.price - b.price
+      })
+    },
+    priceSort2(){
+      this.원룸들.sort(function(a,b){
+        return b.price - a.price
+      })
+    },
+    priceSort3(){
+      this.원룸들.sort(function(a,b){
+      return a.title > b.title ? 1 : -1
       })
     },
     sortBack(){
