@@ -128,3 +128,11 @@ var nameArr = users.reduce((acc, cur)=>{
   acc.push(cur.name)
   return acc 
 },[]) // [ 'A', 'B', 'C' ]
+
+// .reverse()
+// 대상 배열의 순서를 반전시킨다.
+// 대상 배열 원본이 변경
+var arr = ['A','B','C'];
+arr.reverse() // ['C','B','A']
+
+.shift()
