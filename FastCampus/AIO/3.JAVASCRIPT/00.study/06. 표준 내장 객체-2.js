@@ -28,7 +28,7 @@ var nul = null // false
 
 // Number.parseInt() / parseInt()
 // 주어진 값(숫자,문자)을 파싱해 특정 진수(radix)의 정수(숫자)로 반환
-// 첫번째파라미터: 대상 / 두번째파라미터: 진수
+// 첫번째 인수: 대상 / 두번째 인수: 진수
 var str = '3.141592'
 var num = 3.141592
 console.log(parseInt(str,10)); // 3
@@ -75,7 +75,7 @@ console.log(Math.min(1, 22, 38, 192, -10)); // -10
 
 // Math.pow()
 // 주어진 숫자를 거듭제곱한 값을 반환
-// 첫번째파라미터: 제곱할 수 / 두번째파라미터: 제곱할 횟수
+// 첫번째 인수: 제곱할 수 / 두번째 인수: 제곱할 횟수
 console.log(Math.pow(4, 2)); // 16
 console.log(Math.pow(10, 3)); // 1000
 

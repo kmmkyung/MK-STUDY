@@ -35,7 +35,7 @@ console.log(B); // false
 // .filter()
 // 주어진 콜백에서 테스트를 통과하는 모든 요소를 새로운 배열로 반환
 // 모든 요소가 테스트를 통과하지 못하면 빈 배열을 반환
-var num = [1,20,7,9,104,0,58];
+var num = [1, 20, 7, 9, 104, 0, 58];
 var filterNum = num.filter(function(number){return number < 30})
 var filterNum = num.filter( number => number < 30) // 위와 같음!
 console.log(filterNum); // [1,20,7,9,0];
@@ -83,4 +83,48 @@ console.log(arr); // ['Apple', 'Banana', 'Cherry']
 
 // .map()
 // 대상 배열의 길이만큼 콜백을 실행하고, 콜백 반환값을 모아 새로운 배열을 반환
+// 첫번째 인수: 요소 / 두번째 인수: 요소의 인덱스 / 세번째 인수: 해당 배열
 var num = [1, 2, 3, 4]
+var newNum = num.map( ele => ele*2)
+console.log(newNum); // [2, 4, 6, 8]
+
+// .pop()
+// 대상 배열에서 마지막 요소를 제거하고 그 요소를 반환
+// 대상 배열 원본이 변경
+var arr = ['Apple', 'Banana', 'Cherry']
+console.log(arr.pop()); // Cherry
+console.log(arr); // ['Apple', 'Banana']
+
+// .push()
+// 대상 배열의 마지막에 하나 이상의 요소를 추가, 배열의 새로운 길이 반환
+// 대상 배열 원본이 변경
+var arr = ['Apple', 'Banana', 'Cherry']
+var pushArr = arr.push('Orange')
+console.log(pushArr) // 4 <- 배열의 새로운 길이 반환
+console.log(arr); // [ 'Apple', 'Banana', 'Cherry', 'Orange' ]
+
+// .reduce()
+// .reduce((첫번째인수, 두번째인수)=>{콜백코드},초기값)
+// 대상 배열의 길이만큼 콜백을 실행하고, 마지막에 호출되는 콜백의 값을 반환
+// 각 콜백의 반환 값은 다음 콜백으로 전달된다.
+// 첫번째 인수: 처음 콜백이 실행될 때 초기값이 들어가서 콜백 실행
+// 두번째 인수: 요소
+var num = [1, 2, 3]
+var sum = num.reduce((acc, cur) => { // 0+1, 1+2, 3+3
+  return acc + cur
+},0)
+console.log(sum); // 6
+
+var users = [
+  { name: 'A', age: 85 },
+  { name: 'B', age: 22 },
+  { name: 'C', age: 11 },
+]
+// 총 나이 / 평균 나이 계산해보기
+var totalAge = users.reduce((acc, cur) => { return acc + cur.age }, 0) // 118
+var totalAgeDiv= (totalAge/users.length).toFixed(1) // 39.3
+// 모든 이름 배열로 추출
+var nameArr = users.reduce((acc, cur)=>{
+  acc.push(cur.name)
+  return acc 
+},[]) // [ 'A', 'B', 'C' ]
