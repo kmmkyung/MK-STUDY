@@ -25,12 +25,18 @@ console.log(arr3); // ['A','B','C','D','E','F'];
 console.log(arr4); // ['A','B','C','D','E','F'];
 
 // .every()
-// 대상 배열의 모든 요소가 콜백 테스트에서 참(true)과 거짓(false)을 반환하는지 확인
+// 대상 배열의 모든 요소가 콜백에서 참(true)과 거짓(false)으로 결과로 반환
 var arr = [1,2,3,4];
 var A = arr.every(item => {return item < 5})
 var B = arr.every(item => {return item < 4})
 console.log(A); // true
 console.log(B); // false
+
+// .some()
+// 대상 배열의 어떤 요소라도 콜백에서 참(true)과 거짓(false)으로 결과로 반환
+var arr = [1,2,3,4];
+var A = arr.some(item => {return item > 3})
+console.log(A); // true
 
 // .filter()
 // 주어진 콜백에서 테스트를 통과하는 모든 요소를 새로운 배열로 반환
@@ -146,3 +152,6 @@ arr // ['B','C']
 // 대상 배열의 일부를 추출해 새로운 배열을 반환
 // 첫 번째 인수부터 두 번째 인수 직전까지 추출
 // 두 번쨰 인수를 생략하면 대상 배열의 끝까지 추출
+var arr = ['A','B','C','D','E'];
+console.log(arr.slice(0,3)); // ['A','B','C']
+
