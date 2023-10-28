@@ -82,6 +82,35 @@ E. getAttribute() / E.setAttribute()
 
 
 ///// 크기 및 좌표
+window.innerWidth / window.innerHeight
+// 현재 화면(viewport)의 크기
+
+window.scrollX / window.scrollY
+// 페이지 좌상단 기준, 현재 화면의 수평 / 스직 스크롤 위치
+
+window.scrollTo() / E.scrollTo()
+// 대상.scrollTo(X좌표,Y좌표)
+// 지정된 좌표로 대상(화면,스크롤 요소)을 스크롤
+
+E.clientWidth / E.clientHeight
+// 테두리선(border)을 제외한 요소의 크기
+// 스크롤 바의 너비는 제외
+
+E.offsetWidth / E.offsetHeight
+// 테두리선(border)을 포함한 요소의 크기
+
+E.scrollLeft / E.scrollTop
+// 스크롤 요소의 좌상단 기준으로, 현재 스크롤 요소의 수평 / 수직 스크롤 위치
+
+E.offsetLeft / E.offsetTop
+// 페이지 좌상단 기준, 요소의 위치
+
+E.getBoundingClientRect()
+// 테두리선(border)을 포함한 요소의 크기와 화면에서의 상대 위치 정보
+
+
+
+
 
 
 
