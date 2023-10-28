@@ -5,23 +5,23 @@
 // - 노드 : HTML 요소, 텍스트, 주석 등 모든 것을 의미
 // - 요소 : HTML 요소를 의미
 
-// N.parentElement
+N.parentElement
 // 노드의 부모 요소를 반환
 
-// E.closest()
+E.closest()
 // 자신을 포함한 조상 요소 중 'CSS 선택자'와 일치하는, 가장 가까운 요소를 반환
 // 요소를찾지 못하면 null 반환
 
-// N.previousSibling / N.nextSibling
+N.previousSibling / N.nextSibling
 // 노드의 이전 형제 / 다음 형제 노드를 반환
 
-// E.previousElementSibling / E.nextElementSibling
+E.previousElementSibling / E.nextElementSibling
 // 요소의 이전 형제 / 다음 형제 요소를 반환
 
-// E.children
+E.children
 // 요소의 모든 자식 요소 반환
 
-// E.firstElementChild / E.lastElementChild
+E.firstElementChild / E.lastElementChild
 // 요소의 첫 번째 자식 / 마지막 자식 요소 반환
 
 
@@ -66,6 +66,22 @@ E.id
 
 E.className
 // 요소의 'class' 속성 값을 얻거나 지정
+
+E.classList
+// 요소의 'class' 속성 값을 제어
+// add() : 새로운 값을 추가
+// remove() : 기존 값을 제거
+// toggle() : 값이 있으면 제거 없으면 추가
+// contains() : 값의 존재 여부 확인
+
+E.style
+// 요소의 'style' 속성(인라인 스타일)의 CSS 속성 값을 얻거나 지정
+
+E. getAttribute() / E.setAttribute()
+// 요소에서 특정 속성 값을 얻거나 지정
+
+
+///// 크기 및 좌표
 
 
 
