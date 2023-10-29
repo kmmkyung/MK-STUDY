@@ -27,7 +27,7 @@ event.stopPropagation();
 // 3번째 인수로 {capture:true}를 주게 되면 캡쳐링이 일어난다
 
 .addEventListener('event',function(){},{once:true})
-// 아벤트 함수를 한번만 실행
+// 이벤트 함수를 한번만 실행
 
 .addEventListener('event',function(){},{passive:true})
 // 요소의 기본 동작과 핸들러 실행 분리 
