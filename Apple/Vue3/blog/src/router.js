@@ -4,12 +4,24 @@ import { createWebHistory, createRouter } from "vue-router";
 import Home from "./components/ComHome.vue";
 import List from "./components/ComList.vue";
 import Detail from "./components/ComDetail.vue";
+import Author from "./components/ComAuthor.vue";
+import Comment from "./components/ComComment.vue";
 
 // 경로를 정의하고, 각 경로를 컴포넌트와 매핑.
 const routes = [
   {
     path: "/Detail/:id",
-    component: Detail
+    component: Detail,
+    children : [
+      {
+        path: "author",
+        component: Author 
+      },
+      {
+        path: "comment",
+        component: Comment
+      }
+    ]
   },
   {
     path: "/List",
