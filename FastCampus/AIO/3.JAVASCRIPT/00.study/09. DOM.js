@@ -30,7 +30,7 @@ document.createElement()
 // 메모리에만 존대하는 새로운 HTML 요소를 생성
 
 E.prepend() / E.append()
-// 노드를 요소의 첫 번째 / 마지마 자식으로 삽입
+// 노드를 요소의 첫 번째 / 마지막 자식으로 삽입
 
 E.remove()
 // 요소를 제거
