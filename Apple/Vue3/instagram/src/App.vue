@@ -5,12 +5,13 @@
         <li>Cancel</li>
       </ul>
       <ul class="header-button-right">
-        <li>Next</li>
+        <li v-if="step==1" v-on:click="step++">Next</li>
+        <li v-if="step==2" v-on:click="publish">발행</li>
       </ul>
       <img src="./assets/logo.png" class="logo" />
     </div>
 
-    <ComContainer :DataPost="DataPost" :step="step"/>
+    <ComContainer :DataPost="DataPost" :step="step" :이미지="이미지" @write="작성한글 = $event"/>
     <button @click="more">더보기</button>
 
     <div class="footer">
@@ -45,7 +46,8 @@ export default {
     return{
       DataPost : DataPost,
       더보기 : 0,
-      step : 0
+      step : 0,
+      이미지 : ''
     }
   },
   methods : {
@@ -60,7 +62,23 @@ export default {
       let 파일 = e.target.files;
       console.log(파일[0]);
       this.step++;
-      URL.createObjectURL(파일[0])
+      let url = URL.createObjectURL(파일[0])
+      // console.log(url); // blob: http:// 링크~
+      this.이미지 = url
+    },
+    publish(){
+      var 내게시물 = {
+        name: "Kim Hyun",
+        userImage: "https://picsum.photos/100?random=1",
+        postImage: this.이미지,
+        likes: 36,
+        date: "May 15",
+        liked: false,
+        content: this.작성한글,
+        filter: "perpetua"
+    };
+      this.DataPost.unshift(내게시물)
+      this.step = 0;
     }
   }
 };
