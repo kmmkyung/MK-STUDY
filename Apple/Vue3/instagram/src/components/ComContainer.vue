@@ -11,7 +11,9 @@
         :style="`background-image:url(${이미지})`"
       ></div>
       <div class="filters">
-        <FilterBox :이미지="이미지" v-for="(필터,idx) in 필터들" :key="idx" :필터="필터"></FilterBox>
+        <FilterBox :이미지="이미지" v-for="(필터,idx) in 필터들" :key="idx" :필터="필터">
+          <template v-slot:a><span>{{ 필터 }}</span></template>
+        </FilterBox>
       </div>
     </div>
 

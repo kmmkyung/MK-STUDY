@@ -1,5 +1,7 @@
 <template>
-  <div class="filter-item" :class="필터" :style="`background-image:url(${이미지})`"></div> 
+  <div class="filter-item" :class="필터" :style="`background-image:url(${이미지})`">
+    <slot name="a"></slot>
+  </div> 
 </template>
 
 <script>
