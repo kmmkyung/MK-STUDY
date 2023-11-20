@@ -4,7 +4,7 @@
         <div class="profile"></div>
         <span class="profile-name">{{ DataPost.name }}</span>
       </div>
-      <div class="post-body"
+      <div class="post-body" :class="선택한필터"
       :style="{ backgroundImage: `url(${DataPost.postImage})`}"
       ></div>
       <div class="post-content">
@@ -18,7 +18,8 @@
 <script>
 export default {
   props:{
-    DataPost : Object
+    DataPost : Object,
+    선택한필터:String
   }
 }
 </script>

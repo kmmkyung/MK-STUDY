@@ -11,7 +11,7 @@
       <img src="./assets/logo.png" class="logo" />
     </div>
 
-    <ComContainer :DataPost="DataPost" :step="step" :이미지="이미지" @write="작성한글 = $event"/>
+    <ComContainer  :선택한필터="선택한필터" :DataPost="DataPost" :step="step" :이미지="이미지" @write="작성한글 = $event"/>
     <button @click="more">더보기</button>
 
     <div class="footer">
@@ -39,6 +39,11 @@ import DataPost from './assets/data/DataPost.js';
 
 export default {
   name: "App",
+  mounted(){
+    this.emitter.on('박스클릭함',(e)=>{
+      this.선택한필터 = e
+    })
+  },
   components: {
     ComContainer:ComContainer
   },
@@ -47,7 +52,8 @@ export default {
       DataPost : DataPost,
       더보기 : 0,
       step : 0,
-      이미지 : ''
+      이미지 : '',
+      선택한필터:''
     }
   },
   methods : {
@@ -75,7 +81,7 @@ export default {
         date: "May 15",
         liked: false,
         content: this.작성한글,
-        filter: "perpetua"
+        filter: this.선택한필터
     };
       this.DataPost.unshift(내게시물)
       this.step = 0;

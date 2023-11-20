@@ -1,6 +1,6 @@
 <template>
-  <div class="filter-item" :class="필터" :style="`background-image:url(${이미지})`">
-    <slot name="a"></slot>
+  <div @click="fire" class="filter-item" :class="필터" :style="`background-image:url(${이미지})`">
+    <slot name="name"></slot>
   </div> 
 </template>
 
@@ -10,6 +10,11 @@ name:'FilterBox',
 props:{
   이미지:String,
   필터:String,
+},
+methods:{
+  fire(){
+    this.emitter.emit('박스클릭함',this.필터)
+  }
 }
 }
 </script>

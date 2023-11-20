@@ -1,25 +1,25 @@
 <template>
   <div>
     <div v-if="step == 0">
-      <ComPost v-for="(item, idx) in DataPost" :key="idx" :DataPost="item" />
+      <ComPost v-for="(item, idx) in DataPost" :key="idx" :DataPost="item" :선택한필터="선택한필터"/>
     </div>
 
     <!-- 필터선택페이지 -->
     <div v-if="step == 1">
-      <div
+      <div :class="선택한필터"
         class="upload-image"
         :style="`background-image:url(${이미지})`"
       ></div>
       <div class="filters">
         <FilterBox :이미지="이미지" v-for="(필터,idx) in 필터들" :key="idx" :필터="필터">
-          <template v-slot:a><span>{{ 필터 }}</span></template>
+          <template v-slot:name><span>{{ 필터 }}</span></template>
         </FilterBox>
       </div>
     </div>
 
     <!-- 글작성페이지 -->
     <div v-if="step == 2">
-      <div
+      <div :class="선택한필터"
         class="upload-image"
         :style="`background-image:url(${이미지})`"
       ></div>
@@ -48,6 +48,7 @@ export default {
     DataPost: Array,
     step: Number,
     이미지: String,
+    선택한필터: String
   },
   data() {
     return {
