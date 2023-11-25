@@ -11,6 +11,19 @@
       <img src="./assets/logo.png" class="logo" />
     </div>
 
+    <button @click="$store.commit('plus',0)">{{ $store.state.num[0] }}버튼</button>
+    <button @click="$store.commit('plus',1)">{{ $store.state.num[1] }}버튼</button>
+    <button @click="$store.commit('plus',2)">{{ $store.state.num[2] }}버튼</button>
+
+    <p>{{ $store.state.more }}</p>
+    <button @click="$store.dispatch('getData')">더보기</button>
+
+    <h3>{{ $store.state.name }}</h3>
+    <button @click="$store.commit('이름변경')">이름변경버튼</button>
+    
+    <h4>{{ $store.state.age }}</h4>
+    <button v-on:click="$store.commit('숫자변경',10)">숫자증가버튼</button>
+
     <ComContainer  :선택한필터="선택한필터" :DataPost="DataPost" :step="step" :이미지="이미지" @write="작성한글 = $event"/>
     <button @click="more">더보기</button>
 

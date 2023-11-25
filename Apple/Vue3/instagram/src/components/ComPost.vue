@@ -6,9 +6,10 @@
       </div>
       <div class="post-body" :class="선택한필터"
       :style="{ backgroundImage: `url(${DataPost.postImage})`}"
+      @click="$store.commit('likePlus',idx)"
       ></div>
       <div class="post-content">
-        <p>{{ DataPost.likes }}</p>
+        <p>{{ $store.state.likes[idx] }} Likes</p>
         <p><strong>{{ DataPost.name }}</strong> {{ DataPost.content }}</p>
         <p class="date">{{ DataPost.date }}</p>
       </div>
@@ -19,7 +20,8 @@
 export default {
   props:{
     DataPost : Object,
-    선택한필터:String
+    선택한필터:String,
+    idx:Number
   }
 }
 </script>

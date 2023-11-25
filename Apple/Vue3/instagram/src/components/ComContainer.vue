@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-if="step == 0">
-      <ComPost v-for="(item, idx) in DataPost" :key="idx" :DataPost="item" :선택한필터="선택한필터"/>
+      <ComPost v-for="(item, idx) in DataPost" :key="idx" :DataPost="item" :선택한필터="선택한필터" :idx="idx"/>
     </div>
 
     <!-- 필터선택페이지 -->
