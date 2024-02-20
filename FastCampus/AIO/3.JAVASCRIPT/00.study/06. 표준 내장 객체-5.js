@@ -12,12 +12,12 @@ const a = {
 */
 // => JSON문자는 큰 따옴표가 붙어 있는 하나의 문자 덩어리
 
-JSON.stringify() - 데이터를 JSON 문자로 변환
-JSON.parse() - JSON 문자를 분석해 데이터로 변환
+JSON.stringify() // - 데이터를 JSON 문자로 변환
+JSON.parse() // - JSON 문자를 분석해 데이터로 변환
 
 // 문자로 표시된다!
 console.log(JSON.stringify('Hello world!'));
 console.log(JSON.stringify(123));
 console.log(JSON.stringify(false));
 console.log(JSON.stringify({name:'a', age:85}));
-console.log(JSON.stringify([1,2,3]);
+console.log(JSON.stringify([1,2,3]));
