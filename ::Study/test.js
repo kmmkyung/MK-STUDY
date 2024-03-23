@@ -55,10 +55,22 @@ var nameArr = users.reduce((acc, cur)=>{
 // }).then(function(){
 //   console.log(결과2);
 // })
-async function fn1(){ // fn1 함수 자체가 promise가 되버린다!
-  return 1+1
+
+
+
+
+
+var button = document.querySelector('.btn')
+
+let buttonEvent = new Promise(function(성공,실패){
+  button.addEventListener('click',()=>{
+    성공()
+  })
+})
+
+async function buttonClick(){
+  var click = await buttonEvent;
+  console.log('click'); // 버튼눌렀어요
 }
 
-fn1().then(function(add){
-  console.log( add+'성공');
-});
+buttonClick()
