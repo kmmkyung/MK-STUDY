@@ -64,13 +64,29 @@ var button = document.querySelector('.btn')
 
 let buttonEvent = new Promise(function(성공,실패){
   button.addEventListener('click',()=>{
-    성공()
+    성공('버튼눌렀어요')
   })
 })
 
 async function buttonClick(){
   var click = await buttonEvent;
-  console.log('click'); // 버튼눌렀어요
+  console.log(click); // 버튼눌렀어요
 }
 
+
+// async function buttonClick(){
+//   let buttonEvent = new Promise(function(성공,실패){
+//       button.addEventListener('click',()=>{
+//         성공('클릭했어')
+//     })
+//   })
+//   var click = await buttonEvent
+//   console.log(click);
+  
+// }
+
+
 buttonClick()
+
+
+
