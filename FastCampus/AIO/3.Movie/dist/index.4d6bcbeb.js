@@ -587,24 +587,30 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 var _appJs = require("./App.js");
 var _appJsDefault = parcelHelpers.interopDefault(_appJs);
+var _indexJs = require("./routes/index.js");
+var _indexJsDefault = parcelHelpers.interopDefault(_indexJs);
 const root = document.querySelector("#root");
 root.append(new (0, _appJsDefault.default)().ele);
+(0, _indexJsDefault.default)();
 
-},{"./App.js":"2kQhy","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"2kQhy":[function(require,module,exports) {
+},{"./App.js":"2kQhy","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./routes/index.js":"3L9mC"}],"2kQhy":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _coreJs = require("./core/core.js");
+var _theHeaderJs = require("./components/TheHeader.js");
+var _theHeaderJsDefault = parcelHelpers.interopDefault(_theHeaderJs);
 class App extends (0, _coreJs.Component) {
     constructor(){
-        super();
+        super({});
     }
     render() {
-        this.ele.textContent = "hello";
+        const routerView = document.createElement("router-view");
+        this.ele.append(new (0, _theHeaderJsDefault.default)().ele, routerView);
     }
 }
 exports.default = App;
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./core/core.js":"3SuZC"}],"gkKU3":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./core/core.js":"3SuZC","./components/TheHeader.js":"3Cyq4"}],"gkKU3":[function(require,module,exports) {
 exports.interopDefault = function(a) {
     return a && a.__esModule ? a : {
         default: a
@@ -639,17 +645,193 @@ exports.export = function(dest, destName, get) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "Component", ()=>Component);
+parcelHelpers.export(exports, "createRouter", ()=>createRouter);
+// store
+parcelHelpers.export(exports, "Store", ()=>Store);
 class Component {
     constructor(payload = {}){
         const { tagName = "div" } = payload;
+        const { state = {} } = payload;
+        const { props = {} } = payload;
         this.ele = document.createElement(tagName);
+        this.state = state;
+        this.props = props;
         this.render();
     }
     render() {
     // 
     }
 }
+// Router
+function routeRender(routes) {
+    if (!location.hash) history.replaceState(null, "", "/#/") // 주소업데이트
+    ;
+    const routerView = document.querySelector("router-view");
+    const [hash, queryString = ""] = location.hash.split("?") // a=123&b=456
+    ;
+    const query = queryString.split("&").reduce(function(acc, cur) {
+        const [key, value] = cur.split("=") // ['a','123']
+        ;
+        acc[key] = value // {a:'123,b:456}
+        ;
+        return acc;
+    }, {});
+    history.replaceState(query, "", "");
+    const currentRoute = routes.find((route)=>{
+        return new RegExp(`${route.path}/?$`).test(hash);
+    });
+    routerView.innerHTML = "";
+    routerView.append(new currentRoute.component().ele);
+    window.scrollTo(0, 0);
+}
+function createRouter(routes) {
+    return function() {
+        window.addEventListener("popstate", ()=>{
+            routeRender(routes);
+        });
+        routeRender(routes);
+    };
+}
+class Store {
+    constructor(state){
+        this.state = {};
+        this.observers = {};
+        for(const key in state)Object.defineProperty(this.state, key, {
+            get: ()=>{
+                return state[key] // state['message']
+                ;
+            },
+            set: (value)=>{
+                console.log(value);
+                state[key] = value;
+                this.observers[key]();
+            }
+        });
+    }
+    subscribe(key, fn) {
+        this.observers[key] = fn;
+    }
+}
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["anvqh","gLLPy"], "gLLPy", "parcelRequire6f77")
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"3Cyq4":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _core = require("../core/core");
+class TheHeader extends (0, _core.Component) {
+    constructor(){
+        super({
+            tagName: "header"
+        });
+    }
+    render() {
+        this.ele.innerHTML = /* HTML */ `
+      <a href="#">Main</a>
+      <a href="#/about">About</a>
+    `;
+    }
+}
+exports.default = TheHeader;
+
+},{"../core/core":"3SuZC","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"3L9mC":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _coreJs = require("../core/core.js");
+var _home = require("./Home");
+var _homeDefault = parcelHelpers.interopDefault(_home);
+var _about = require("./About");
+var _aboutDefault = parcelHelpers.interopDefault(_about);
+exports.default = (0, _coreJs.createRouter)([
+    {
+        path: "#/",
+        component: (0, _homeDefault.default)
+    },
+    {
+        path: "#/about",
+        component: (0, _aboutDefault.default)
+    }
+]);
+
+},{"./Home":"0JSNG","./About":"gdB30","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../core/core.js":"3SuZC"}],"0JSNG":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _core = require("../core/core");
+var _textField = require("../components/TextField");
+var _textFieldDefault = parcelHelpers.interopDefault(_textField);
+var _message = require("../components/Message");
+var _messageDefault = parcelHelpers.interopDefault(_message);
+class Home extends (0, _core.Component) {
+    render() {
+        this.ele.innerHTML = `
+    <h1>home</h1>
+    `;
+        this.ele.append(new (0, _textFieldDefault.default)().ele, new (0, _messageDefault.default)().ele);
+    }
+}
+exports.default = Home;
+
+},{"../core/core":"3SuZC","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../components/TextField":"e6IWT","../components/Message":"i84kQ"}],"e6IWT":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _core = require("../core/core");
+var _message = require("../store/message");
+var _messageDefault = parcelHelpers.interopDefault(_message);
+class TextField extends (0, _core.Component) {
+    render() {
+        this.ele.innerHTML = `
+      <input value="${(0, _messageDefault.default).state.message}"/>
+    `;
+        const inputEl = this.ele.querySelector("input");
+        inputEl.addEventListener("input", function() {
+            (0, _messageDefault.default).state.message = inputEl.value;
+        });
+    }
+}
+exports.default = TextField;
+
+},{"../core/core":"3SuZC","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../store/message":"4gYOO"}],"4gYOO":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _core = require("../core/core");
+exports.default = new (0, _core.Store)({
+    message: "hello"
+});
+
+},{"../core/core":"3SuZC","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"i84kQ":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _core = require("../core/core");
+var _messageJs = require("../store/message.js");
+var _messageJsDefault = parcelHelpers.interopDefault(_messageJs);
+class Message extends (0, _core.Component) {
+    constructor(){
+        super();
+        (0, _messageJsDefault.default).subscribe("message", ()=>{
+            this.render();
+        });
+    }
+    render() {
+        this.ele.innerHTML = `
+      <h2>${(0, _messageJsDefault.default).state.message}</h2>
+    `;
+    }
+}
+exports.default = Message;
+
+},{"../core/core":"3SuZC","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../store/message.js":"4gYOO"}],"gdB30":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _core = require("../core/core");
+class About extends (0, _core.Component) {
+    render() {
+        const { a, b, c } = history.state;
+        this.ele.innerHTML = `
+    <h1>About</h1>
+    <h2>${a}</h2>
+    `;
+    }
+}
+exports.default = About;
+
+},{"../core/core":"3SuZC","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["anvqh","gLLPy"], "gLLPy", "parcelRequire6f77")
 
 //# sourceMappingURL=index.4d6bcbeb.js.map
