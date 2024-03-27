@@ -2,44 +2,71 @@ import { useState } from 'react';
 import './App.css';
 import { Navbar, Container, Nav} from 'react-bootstrap'
 import date from './date.js';
+import { Routes, Route, Link, useNavigate, Outlet } from "react-router-dom"
+import Detail from './routes/detail.js';
+import Card from './component/card.js';
 
 function App() {
   let [shoes] = useState(date);
-
+  let navigate = useNavigate()
   return (
     <div className="App">
+
       <Navbar bg="dark" variant="dark">
         <Container>
-        <Navbar.Brand href="#home">Navbar</Navbar.Brand>
+        <Navbar.Brand href="#home">ShoeShop</Navbar.Brand>
         <Nav className="me-auto">
-          <Nav.Link href="#home">Home</Nav.Link>
-          <Nav.Link href="#features">Features</Nav.Link>
-          <Nav.Link href="#pricing">Pricing</Nav.Link>
+        <button onClick={()=>{ navigate('/') }}>Home</button> 
+          <button onClick={()=>{ navigate('/detail') }}>Detail</button> 
         </Nav>
         </Container>
       </Navbar>
-      <div className="main-bg" ></div>
-      <div className="container">
-        <div className="row">
-        {
-        shoes.map(function(v,i){
-          return <Component shoes={v} i={i} key={i}></Component>
-          })
-        }
-        </div>
-      </div>
+
+      <Routes>
+        <Route path="/" element={
+        <div>
+          <div className="main-bg" ></div>
+            <div className="container">
+              <div className="row">
+                {
+                shoes.map(function(v,i){
+                  return <Card shoes={v} i={i} key={i}></Card>
+                  })
+                }
+              </div>
+            </div>
+          </div>
+        }></Route>
+        <Route path="/detail" element={<Detail></Detail>}></Route>
+        <Route path="/about" element={<About></About>}>
+          <Route path="member" element={<div>member</div>}></Route>
+          <Route path="location" element={<div>location</div>}></Route>
+        </Route>
+        <Route path="*" element={ <div>404 페이지</div> } />
+        <Route path='/event' element={<Event></Event>}>
+          <Route path="one" element={<div>첫 주문시 양배추즙 서비스</div>}></Route>
+          <Route path="two" element={<div>생일기념 쿠폰받기</div>}></Route>
+        </Route>
+      </Routes>
     </div>
   );
 }
 
-function Component(props){
-  return(
-  <div className="col-md-4">
-    <img src={process.env.PUBLIC_URL + '/img/shoes'+(props.i+1)+'.jpg'} width="80%"/>
-    <h4>{props.shoes.title}</h4>
-    <p>{props.shoes.price}</p>
-  </div>
+function About(){
+  return (
+    <div>
+      <h4>회사정보임</h4>
+      <Outlet></Outlet>
+    </div>
   )
 }
 
+function Event(){
+  return(
+    <div>
+      <div>오늘의 이벤트</div>
+      <Outlet></Outlet>
+    </div>
+  )
+}
 export default App;
