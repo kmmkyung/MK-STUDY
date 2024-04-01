@@ -1,5 +1,7 @@
-import { useFetcher, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useEffect,useState } from "react";
+import { Nav } from 'react-bootstrap'
+
 
 
 function Detail(props){
@@ -10,20 +12,31 @@ function Detail(props){
   let [alertNum,alertFn] = useState(true)
   let [count, setCount] = useState(0)
   let [num, fnNum] = useState('')
+  let [tab, tabChange] = useState(0)
+  let [fade2, setFade2] = useState('')
+
   useEffect(function(){
     let a = setTimeout(function(){alertFn(false)},2000)
     return()=>{
       clearTimeout(a)
     }
   },[])
+  
   useEffect(function(){
     if(isNaN(num)== true){
       alert('숫자만 입력')
     }
   },[num])
 
+  useEffect(()=>{
+    setTimeout(()=>{setFade2('end')},100)
+    return ()=>{
+      setFade2('')
+    }
+  },[])
+
   return(
-    <div className="container">
+    <div className={"container start "+ fade2}>
       {alertNum==false?null:
       <div className="alert">2초 이내 구매시 할인</div>
       }
@@ -40,8 +53,40 @@ function Detail(props){
           <button className="btn btn-danger">주문하기</button> 
         </div>
       </div>
+      <Nav variant="tabs"  defaultActiveKey="link0">
+        <Nav.Item>
+          <Nav.Link eventKey="link0" onClick={function(){tabChange(0)}}>버튼0</Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link eventKey="link1" onClick={function(){tabChange(1)}}>버튼1</Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link eventKey="link2" onClick={function(){tabChange(2)}}>버튼2</Nav.Link>
+        </Nav.Item>
+      </Nav>
+      <TabContent tab={tab}></TabContent>
     </div> 
   )
+}
+
+function TabContent({tab}){
+  let [fade, setFade] = useState('')
+
+  useEffect(()=>{
+    setTimeout(()=>{setFade('end')},100)
+  return ()=>{setFade('')}
+  },[tab])
+
+
+  if(tab==0){
+    return <div className={"start " + fade}>내용0</div>
+  }
+  if(tab==1){
+    return <div className={"start " + fade}>내용1</div>
+  }
+  if(tab==2){
+    return <div className={`start ${fade}`}>내용2</div>
+  }
 }
 
 export default Detail;

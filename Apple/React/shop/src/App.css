@@ -4,3 +4,12 @@
   background-size : cover;
   background-position : center;
 }
+
+.start {
+  opacity : 0;
+}
+
+.end {
+  transition : opacity 2s;
+  opacity : 1;
+}
