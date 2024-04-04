@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { createContext, useState } from 'react';
 import './App.css';
 import { Navbar, Container, Nav} from 'react-bootstrap'
 import date from './date.js';
@@ -7,8 +7,11 @@ import Detail from './routes/detail.js';
 import Card from './component/card.js';
 import axios from 'axios'
 
+export let Context1 = createContext()
+
 function App() {
   let [shoes, setShoes] = useState(date);
+  let [재고] = useState([10,11,12]);
   let navigate = useNavigate();
   let [click,setClick] = useState(1)
   return (
@@ -52,7 +55,7 @@ function App() {
             }}>더보기</button>
           </div>
         }></Route>
-        <Route path="/detail/:id" element={<Detail shoes={shoes}></Detail>}></Route>
+        <Route path="/detail/:id" element={<Context1.Provider value={{재고, shoes}}><Detail shoes={shoes}></Detail></Context1.Provider>}></Route>
         <Route path="/about" element={<About></About>}>
           <Route path="member" element={<div>member</div>}></Route>
           <Route path="location" element={<div>location</div>}></Route>

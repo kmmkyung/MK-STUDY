@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
-import { useEffect,useState } from "react";
+import { useContext, useEffect,useState } from "react";
 import { Nav } from 'react-bootstrap'
-
+import {Context1} from './../App.js'
 
 
 function Detail(props){
@@ -14,7 +14,7 @@ function Detail(props){
   let [num, fnNum] = useState('')
   let [tab, tabChange] = useState(0)
   let [fade2, setFade2] = useState('')
-
+  let {재고,shoes} = useContext(Context1)
   useEffect(function(){
     let a = setTimeout(function(){alertFn(false)},2000)
     return()=>{
