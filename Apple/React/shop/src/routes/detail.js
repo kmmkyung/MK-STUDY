@@ -64,12 +64,12 @@ function Detail(props){
           <Nav.Link eventKey="link2" onClick={function(){tabChange(2)}}>버튼2</Nav.Link>
         </Nav.Item>
       </Nav>
-      <TabContent tab={tab}></TabContent>
+      <TabContent tab={tab} shoes={props.shoes}></TabContent>
     </div> 
   )
 }
 
-function TabContent({tab}){
+function TabContent({tab,shoes}){
   let [fade, setFade] = useState('')
 
   useEffect(()=>{
@@ -79,7 +79,7 @@ function TabContent({tab}){
 
 
   if(tab==0){
-    return <div className={"start " + fade}>내용0</div>
+    return <div className={"start " + fade}>{shoes[0].title}</div>
   }
   if(tab==1){
     return <div className={"start " + fade}>내용1</div>
