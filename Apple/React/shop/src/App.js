@@ -2,9 +2,10 @@ import { createContext, useState } from 'react';
 import './App.css';
 import { Navbar, Container, Nav} from 'react-bootstrap'
 import date from './date.js';
-import { Routes, Route, Link, useNavigate, Outlet } from "react-router-dom"
+import { Routes, Route, useNavigate, Outlet } from "react-router-dom"
 import Detail from './routes/detail.js';
 import Card from './component/card.js';
+import Cart from './routes/cart.js';
 import axios from 'axios'
 
 export let Context1 = createContext()
@@ -14,6 +15,8 @@ function App() {
   let [재고] = useState([10,11,12]);
   let navigate = useNavigate();
   let [click,setClick] = useState(1)
+  let [] = useState()
+
   return (
     <div className="App">
       <Navbar bg="dark" variant="dark">
@@ -65,6 +68,7 @@ function App() {
           <Route path="one" element={<div>첫 주문시 양배추즙 서비스</div>}></Route>
           <Route path="two" element={<div>생일기념 쿠폰받기</div>}></Route>
         </Route>
+        <Route path='/cart' element={<Cart></Cart>}></Route>
       </Routes>
     </div>
   );
