@@ -1,18 +1,6 @@
-@import './abstracts/_variables.scss';
-@import './abstracts/mixins.scss';
-
-@import './layout/navBar/leftNav';
-@import './layout/navBar/navBar';
-@import './layout/navBar/rightNav';
-@import './layout/navBar/searchBar';
-
-@import './layout/sideBar/bigSideBar';
-@import './layout/sideBar/sideBar';
-@import './layout/sideBar/smallSideBar';
-
-@import './page/mainPage';
-@import './page/searchVideoPage';
-@import './page/videoPage';
+@use './abstracts' as *;
+@use './layout';
+@use './page';
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,500;0,700;1,400&display=swap');
 
