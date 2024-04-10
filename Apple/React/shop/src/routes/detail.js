@@ -1,7 +1,11 @@
 import { useParams } from "react-router-dom";
 import { useContext, useEffect,useState } from "react";
+import { Routes, Route, useNavigate, Outlet } from "react-router-dom"
+
 import { Nav } from 'react-bootstrap'
 import {Context1} from './../App.js'
+import { addItem } from "./../store.js";
+import { useDispatch } from "react-redux";
 
 
 function Detail(props){
@@ -15,6 +19,9 @@ function Detail(props){
   let [tab, tabChange] = useState(0)
   let [fade2, setFade2] = useState('')
   let {재고,shoes} = useContext(Context1)
+  let dispatch = useDispatch()
+  let navigate = useNavigate();
+
   useEffect(function(){
     let a = setTimeout(function(){alertFn(false)},2000)
     return()=>{
@@ -50,7 +57,7 @@ function Detail(props){
           <p>{findItem.content}</p>
           <p>{findItem.price}</p>
           <input onChange={(e)=>{fnNum(e.target.value)}}></input>
-          <button className="btn btn-danger">주문하기</button> 
+          <button className="btn btn-danger" onClick={()=>{dispatch(addItem({id:1, name:'fff', count:1}), navigate('/cart'))}}>주문하기</button> 
         </div>
       </div>
       <Nav variant="tabs"  defaultActiveKey="link0">
