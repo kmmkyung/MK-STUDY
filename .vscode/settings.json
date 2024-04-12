@@ -1,4 +1,7 @@
 {
-  "liveServer.settings.port": 5501,
-  "colorize.decoration_type": "background"
+  "eslint.enable": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+  "editor.tabSize": 2,
 }
