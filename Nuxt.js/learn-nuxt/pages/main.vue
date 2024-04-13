@@ -1,29 +1,23 @@
 <template>
   <div>
-    <h1>메인페이지</h1>
     {{ products }}
   </div>
 </template>
-
 <script>
-import axios from 'axios'
+import axios from 'axios';
 
 export default {
   data() {
     return {
-      products: []
+      products: [],
     }
   },
-
-  asyncData(){},  
-
-  async created(){
-    let response = await axios.get('http://localhost:3000/products')
+  async fetch(){
+    const response = await axios.get("http://localhost:3000/products");
     this.products = response.data
+    return {products}
   }
 }
-</script> 
-
-<style lang="scss" scoped>
-
+</script>
+<style>
 </style>
