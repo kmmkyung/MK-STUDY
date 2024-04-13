@@ -1,23 +1,10 @@
+<script setup>
+  const {data:products} = await useFetch('http://localhost:3000/products');
+</script>
 <template>
   <div>
-    {{ products }}
+    <article>
+      <div>{{ products }}</div>
+    </article>
   </div>
 </template>
-<script>
-import axios from 'axios';
-
-export default {
-  data() {
-    return {
-      products: [],
-    }
-  },
-  async fetch(){
-    const response = await axios.get("http://localhost:3000/products");
-    this.products = response.data
-    return {products}
-  }
-}
-</script>
-<style>
-</style>
