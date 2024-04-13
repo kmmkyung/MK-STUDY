@@ -15,8 +15,8 @@ export default {
     }
   },
 
-  asyncData(){},
-  
+  asyncData(){},  
+
   async created(){
     let response = await axios.get('http://localhost:3000/products')
     this.products = response.data
