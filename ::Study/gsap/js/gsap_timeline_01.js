@@ -27,17 +27,17 @@ tl.to(".text",{color:'#fff'},"+=1");
 tl.to("section",{backgroundColor:'tomato'},"<");
 tl.to("section",{delay:2,backgroundColor:'#fff',ease:'expo'});
 tl.to(".text",{opacity:0,onComplete:chgtext2});
-tl.to(".text",{opacity:1,color:'#eee'});
+tl.to(".text",{opacity:1,color:'#000'});
 
 
 function chgtext1(){
-  t1.textContent=`DPR야`
-  t2.textContent=`그래도 내가`
-  t3.textContent=`체고체고지?`
+  t1.textContent=`정리`
+  t2.textContent=`지삽정리`
+  t3.textContent=`dsfafdasd`
 }
 
 function chgtext2(){
-  t1.textContent=`DPR야`
-  t2.textContent=`너도`
-  t3.textContent=`체고체고양=(^ㅈ^)=`
+  t1.textContent=`asfasdf`
+  t2.textContent=`asdfadsfasdf`
+  t3.textContent=`adsfasdadsfsda`
 }
