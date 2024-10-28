@@ -1,1 +1,0 @@
-{"mappings":"AAAA;;;;AAIA","sources":["src/css/main.css"],"sourcesContent":["body{\n  height: 3000px;\n}\n\nheader{\n  position: fixed;\n  top: 0;\n  width: 100%;\n  background-color: rgba(255,252,255,0.5);\n}"],"names":[],"version":3,"file":"index.34df27b5.css.map","sourceRoot":"/__parcel_source_root/"}
