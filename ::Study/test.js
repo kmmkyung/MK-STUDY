@@ -1,20 +1,18 @@
-var users = [
-  { name: 'A', age: 85 },
-  { name: 'B', age: 22 },
-  { name: 'C', age: 11 },
-];
+// var users = [
+//   { name: 'A', age: 85 },
+//   { name: 'B', age: 22 },
+//   { name: 'C', age: 11 },
+// ];
 
 
-// 총 나이 / 평균 나이 계산해보기
-var totalAge = users.reduce((acc, cur) => { return acc + cur.age }, 0) // 118
-var totalAgeDiv= (totalAge/users.length).toFixed(1) // 39.3
-// 모든 이름 배열로 추출
-var nameArr = users.reduce((acc, cur)=>{
-  acc.push(cur.name)
-  return acc 
-},[]) // [ 'A', 'B', 'C' ]
-
-
+// // 총 나이 / 평균 나이 계산해보기
+// var totalAge = users.reduce((acc, cur) => { return acc + cur.age }, 0) // 118
+// var totalAgeDiv= (totalAge/users.length).toFixed(1) // 39.3
+// // 모든 이름 배열로 추출
+// var nameArr = users.reduce((acc, cur)=>{
+//   acc.push(cur.name)
+//   return acc 
+// },[]) // [ 'A', 'B', 'C' ]
 
 
 
@@ -60,19 +58,18 @@ var nameArr = users.reduce((acc, cur)=>{
 
 
 
-var button = document.querySelector('.btn')
+// var button = document.querySelector('.btn')
 
-let buttonEvent = new Promise(function(성공,실패){
-  button.addEventListener('click',()=>{
-    성공('버튼눌렀어요')
-  })
-})
+// let buttonEvent = new Promise(function(성공,실패){
+//   button.addEventListener('click',()=>{
+//     성공('버튼눌렀어요')
+//   })
+// })
 
-async function buttonClick(){
-  var click = await buttonEvent;
-  console.log(click); // 버튼눌렀어요
-}
-
+// async function buttonClick(){
+//   var click = await buttonEvent;
+//   console.log(click); // 버튼눌렀어요
+// }
 
 // async function buttonClick(){
 //   let buttonEvent = new Promise(function(성공,실패){
@@ -85,8 +82,4 @@ async function buttonClick(){
   
 // }
 
-
-buttonClick()
-
-
-
+// buttonClick()
