@@ -15,6 +15,7 @@ console.log(user1.getFullName()); // 'kim min'
 
 // 2. ES6 Class
 // class Name {}
+// constructor()메서드는 클래스의 인스턴스 객체를 생성하고 초기화하는 메서드
 class User {
   constructor(first,last){
     this.firstName = first,

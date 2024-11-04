@@ -2,7 +2,7 @@
 // 동기: 순차적으로 코드 실행 o
 // 비동기: 순차적으로 코드 실행 x
 
-// 동기벙삭
+// 동기방식
 console.log('1');
 console.log('2');
 console.log('3'); // 콘솔에는 1,2,3 순서대로 출력됨
@@ -27,7 +27,7 @@ function a(){
 a()
 b() // 콘솔에는 2 > 1 출력
 
-// 1최후에 1, 2가 출려되려면 O
+// 1최후에 1, 2가 출력되려면 O
 function a(callback){
   setTimeout(function(){
     console.log(1)

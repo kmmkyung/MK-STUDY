@@ -177,7 +177,7 @@ const user2 = {
   lastName: 'min',
   age:30,
   getFullName: ()=>{
-    return `${this.firstName} ${this.lastName}` // = return `${user.firstName} ${user.lastName}`
+    return `${this.firstName} ${this.lastName}` 
   }
 }
 console.log(user2.getFullName()); // undefined undefined
