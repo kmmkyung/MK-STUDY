@@ -9,10 +9,3 @@ export default class App extends Component{
   render(){ // this = Component > constructor
   }
 }
-
-var arr = ['Apple', 'Banana', 'Cherry']
-console.log(arr.join()); // Apple,Banana,Cherry
-console.log(arr.join('')); // Apple,Banana,Cherry
-console.log(arr.join(', ')); // Apple, Banana, Cherry
-console.log(arr.join('/')); // Apple/Banana/Cherry
-console.log(arr); // ['Apple', 'Banana', 'Cherry']

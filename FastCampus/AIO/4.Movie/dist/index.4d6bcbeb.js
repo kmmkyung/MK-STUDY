@@ -603,16 +603,6 @@ class App extends (0, _coreJs.Component) {
     render() {}
 }
 exports.default = App;
-var arr = [
-    "Apple",
-    "Banana",
-    "Cherry"
-];
-console.log(arr.join()); // Apple,Banana,Cherry
-console.log(arr.join("")); // Apple,Banana,Cherry
-console.log(arr.join(", ")); // Apple, Banana, Cherry
-console.log(arr.join("/")); // Apple/Banana/Cherry
-console.log(arr); // ['Apple', 'Banana', 'Cherry']
 
 },{"./core/core.js":"3SuZC","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"3SuZC":[function(require,module,exports) {
 ////// Component
