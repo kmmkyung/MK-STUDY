@@ -77,3 +77,7 @@ input // 값이 변경되었을 때
 change // 상태가 변경되었을 때
 submit // 제출 버튼을 선택했을 때
 reset // 리셋 버튼을 눌렀을 때
+
+// 기타
+window.addEventListener('popstate',function(){})
+// 사용자가 브라우저 페ㅐ이지에서 히스토리를 남기는 동작을 할 때마다 발생하는 이벤트
