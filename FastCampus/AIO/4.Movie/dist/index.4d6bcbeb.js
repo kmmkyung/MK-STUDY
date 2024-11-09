@@ -744,13 +744,65 @@ exports.default = (0, _coreJs.createRouter)([
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _coreJs = require("../core/core.js");
+var _headlineJs = require("../components/Headline.js");
+var _headlineJsDefault = parcelHelpers.interopDefault(_headlineJs);
+var _searchJs = require("../components/Search.js");
+var _searchJsDefault = parcelHelpers.interopDefault(_searchJs);
 class Home extends (0, _coreJs.Component) {
     render() {
-        this.el.innerHTML = "<p>jhj</p>";
+        const headline = new (0, _headlineJsDefault.default)().el;
+        const search = new (0, _searchJsDefault.default)().el;
+        this.el.classList.add("container");
+        this.el.append(headline, search);
     }
 }
 exports.default = Home;
 
-},{"../core/core.js":"3SuZC","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["anvqh","gLLPy"], "gLLPy", "parcelRequire8a0d")
+},{"../core/core.js":"3SuZC","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../components/Headline.js":"gaVgo","../components/Search.js":"jqPPz"}],"gaVgo":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _coreJs = require("../core/core.js");
+class Headline extends (0, _coreJs.Component) {
+    render() {
+        this.el.classList.add("headline");
+        this.el.innerHTML = /* html */ `
+      <h1>
+        <span>OMDb API</span><br>
+        THE OPEN<br>
+        MOVIE DATABASE
+      </h1>
+      <p>
+        The OMDb API is a RESTful web service to obtain movie information, 
+        all content and images on the site are contributed and maintained by our users.<br>
+        If you find this service useful, please consider making a one-time donation or become a patron.
+      </p>
+    `;
+    }
+}
+exports.default = Headline;
+
+},{"../core/core.js":"3SuZC","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"jqPPz":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _core = require("../core/core");
+class Search extends (0, _core.Component) {
+    render() {
+        this.el.classList.add("search");
+        this.el.innerHTML = /* html */ `
+      <input type='text' placeholder='Enter the movie title to search!'/>
+      <button class='btn btn-primary'>Search!</button>
+    `;
+        const inputEl = this.el.querySelector("input");
+        const btnEl = this.el.querySelector("button");
+        inputEl.addEventListener("input", function() {});
+        inputEl.addEventListener("keydown", function(event) {
+            event.key;
+        });
+        btnEl.addEventListener("click", function() {});
+    }
+}
+exports.default = Search;
+
+},{"../core/core":"3SuZC","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["anvqh","gLLPy"], "gLLPy", "parcelRequire8a0d")
 
 //# sourceMappingURL=index.4d6bcbeb.js.map
