@@ -671,9 +671,9 @@ class Store {
         this.observers = {};
         for(const key in state)// 각 상태에 대한 변경 감시(Setter) 설정!
         Object.defineProperty(this.state, key, {
-            // Getter
+            // Getter(key값을 조희할때)
             get: ()=>state[key],
-            // Setter
+            // Setter(값을 할당할때)
             set: (val)=>{
                 state[key] = val;
                 if (Array.isArray(this.observers[key])) this.observers[key].forEach((observer)=>observer(val));
@@ -748,17 +748,20 @@ var _headlineJs = require("../components/Headline.js");
 var _headlineJsDefault = parcelHelpers.interopDefault(_headlineJs);
 var _searchJs = require("../components/Search.js");
 var _searchJsDefault = parcelHelpers.interopDefault(_searchJs);
+var _movieListJs = require("../components/MovieList.js");
+var _movieListJsDefault = parcelHelpers.interopDefault(_movieListJs);
 class Home extends (0, _coreJs.Component) {
     render() {
         const headline = new (0, _headlineJsDefault.default)().el;
         const search = new (0, _searchJsDefault.default)().el;
+        const movieList = new (0, _movieListJsDefault.default)().el;
         this.el.classList.add("container");
-        this.el.append(headline, search);
+        this.el.append(headline, search, movieList);
     }
 }
 exports.default = Home;
 
-},{"../core/core.js":"3SuZC","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../components/Headline.js":"gaVgo","../components/Search.js":"jqPPz"}],"gaVgo":[function(require,module,exports) {
+},{"../core/core.js":"3SuZC","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../components/Headline.js":"gaVgo","../components/Search.js":"jqPPz","../components/MovieList.js":"8UDl3"}],"gaVgo":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _coreJs = require("../core/core.js");
@@ -821,11 +824,44 @@ const store = new (0, _coreJs.Store)({
 });
 exports.default = store;
 const searchMovies = async function(page) {
+    if (page === 1) {
+        store.state.page = 1;
+        store.state.movies = [];
+    }
     const res = await fetch(`https://omdbapi.com?apikey=7035c60c&s=${store.state.searchText}&page=${page}`);
-    const json = await res.json();
-    console.log(json);
+    const { Search } = await res.json();
+    store.state.movies = [
+        ...store.state.movies,
+        ...Search
+    ];
 };
 
-},{"../core/core.js":"3SuZC","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["anvqh","gLLPy"], "gLLPy", "parcelRequire8a0d")
+},{"../core/core.js":"3SuZC","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"8UDl3":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _core = require("../core/core");
+var _movie = require("../store/movie");
+var _movieDefault = parcelHelpers.interopDefault(_movie);
+class MovieList extends (0, _core.Component) {
+    constructor(){
+        super();
+        (0, _movieDefault.default).subscribe("movies", ()=>{
+            this.render();
+        });
+    }
+    render() {
+        this.el.classList.add("movie-list");
+        this.el.innerHTML = /* html */ `
+      <div class="movies"></div>
+    `;
+        const moviesEl = this.el.querySelector(".movies");
+        moviesEl.append((0, _movieDefault.default).state.movies.map(function(movie) {
+            return movie.Title;
+        }));
+    }
+}
+exports.default = MovieList;
+
+},{"../core/core":"3SuZC","../store/movie":"kq1bo","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["anvqh","gLLPy"], "gLLPy", "parcelRequire8a0d")
 
 //# sourceMappingURL=index.4d6bcbeb.js.map

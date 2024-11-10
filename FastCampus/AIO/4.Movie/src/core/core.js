@@ -64,9 +64,9 @@ export class Store {
     for (const key in state) {
       // 각 상태에 대한 변경 감시(Setter) 설정!
       Object.defineProperty(this.state, key, {
-        // Getter
+        // Getter(key값을 조희할때)
         get: () => state[key],
-        // Setter
+        // Setter(값을 할당할때)
         set: val => {
           state[key] = val
           if (Array.isArray(this.observers[key])) { // 호출할 콜백이 있는 경우!
