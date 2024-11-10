@@ -785,6 +785,8 @@ exports.default = Headline;
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _core = require("../core/core");
+var _movieJs = require("../store/movie.js");
+var _movieJsDefault = parcelHelpers.interopDefault(_movieJs);
 class Search extends (0, _core.Component) {
     render() {
         this.el.classList.add("search");
@@ -794,15 +796,36 @@ class Search extends (0, _core.Component) {
     `;
         const inputEl = this.el.querySelector("input");
         const btnEl = this.el.querySelector("button");
-        inputEl.addEventListener("input", function() {});
-        inputEl.addEventListener("keydown", function(event) {
-            event.key;
+        inputEl.addEventListener("input", function() {
+            (0, _movieJsDefault.default).state.searchText = inputEl.value;
         });
-        btnEl.addEventListener("click", function() {});
+        inputEl.addEventListener("keydown", function(event) {
+            if (event.key === "Enter" && (0, _movieJsDefault.default).state.searchText.trim()) (0, _movieJs.searchMovies)(1);
+        });
+        btnEl.addEventListener("click", function() {
+            if ((0, _movieJsDefault.default).state.searchText.trim()) (0, _movieJs.searchMovies)(1);
+        });
     }
 }
 exports.default = Search;
 
-},{"../core/core":"3SuZC","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["anvqh","gLLPy"], "gLLPy", "parcelRequire8a0d")
+},{"../core/core":"3SuZC","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../store/movie.js":"kq1bo"}],"kq1bo":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "searchMovies", ()=>searchMovies);
+var _coreJs = require("../core/core.js");
+const store = new (0, _coreJs.Store)({
+    searchText: "",
+    page: 1,
+    movies: []
+});
+exports.default = store;
+const searchMovies = async function(page) {
+    const res = await fetch(`https://omdbapi.com?apikey=7035c60c&s=${store.state.searchText}&page=${page}`);
+    const json = await res.json();
+    console.log(json);
+};
+
+},{"../core/core.js":"3SuZC","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["anvqh","gLLPy"], "gLLPy", "parcelRequire8a0d")
 
 //# sourceMappingURL=index.4d6bcbeb.js.map
