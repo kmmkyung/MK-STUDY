@@ -733,14 +733,20 @@ parcelHelpers.defineInteropFlag(exports);
 var _coreJs = require("../core/core.js");
 var _homeJs = require("./Home.js");
 var _homeJsDefault = parcelHelpers.interopDefault(_homeJs);
+var _movieJs = require("./Movie.js");
+var _movieJsDefault = parcelHelpers.interopDefault(_movieJs);
 exports.default = (0, _coreJs.createRouter)([
     {
         path: "#/",
         component: (0, _homeJsDefault.default)
+    },
+    {
+        path: "#/movie",
+        component: (0, _movieJsDefault.default)
     }
 ]);
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../core/core.js":"3SuZC","./Home.js":"0JSNG"}],"0JSNG":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../core/core.js":"3SuZC","./Home.js":"0JSNG","./Movie.js":"1LTyN"}],"0JSNG":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _coreJs = require("../core/core.js");
@@ -819,24 +825,51 @@ exports.default = Search;
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "searchMovies", ()=>searchMovies);
+parcelHelpers.export(exports, "getMovieDetails", ()=>getMovieDetails);
 var _coreJs = require("../core/core.js");
 const store = new (0, _coreJs.Store)({
     searchText: "",
     page: 1,
     movies: [],
-    pageMax: 1
+    pageMax: 1,
+    loading: false,
+    message: "Search for the movie title!",
+    movie: {}
 });
 exports.default = store;
 const searchMovies = async function(page) {
+    store.state.loading = true;
     store.state.page = page;
-    if (page === 1) store.state.movies = [];
-    const res = await fetch(`https://omdbapi.com?apikey=7035c60c&s=${store.state.searchText}&page=${page}`);
-    const { Search, totalResults } = await res.json();
-    store.state.movies = [
-        ...store.state.movies,
-        ...Search
-    ];
-    store.state.pageMax = Math.ceil(Number(totalResults) / 10);
+    if (page === 1) {
+        store.state.movies = [];
+        store.state.message = "";
+    }
+    try {
+        const res = await fetch(`https://omdbapi.com?apikey=7035c60c&s=${store.state.searchText}&page=${page}`);
+        const { Search, totalResults, Response, Error } = await res.json();
+        if (Response === "True") {
+            store.state.movies = [
+                ...store.state.movies,
+                ...Search
+            ];
+            store.state.pageMax = Math.ceil(Number(totalResults) / 10);
+        } else {
+            store.state.message = Error;
+            store.state.pageMax = 1;
+        }
+    } catch (error) {
+        console.log(error);
+    } finally{
+        store.state.loading = false;
+    }
+};
+const getMovieDetails = async function(id) {
+    try {
+        const res = await fetch(`https://omdbapi.com?apikey=7035c60c&i=${id}&plot=full`);
+        store.state.movie = await res.json();
+    } catch (error) {
+        console.log("getMovieDetails error", error);
+    }
 };
 
 },{"../core/core.js":"3SuZC","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"8UDl3":[function(require,module,exports) {
@@ -853,16 +886,25 @@ class MovieList extends (0, _core.Component) {
         (0, _movieDefault.default).subscribe("movies", ()=>{
             this.render();
         });
+        (0, _movieDefault.default).subscribe("loading", ()=>{
+            this.render();
+        });
+        (0, _movieDefault.default).subscribe("message", ()=>{
+            this.render();
+        });
     }
     render() {
         this.el.classList.add("movie-list");
         this.el.innerHTML = /* html */ `
-      <div class="movies"></div>
+      ${(0, _movieDefault.default).state.message ? `<div class="message">${(0, _movieDefault.default).state.message}</div>` : '<div class="movies"></div>'} 
+      <div class="the-loader hide"></div>
     `;
         const moviesEl = this.el.querySelector(".movies");
-        moviesEl.append(...(0, _movieDefault.default).state.movies.map((movie)=>new (0, _movieitemDefault.default)({
+        moviesEl?.append(...(0, _movieDefault.default).state.movies.map((movie)=>new (0, _movieitemDefault.default)({
                 movie: movie
             }).el));
+        const loaderEl = this.el.querySelector(".the-loader");
+        (0, _movieDefault.default).state.loading ? loaderEl.classList.remove("hide") : loaderEl.classList.add("hide");
     }
 }
 exports.default = MovieList;
@@ -913,12 +955,62 @@ class MovieListMore extends (0, _core.Component) {
         this.el.classList.add("btn", "view-more", "hide");
         this.el.textContent = "View more...";
         this.el.addEventListener("click", async function() {
+            this.classList.add("hide");
             await (0, _movie.searchMovies)((0, _movieDefault.default).state.page + 1);
         });
     }
 }
 exports.default = MovieListMore;
 
-},{"../core/core":"3SuZC","../store/movie":"kq1bo","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["anvqh","gLLPy"], "gLLPy", "parcelRequire8a0d")
+},{"../core/core":"3SuZC","../store/movie":"kq1bo","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"1LTyN":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _core = require("../core/core");
+var _movie = require("../store/movie");
+var _movieDefault = parcelHelpers.interopDefault(_movie);
+class Movie extends (0, _core.Component) {
+    async render() {
+        await (0, _movie.getMovieDetails)(history.state.id);
+        const { movie } = (0, _movieDefault.default).state;
+        this.el.classList.add("container", "the-movie");
+        this.el.innerHTML = /*html*/ `
+      <div style='background-image: url(${movie.Poster})' class='poster'></div>
+      <div class='specs'>
+        <div class='title'>${movie.Title}</div>
+        <div class='labels'>
+          <span>${movie.Released}</span>&nbsp;/&nbsp
+          <span>${movie.Runtime}</span>&nbsp;/&nbsp
+          <span>${movie.Country}</span>
+        </div>
+        <div class='plot'>${movie.Plot}</div>
+        <div>
+          <h3>Ratings</h3>
+          ${movie.Ratings.map((rating)=>{
+            return `<p>${rating.Source} - ${rating.Value}</p>`;
+        }).join("")}
+        </div>
+        <div>
+          <h3>Actors</h3>
+          <p>${movie.Actors}</p>
+        </div>
+        <div>
+          <h3>Director</h3>
+          <p>${movie.Director}</p>
+        </div>
+        <div>
+          <h3>Production</h3>
+          <p>${movie.Production}</p>
+        </div>
+        <div>
+          <h3>Genre</h3>
+          <p>${movie.Genre}</p>
+        </div>
+      </div>
+    `;
+    }
+}
+exports.default = Movie;
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../core/core":"3SuZC","../store/movie":"kq1bo"}]},["anvqh","gLLPy"], "gLLPy", "parcelRequire8a0d")
 
 //# sourceMappingURL=index.4d6bcbeb.js.map
