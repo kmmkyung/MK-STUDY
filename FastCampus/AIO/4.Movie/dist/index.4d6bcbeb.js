@@ -803,7 +803,7 @@ class Search extends (0, _core.Component) {
     render() {
         this.el.classList.add("search");
         this.el.innerHTML = /* html */ `
-      <input type='text' placeholder='Enter the movie title to search!'/>
+      <input type='text' placeholder='Enter the movie title to search!'  value='${(0, _movieJsDefault.default).state.searchText}'/>
       <button class='btn btn-primary'>Search!</button>
     `;
         const inputEl = this.el.querySelector("input");
@@ -970,11 +970,20 @@ var _movie = require("../store/movie");
 var _movieDefault = parcelHelpers.interopDefault(_movie);
 class Movie extends (0, _core.Component) {
     async render() {
+        this.el.classList.add("container", "the-movie");
+        this.el.innerHTML = /* html */ `
+    <div class='poster skeleton'></div>
+    <div class='specs'>
+      <div class='title skeleton'></div>
+      <div class='labels skeleton'></div>
+      <div class='plot skeleton'></div>
+    </div>
+    `;
         await (0, _movie.getMovieDetails)(history.state.id);
         const { movie } = (0, _movieDefault.default).state;
-        this.el.classList.add("container", "the-movie");
+        const bigPoster = movie.Poster.replace("SX300", "SX700");
         this.el.innerHTML = /*html*/ `
-      <div style='background-image: url(${movie.Poster})' class='poster'></div>
+      <div style='background-image: url(${bigPoster})' class='poster'></div>
       <div class='specs'>
         <div class='title'>${movie.Title}</div>
         <div class='labels'>
