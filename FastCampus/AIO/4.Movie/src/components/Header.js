@@ -24,7 +24,7 @@ export default class Header extends Component {
         </ul>
       </nav>
       <a href='#/about' class='user'>
-        <img src="/static/images/logo.png" alt="Image">
+        <img src="/static/logo.png" alt="Image">
       </a>
     `
   }
