@@ -593,7 +593,7 @@ const root = document.querySelector("#root");
 root.append(new (0, _appJsDefault.default)().el);
 (0, _indexJsDefault.default)();
 
-},{"./App.js":"2kQhy","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./routes/index.js":"3L9mC"}],"2kQhy":[function(require,module,exports) {
+},{"./App.js":"2kQhy","./routes/index.js":"3L9mC","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"2kQhy":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _coreJs = require("./core/core.js");
@@ -611,7 +611,7 @@ class App extends (0, _coreJs.Component) {
 }
 exports.default = App;
 
-},{"./core/core.js":"3SuZC","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./components/Header.js":"hsJbF"}],"3SuZC":[function(require,module,exports) {
+},{"./core/core.js":"3SuZC","./components/Header.js":"hsJbF","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"3SuZC":[function(require,module,exports) {
 ///// Component /////
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
@@ -638,8 +638,9 @@ class Component {
 // 페이지 렌더링!
 function routeRender(routes) {
     // 접속할 때 해시 모드가 아니면(해시가 없으면) /#/로 리다이렉트!
-    if (!location.hash) history.replaceState(null, "", "/#/") // (상태, 제목, 주소)
-    ;
+    // if (!location.hash) {
+    //   history.replaceState(null, '', '/#/') // (상태, 제목, 주소)
+    // }
     const routerView = document.querySelector("router-view");
     const [hash, queryString = ""] = location.hash.split("?") // 물음표를 기준으로 해시 정보와 쿼리스트링을 구분
     ;
@@ -744,7 +745,10 @@ class Header extends (0, _core.Component) {
                         name: "Search",
                         href: "#/"
                     },
-                    // { name: 'Movie', href:`#/movie?id=tt4520988`},
+                    {
+                        name: "Movie",
+                        href: `#/movie?id=tt4520988`
+                    },
                     {
                         name: "About",
                         href: "#/about"
@@ -764,7 +768,7 @@ class Header extends (0, _core.Component) {
         </ul>
       </nav>
       <a href='#/about' class='user'>
-        <img src="../images/logo.png" />
+        <img src="/static/images/logo.png" alt="Image">
       </a>
     `;
     }
@@ -790,7 +794,7 @@ exports.default = (0, _coreJs.createRouter)([
     }
 ]);
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../core/core.js":"3SuZC","./Home.js":"0JSNG","./Movie.js":"1LTyN"}],"0JSNG":[function(require,module,exports) {
+},{"../core/core.js":"3SuZC","./Home.js":"0JSNG","./Movie.js":"1LTyN","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"0JSNG":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _coreJs = require("../core/core.js");
@@ -814,7 +818,7 @@ class Home extends (0, _coreJs.Component) {
 }
 exports.default = Home;
 
-},{"../core/core.js":"3SuZC","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../components/Headline.js":"gaVgo","../components/Search.js":"jqPPz","../components/MovieList.js":"8UDl3","../components/MovieListMore.js":"3ZUar"}],"gaVgo":[function(require,module,exports) {
+},{"../core/core.js":"3SuZC","../components/Headline.js":"gaVgo","../components/Search.js":"jqPPz","../components/MovieList.js":"8UDl3","../components/MovieListMore.js":"3ZUar","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gaVgo":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _coreJs = require("../core/core.js");
@@ -865,7 +869,7 @@ class Search extends (0, _core.Component) {
 }
 exports.default = Search;
 
-},{"../core/core":"3SuZC","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../store/movie.js":"kq1bo"}],"kq1bo":[function(require,module,exports) {
+},{"../core/core":"3SuZC","../store/movie.js":"kq1bo","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"kq1bo":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "searchMovies", ()=>searchMovies);
@@ -953,7 +957,7 @@ class MovieList extends (0, _core.Component) {
 }
 exports.default = MovieList;
 
-},{"../core/core":"3SuZC","../store/movie":"kq1bo","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./Movieitem":"534Hw"}],"534Hw":[function(require,module,exports) {
+},{"../core/core":"3SuZC","../store/movie":"kq1bo","./Movieitem":"534Hw","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"534Hw":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _core = require("../core/core");
@@ -1064,6 +1068,6 @@ class Movie extends (0, _core.Component) {
 }
 exports.default = Movie;
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../core/core":"3SuZC","../store/movie":"kq1bo"}]},["anvqh","gLLPy"], "gLLPy", "parcelRequire8a0d")
+},{"../core/core":"3SuZC","../store/movie":"kq1bo","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["anvqh","gLLPy"], "gLLPy", "parcelRequire8a0d")
 
 //# sourceMappingURL=index.4d6bcbeb.js.map

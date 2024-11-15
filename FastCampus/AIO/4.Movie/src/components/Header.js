@@ -7,7 +7,7 @@ export default class Header extends Component {
       state:{
         menus:[
           { name: 'Search', href:'#/'},
-          // { name: 'Movie', href:`#/movie?id=tt4520988`},
+          { name: 'Movie', href:`#/movie?id=tt4520988`},
           { name: 'About', href:'#/about'}
         ]
       }
@@ -24,7 +24,7 @@ export default class Header extends Component {
         </ul>
       </nav>
       <a href='#/about' class='user'>
-        <img src="../images/logo.png" />
+        <img src="/static/images/logo.png" alt="Image">
       </a>
     `
   }
