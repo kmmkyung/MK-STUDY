@@ -73,7 +73,7 @@
         localRequire,
         module,
         module.exports,
-        this
+        globalObject
       );
     }
 
@@ -142,7 +142,7 @@
       this[globalName] = mainExports;
     }
   }
-})({"anvqh":[function(require,module,exports) {
+})({"h4jLA":[function(require,module,exports,__globalThis) {
 var global = arguments[3];
 var HMR_HOST = null;
 var HMR_PORT = null;
@@ -197,7 +197,7 @@ declare var __parcel__import__: (string) => Promise<void>;
 declare var __parcel__importScripts__: (string) => Promise<void>;
 declare var globalThis: typeof self;
 declare var ServiceWorkerGlobalScope: Object;
-*/ var OVERLAY_ID = "__parcel__error__overlay__";
+*/ var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
 function Module(moduleName) {
     OldModule.call(this, moduleName);
@@ -218,38 +218,38 @@ module.bundle.Module = Module;
 module.bundle.hotData = {};
 var checkedAssets /*: {|[string]: boolean|} */ , assetsToDispose /*: Array<[ParcelRequire, string]> */ , assetsToAccept /*: Array<[ParcelRequire, string]> */ ;
 function getHostname() {
-    return HMR_HOST || (location.protocol.indexOf("http") === 0 ? location.hostname : "localhost");
+    return HMR_HOST || (location.protocol.indexOf('http') === 0 ? location.hostname : 'localhost');
 }
 function getPort() {
     return HMR_PORT || location.port;
 }
 // eslint-disable-next-line no-redeclare
 var parent = module.bundle.parent;
-if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== "undefined") {
+if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
     var hostname = getHostname();
     var port = getPort();
-    var protocol = HMR_SECURE || location.protocol == "https:" && ![
-        "localhost",
-        "127.0.0.1",
-        "0.0.0.0"
-    ].includes(hostname) ? "wss" : "ws";
+    var protocol = HMR_SECURE || location.protocol == 'https:' && ![
+        'localhost',
+        '127.0.0.1',
+        '0.0.0.0'
+    ].includes(hostname) ? 'wss' : 'ws';
     var ws;
-    if (HMR_USE_SSE) ws = new EventSource("/__parcel_hmr");
+    if (HMR_USE_SSE) ws = new EventSource('/__parcel_hmr');
     else try {
-        ws = new WebSocket(protocol + "://" + hostname + (port ? ":" + port : "") + "/");
+        ws = new WebSocket(protocol + '://' + hostname + (port ? ':' + port : '') + '/');
     } catch (err) {
         if (err.message) console.error(err.message);
         ws = {};
     }
     // Web extension context
-    var extCtx = typeof browser === "undefined" ? typeof chrome === "undefined" ? null : chrome : browser;
+    var extCtx = typeof browser === 'undefined' ? typeof chrome === 'undefined' ? null : chrome : browser;
     // Safari doesn't support sourceURL in error stacks.
     // eval may also be disabled via CSP, so do a quick check.
     var supportsSourceURL = false;
     try {
         (0, eval)('throw new Error("test"); //# sourceURL=test.js');
     } catch (err) {
-        supportsSourceURL = err.stack.includes("test.js");
+        supportsSourceURL = err.stack.includes('test.js');
     }
     // $FlowFixMe
     ws.onmessage = async function(event /*: {data: string, ...} */ ) {
@@ -257,18 +257,19 @@ if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== "undefined") {
         assetsToAccept = [];
         assetsToDispose = [];
         var data /*: HMRMessage */  = JSON.parse(event.data);
-        if (data.type === "update") {
+        if (data.type === 'reload') fullReload();
+        else if (data.type === 'update') {
             // Remove error overlay if there is one
-            if (typeof document !== "undefined") removeErrorOverlay();
+            if (typeof document !== 'undefined') removeErrorOverlay();
             let assets = data.assets.filter((asset)=>asset.envHash === HMR_ENV_HASH);
             // Handle HMR Update
             let handled = assets.every((asset)=>{
-                return asset.type === "css" || asset.type === "js" && hmrAcceptCheck(module.bundle.root, asset.id, asset.depsByBundle);
+                return asset.type === 'css' || asset.type === 'js' && hmrAcceptCheck(module.bundle.root, asset.id, asset.depsByBundle);
             });
             if (handled) {
                 console.clear();
                 // Dispatch custom event so other runtimes (e.g React Refresh) are aware.
-                if (typeof window !== "undefined" && typeof CustomEvent !== "undefined") window.dispatchEvent(new CustomEvent("parcelhmraccept"));
+                if (typeof window !== 'undefined' && typeof CustomEvent !== 'undefined') window.dispatchEvent(new CustomEvent('parcelhmraccept'));
                 await hmrApplyUpdates(assets);
                 // Dispose all old assets.
                 let processedAssets = {} /*: {|[string]: boolean|} */ ;
@@ -290,13 +291,13 @@ if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== "undefined") {
                 }
             } else fullReload();
         }
-        if (data.type === "error") {
+        if (data.type === 'error') {
             // Log parcel errors to console
             for (let ansiDiagnostic of data.diagnostics.ansi){
                 let stack = ansiDiagnostic.codeframe ? ansiDiagnostic.codeframe : ansiDiagnostic.stack;
-                console.error("\uD83D\uDEA8 [parcel]: " + ansiDiagnostic.message + "\n" + stack + "\n\n" + ansiDiagnostic.hints.join("\n"));
+                console.error("\uD83D\uDEA8 [parcel]: " + ansiDiagnostic.message + '\n' + stack + '\n\n' + ansiDiagnostic.hints.join('\n'));
             }
-            if (typeof document !== "undefined") {
+            if (typeof document !== 'undefined') {
                 // Render the fancy html overlay
                 removeErrorOverlay();
                 var overlay = createErrorOverlay(data.diagnostics.html);
@@ -322,7 +323,7 @@ function removeErrorOverlay() {
     }
 }
 function createErrorOverlay(diagnostics) {
-    var overlay = document.createElement("div");
+    var overlay = document.createElement('div');
     overlay.id = OVERLAY_ID;
     let errorHTML = '<div style="background: black; opacity: 0.85; font-size: 16px; color: white; position: fixed; height: 100%; width: 100%; top: 0px; left: 0px; padding: 30px; font-family: Menlo, Consolas, monospace; z-index: 9999;">';
     for (let diagnostic of diagnostics){
@@ -330,7 +331,7 @@ function createErrorOverlay(diagnostics) {
             return `${p}
 <a href="/__parcel_launch_editor?file=${encodeURIComponent(frame.location)}" style="text-decoration: underline; color: #888" onclick="fetch(this.href); return false">${frame.location}</a>
 ${frame.code}`;
-        }, "") : diagnostic.stack;
+        }, '') : diagnostic.stack;
         errorHTML += `
       <div>
         <div style="font-size: 18px; font-weight: bold; margin-top: 20px;">
@@ -338,18 +339,18 @@ ${frame.code}`;
         </div>
         <pre>${stack}</pre>
         <div>
-          ${diagnostic.hints.map((hint)=>"<div>\uD83D\uDCA1 " + hint + "</div>").join("")}
+          ${diagnostic.hints.map((hint)=>"<div>\uD83D\uDCA1 " + hint + '</div>').join('')}
         </div>
-        ${diagnostic.documentation ? `<div>\u{1F4DD} <a style="color: violet" href="${diagnostic.documentation}" target="_blank">Learn more</a></div>` : ""}
+        ${diagnostic.documentation ? `<div>\u{1F4DD} <a style="color: violet" href="${diagnostic.documentation}" target="_blank">Learn more</a></div>` : ''}
       </div>
     `;
     }
-    errorHTML += "</div>";
+    errorHTML += '</div>';
     overlay.innerHTML = errorHTML;
     return overlay;
 }
 function fullReload() {
-    if ("reload" in location) location.reload();
+    if ('reload' in location) location.reload();
     else if (extCtx && extCtx.runtime && extCtx.runtime.reload) extCtx.runtime.reload();
 }
 function getParents(bundle, id) /*: Array<[ParcelRequire, string]> */ {
@@ -368,15 +369,15 @@ function getParents(bundle, id) /*: Array<[ParcelRequire, string]> */ {
     return parents;
 }
 function updateLink(link) {
-    var href = link.getAttribute("href");
+    var href = link.getAttribute('href');
     if (!href) return;
     var newLink = link.cloneNode();
     newLink.onload = function() {
         if (link.parentNode !== null) // $FlowFixMe
         link.parentNode.removeChild(link);
     };
-    newLink.setAttribute("href", // $FlowFixMe
-    href.split("?")[0] + "?" + Date.now());
+    newLink.setAttribute('href', // $FlowFixMe
+    href.split('?')[0] + '?' + Date.now());
     // $FlowFixMe
     link.parentNode.insertBefore(newLink, link.nextSibling);
 }
@@ -387,9 +388,9 @@ function reloadCSS() {
         var links = document.querySelectorAll('link[rel="stylesheet"]');
         for(var i = 0; i < links.length; i++){
             // $FlowFixMe[incompatible-type]
-            var href /*: string */  = links[i].getAttribute("href");
+            var href /*: string */  = links[i].getAttribute('href');
             var hostname = getHostname();
-            var servedFromHMRServer = hostname === "localhost" ? new RegExp("^(https?:\\/\\/(0.0.0.0|127.0.0.1)|localhost):" + getPort()).test(href) : href.indexOf(hostname + ":" + getPort());
+            var servedFromHMRServer = hostname === 'localhost' ? new RegExp('^(https?:\\/\\/(0.0.0.0|127.0.0.1)|localhost):' + getPort()).test(href) : href.indexOf(hostname + ':' + getPort());
             var absolute = /^https?:\/\//i.test(href) && href.indexOf(location.origin) !== 0 && !servedFromHMRServer;
             if (!absolute) updateLink(links[i]);
         }
@@ -397,23 +398,23 @@ function reloadCSS() {
     }, 50);
 }
 function hmrDownload(asset) {
-    if (asset.type === "js") {
-        if (typeof document !== "undefined") {
-            let script = document.createElement("script");
-            script.src = asset.url + "?t=" + Date.now();
-            if (asset.outputFormat === "esmodule") script.type = "module";
+    if (asset.type === 'js') {
+        if (typeof document !== 'undefined') {
+            let script = document.createElement('script');
+            script.src = asset.url + '?t=' + Date.now();
+            if (asset.outputFormat === 'esmodule') script.type = 'module';
             return new Promise((resolve, reject)=>{
                 var _document$head;
                 script.onload = ()=>resolve(script);
                 script.onerror = reject;
                 (_document$head = document.head) === null || _document$head === void 0 || _document$head.appendChild(script);
             });
-        } else if (typeof importScripts === "function") {
+        } else if (typeof importScripts === 'function') {
             // Worker scripts
-            if (asset.outputFormat === "esmodule") return import(asset.url + "?t=" + Date.now());
+            if (asset.outputFormat === 'esmodule') return import(asset.url + '?t=' + Date.now());
             else return new Promise((resolve, reject)=>{
                 try {
-                    importScripts(asset.url + "?t=" + Date.now());
+                    importScripts(asset.url + '?t=' + Date.now());
                     resolve();
                 } catch (err) {
                     reject(err);
@@ -437,7 +438,7 @@ async function hmrApplyUpdates(assets) {
                 var _hmrDownload;
                 return (_hmrDownload = hmrDownload(asset)) === null || _hmrDownload === void 0 ? void 0 : _hmrDownload.catch((err)=>{
                     // Web extension fix
-                    if (extCtx && extCtx.runtime && extCtx.runtime.getManifest().manifest_version == 3 && typeof ServiceWorkerGlobalScope != "undefined" && global instanceof ServiceWorkerGlobalScope) {
+                    if (extCtx && extCtx.runtime && extCtx.runtime.getManifest().manifest_version == 3 && typeof ServiceWorkerGlobalScope != 'undefined' && global instanceof ServiceWorkerGlobalScope) {
                         extCtx.runtime.reload();
                         return;
                     }
@@ -462,8 +463,8 @@ async function hmrApplyUpdates(assets) {
 function hmrApply(bundle /*: ParcelRequire */ , asset /*:  HMRAsset */ ) {
     var modules = bundle.modules;
     if (!modules) return;
-    if (asset.type === "css") reloadCSS();
-    else if (asset.type === "js") {
+    if (asset.type === 'css') reloadCSS();
+    else if (asset.type === 'js') {
         let deps = asset.depsByBundle[bundle.HMR_BUNDLE_ID];
         if (deps) {
             if (modules[asset.id]) {
@@ -583,17 +584,17 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
     });
 }
 
-},{}],"gLLPy":[function(require,module,exports) {
+},{}],"gLLPy":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 var _appJs = require("./App.js");
 var _appJsDefault = parcelHelpers.interopDefault(_appJs);
 var _indexJs = require("./routes/index.js");
 var _indexJsDefault = parcelHelpers.interopDefault(_indexJs);
-const root = document.querySelector("#root");
+const root = document.querySelector('#root');
 root.append(new (0, _appJsDefault.default)().el);
 (0, _indexJsDefault.default)();
 
-},{"./App.js":"2kQhy","./routes/index.js":"3L9mC","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"2kQhy":[function(require,module,exports) {
+},{"./App.js":"2kQhy","./routes/index.js":"3L9mC","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"2kQhy":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _coreJs = require("./core/core.js");
@@ -605,13 +606,13 @@ class App extends (0, _coreJs.Component) {
     }
     render() {
         const header = new (0, _headerJsDefault.default)().el;
-        const routerView = document.createElement("router-view");
+        const routerView = document.createElement('router-view');
         this.el.append(header, routerView);
     }
 }
 exports.default = App;
 
-},{"./core/core.js":"3SuZC","./components/Header.js":"hsJbF","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"3SuZC":[function(require,module,exports) {
+},{"./core/core.js":"3SuZC","./components/Header.js":"hsJbF","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"3SuZC":[function(require,module,exports,__globalThis) {
 ///// Component /////
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
@@ -621,7 +622,7 @@ parcelHelpers.export(exports, "createRouter", ()=>createRouter);
 parcelHelpers.export(exports, "Store", ()=>Store);
 class Component {
     constructor(payload = {}){
-        const { tagName = "div", props = {}, state = {} } = payload;
+        const { tagName = 'div', props = {}, state = {} } = payload;
         this.el = document.createElement(tagName) // 컴포넌트의 최상위 요소
         ;
         this.props = props // 컴포넌트가 사용될 때 부모 컴포넌트에서 받는 데이터
@@ -638,22 +639,22 @@ class Component {
 // 페이지 렌더링!
 function routeRender(routes) {
     // 접속할 때 해시 모드가 아니면(해시가 없으면) /#/로 리다이렉트!
-    if (!location.hash) history.replaceState(null, "", "/#/") // (상태, 제목, 주소)
+    if (!location.hash) history.replaceState(null, '', '/#/') // (상태, 제목, 주소)
     ;
-    const routerView = document.querySelector("router-view");
-    const [hash, queryString = ""] = location.hash.split("?") // 물음표를 기준으로 해시 정보와 쿼리스트링을 구분
+    const routerView = document.querySelector('router-view');
+    const [hash, queryString = ''] = location.hash.split('?') // 물음표를 기준으로 해시 정보와 쿼리스트링을 구분
     ;
     // 1) 쿼리스트링을 객체로 변환해 히스토리의 상태에 저장!
-    const query = queryString.split("&").reduce((acc, cur)=>{
-        const [key, value] = cur.split("=");
+    const query = queryString.split('&').reduce((acc, cur)=>{
+        const [key, value] = cur.split('=');
         acc[key] = value;
         return acc;
     }, {});
-    history.replaceState(query, "") // (상태, 제목)
+    history.replaceState(query, '') // (상태, 제목)
     ;
     // 2) 현재 라우트 정보를 찾아서 렌더링!
     const currentRoute = routes.find((route)=>new RegExp(`${route.path}/?$`).test(hash));
-    routerView.innerHTML = "";
+    routerView.innerHTML = '';
     routerView.append(new currentRoute.component().el);
     // 3) 화면 출력 후 스크롤 위치 복구!
     window.scrollTo(0, 0);
@@ -661,7 +662,7 @@ function routeRender(routes) {
 function createRouter(routes) {
     // 원하는(필요한) 곳에서 호출할 수 있도록 함수 데이터를 반환!
     return function() {
-        window.addEventListener("popstate", ()=>{
+        window.addEventListener('popstate', ()=>{
             routeRender(routes);
         });
         routeRender(routes);
@@ -700,20 +701,20 @@ class Store {
     }
 }
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gkKU3":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gkKU3":[function(require,module,exports,__globalThis) {
 exports.interopDefault = function(a) {
     return a && a.__esModule ? a : {
         default: a
     };
 };
 exports.defineInteropFlag = function(a) {
-    Object.defineProperty(a, "__esModule", {
+    Object.defineProperty(a, '__esModule', {
         value: true
     });
 };
 exports.exportAll = function(source, dest) {
     Object.keys(source).forEach(function(key) {
-        if (key === "default" || key === "__esModule" || Object.prototype.hasOwnProperty.call(dest, key)) return;
+        if (key === 'default' || key === '__esModule' || Object.prototype.hasOwnProperty.call(dest, key)) return;
         Object.defineProperty(dest, key, {
             enumerable: true,
             get: function() {
@@ -730,27 +731,27 @@ exports.export = function(dest, destName, get) {
     });
 };
 
-},{}],"hsJbF":[function(require,module,exports) {
+},{}],"hsJbF":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _core = require("../core/core");
 class Header extends (0, _core.Component) {
     constructor(){
         super({
-            tagName: "header",
+            tagName: 'header',
             state: {
                 menus: [
                     {
-                        name: "Search",
-                        href: "#/"
+                        name: 'Search',
+                        href: '#/'
                     },
                     {
-                        name: "Movie",
+                        name: 'Movie',
                         href: `#/movie?id=tt4520988`
                     },
                     {
-                        name: "About",
-                        href: "#/about"
+                        name: 'About',
+                        href: '#/about'
                     }
                 ]
             }
@@ -763,7 +764,7 @@ class Header extends (0, _core.Component) {
         <ul>
           ${this.state.menus.map((menu)=>{
             return `<li><a href='${menu.href}'>${menu.name}</a></li>`;
-        }).join("")}
+        }).join('')}
         </ul>
       </nav>
       <a href='#/about' class='user'>
@@ -774,7 +775,7 @@ class Header extends (0, _core.Component) {
 }
 exports.default = Header;
 
-},{"../core/core":"3SuZC","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"3L9mC":[function(require,module,exports) {
+},{"../core/core":"3SuZC","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"3L9mC":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _coreJs = require("../core/core.js");
@@ -784,16 +785,16 @@ var _movieJs = require("./Movie.js");
 var _movieJsDefault = parcelHelpers.interopDefault(_movieJs);
 exports.default = (0, _coreJs.createRouter)([
     {
-        path: "#/",
+        path: '#/',
         component: (0, _homeJsDefault.default)
     },
     {
-        path: "#/movie",
+        path: '#/movie',
         component: (0, _movieJsDefault.default)
     }
 ]);
 
-},{"../core/core.js":"3SuZC","./Home.js":"0JSNG","./Movie.js":"1LTyN","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"0JSNG":[function(require,module,exports) {
+},{"../core/core.js":"3SuZC","./Home.js":"0JSNG","./Movie.js":"1LTyN","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"0JSNG":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _coreJs = require("../core/core.js");
@@ -811,19 +812,19 @@ class Home extends (0, _coreJs.Component) {
         const search = new (0, _searchJsDefault.default)().el;
         const movieList = new (0, _movieListJsDefault.default)().el;
         const movieListMore = new (0, _movieListMoreJsDefault.default)().el;
-        this.el.classList.add("container");
+        this.el.classList.add('container');
         this.el.append(headline, search, movieList, movieListMore);
     }
 }
 exports.default = Home;
 
-},{"../core/core.js":"3SuZC","../components/Headline.js":"gaVgo","../components/Search.js":"jqPPz","../components/MovieList.js":"8UDl3","../components/MovieListMore.js":"3ZUar","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gaVgo":[function(require,module,exports) {
+},{"../core/core.js":"3SuZC","../components/Headline.js":"gaVgo","../components/Search.js":"jqPPz","../components/MovieList.js":"8UDl3","../components/MovieListMore.js":"3ZUar","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gaVgo":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _coreJs = require("../core/core.js");
 class Headline extends (0, _coreJs.Component) {
     render() {
-        this.el.classList.add("headline");
+        this.el.classList.add('headline');
         this.el.innerHTML = /* html */ `
       <h1>
         <span>OMDb API</span><br>
@@ -840,7 +841,7 @@ class Headline extends (0, _coreJs.Component) {
 }
 exports.default = Headline;
 
-},{"../core/core.js":"3SuZC","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"jqPPz":[function(require,module,exports) {
+},{"../core/core.js":"3SuZC","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"jqPPz":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _core = require("../core/core");
@@ -848,39 +849,39 @@ var _movieJs = require("../store/movie.js");
 var _movieJsDefault = parcelHelpers.interopDefault(_movieJs);
 class Search extends (0, _core.Component) {
     render() {
-        this.el.classList.add("search");
+        this.el.classList.add('search');
         this.el.innerHTML = /* html */ `
       <input type='text' placeholder='Enter the movie title to search!'  value='${(0, _movieJsDefault.default).state.searchText}'/>
       <button class='btn btn-primary'>Search!</button>
     `;
-        const inputEl = this.el.querySelector("input");
-        const btnEl = this.el.querySelector("button");
-        inputEl.addEventListener("input", function() {
+        const inputEl = this.el.querySelector('input');
+        const btnEl = this.el.querySelector('button');
+        inputEl.addEventListener('input', function() {
             (0, _movieJsDefault.default).state.searchText = inputEl.value;
         });
-        inputEl.addEventListener("keydown", function(event) {
-            if (event.key === "Enter" && (0, _movieJsDefault.default).state.searchText.trim()) (0, _movieJs.searchMovies)(1);
+        inputEl.addEventListener('keydown', function(event) {
+            if (event.key === 'Enter' && (0, _movieJsDefault.default).state.searchText.trim()) (0, _movieJs.searchMovies)(1);
         });
-        btnEl.addEventListener("click", function() {
+        btnEl.addEventListener('click', function() {
             if ((0, _movieJsDefault.default).state.searchText.trim()) (0, _movieJs.searchMovies)(1);
         });
     }
 }
 exports.default = Search;
 
-},{"../core/core":"3SuZC","../store/movie.js":"kq1bo","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"kq1bo":[function(require,module,exports) {
+},{"../core/core":"3SuZC","../store/movie.js":"kq1bo","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"kq1bo":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "searchMovies", ()=>searchMovies);
 parcelHelpers.export(exports, "getMovieDetails", ()=>getMovieDetails);
 var _coreJs = require("../core/core.js");
 const store = new (0, _coreJs.Store)({
-    searchText: "",
+    searchText: '',
     page: 1,
     movies: [],
     pageMax: 1,
     loading: false,
-    message: "Search for the movie title!",
+    message: 'Search for the movie title!',
     movie: {}
 });
 exports.default = store;
@@ -889,12 +890,12 @@ const searchMovies = async function(page) {
     store.state.page = page;
     if (page === 1) {
         store.state.movies = [];
-        store.state.message = "";
+        store.state.message = '';
     }
     try {
         const res = await fetch(`https://omdbapi.com?apikey=7035c60c&s=${store.state.searchText}&page=${page}`);
         const { Search, totalResults, Response, Error } = await res.json();
-        if (Response === "True") {
+        if (Response === 'True') {
             store.state.movies = [
                 ...store.state.movies,
                 ...Search
@@ -915,11 +916,11 @@ const getMovieDetails = async function(id) {
         const res = await fetch(`https://omdbapi.com?apikey=7035c60c&i=${id}&plot=full`);
         store.state.movie = await res.json();
     } catch (error) {
-        console.log("getMovieDetails error", error);
+        console.log('getMovieDetails error', error);
     }
 };
 
-},{"../core/core.js":"3SuZC","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"8UDl3":[function(require,module,exports) {
+},{"../core/core.js":"3SuZC","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"8UDl3":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _core = require("../core/core");
@@ -930,33 +931,33 @@ var _movieitemDefault = parcelHelpers.interopDefault(_movieitem);
 class MovieList extends (0, _core.Component) {
     constructor(){
         super();
-        (0, _movieDefault.default).subscribe("movies", ()=>{
+        (0, _movieDefault.default).subscribe('movies', ()=>{
             this.render();
         });
-        (0, _movieDefault.default).subscribe("loading", ()=>{
+        (0, _movieDefault.default).subscribe('loading', ()=>{
             this.render();
         });
-        (0, _movieDefault.default).subscribe("message", ()=>{
+        (0, _movieDefault.default).subscribe('message', ()=>{
             this.render();
         });
     }
     render() {
-        this.el.classList.add("movie-list");
+        this.el.classList.add('movie-list');
         this.el.innerHTML = /* html */ `
       ${(0, _movieDefault.default).state.message ? `<div class="message">${(0, _movieDefault.default).state.message}</div>` : '<div class="movies"></div>'} 
       <div class="the-loader hide"></div>
     `;
-        const moviesEl = this.el.querySelector(".movies");
+        const moviesEl = this.el.querySelector('.movies');
         moviesEl?.append(...(0, _movieDefault.default).state.movies.map((movie)=>new (0, _movieitemDefault.default)({
                 movie: movie
             }).el));
-        const loaderEl = this.el.querySelector(".the-loader");
-        (0, _movieDefault.default).state.loading ? loaderEl.classList.remove("hide") : loaderEl.classList.add("hide");
+        const loaderEl = this.el.querySelector('.the-loader');
+        (0, _movieDefault.default).state.loading ? loaderEl.classList.remove('hide') : loaderEl.classList.add('hide');
     }
 }
 exports.default = MovieList;
 
-},{"../core/core":"3SuZC","../store/movie":"kq1bo","./Movieitem":"534Hw","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"534Hw":[function(require,module,exports) {
+},{"../core/core":"3SuZC","../store/movie":"kq1bo","./Movieitem":"534Hw","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"534Hw":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _core = require("../core/core");
@@ -964,13 +965,13 @@ class MovieItem extends (0, _core.Component) {
     constructor(props){
         super({
             props,
-            tagName: "a"
+            tagName: 'a'
         });
     }
     render() {
         const { movie } = this.props;
-        this.el.setAttribute("href", `#/movie?id=${movie.imdbID}`);
-        this.el.classList.add("movie");
+        this.el.setAttribute('href', `#/movie?id=${movie.imdbID}`);
+        this.el.classList.add('movie');
         this.el.style.backgroundImage = `url(${movie.Poster})`;
         this.el.innerHTML = /* html */ `
     <div class='info'>
@@ -982,7 +983,7 @@ class MovieItem extends (0, _core.Component) {
 }
 exports.default = MovieItem;
 
-},{"../core/core":"3SuZC","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"3ZUar":[function(require,module,exports) {
+},{"../core/core":"3SuZC","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"3ZUar":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _core = require("../core/core");
@@ -991,25 +992,25 @@ var _movieDefault = parcelHelpers.interopDefault(_movie);
 class MovieListMore extends (0, _core.Component) {
     constructor(){
         super({
-            tagName: "button"
+            tagName: 'button'
         });
-        (0, _movieDefault.default).subscribe("pageMax", ()=>{
+        (0, _movieDefault.default).subscribe('pageMax', ()=>{
             const { page, pageMax } = (0, _movieDefault.default).state;
-            pageMax > page ? this.el.classList.remove("hide") : this.el.classList.add("hide");
+            pageMax > page ? this.el.classList.remove('hide') : this.el.classList.add('hide');
         });
     }
     render() {
-        this.el.classList.add("btn", "view-more", "hide");
-        this.el.textContent = "View more...";
-        this.el.addEventListener("click", async function() {
-            this.classList.add("hide");
+        this.el.classList.add('btn', 'view-more', 'hide');
+        this.el.textContent = 'View more...';
+        this.el.addEventListener('click', async function() {
+            this.classList.add('hide');
             await (0, _movie.searchMovies)((0, _movieDefault.default).state.page + 1);
         });
     }
 }
 exports.default = MovieListMore;
 
-},{"../core/core":"3SuZC","../store/movie":"kq1bo","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"1LTyN":[function(require,module,exports) {
+},{"../core/core":"3SuZC","../store/movie":"kq1bo","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"1LTyN":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _core = require("../core/core");
@@ -1017,7 +1018,7 @@ var _movie = require("../store/movie");
 var _movieDefault = parcelHelpers.interopDefault(_movie);
 class Movie extends (0, _core.Component) {
     async render() {
-        this.el.classList.add("container", "the-movie");
+        this.el.classList.add('container', 'the-movie');
         this.el.innerHTML = /* html */ `
     <div class='poster skeleton'></div>
     <div class='specs'>
@@ -1028,7 +1029,7 @@ class Movie extends (0, _core.Component) {
     `;
         await (0, _movie.getMovieDetails)(history.state.id);
         const { movie } = (0, _movieDefault.default).state;
-        const bigPoster = movie.Poster.replace("SX300", "SX700");
+        const bigPoster = movie.Poster.replace('SX300', 'SX700');
         this.el.innerHTML = /*html*/ `
       <div style='background-image: url(${bigPoster})' class='poster'></div>
       <div class='specs'>
@@ -1043,7 +1044,7 @@ class Movie extends (0, _core.Component) {
           <h3>Ratings</h3>
           ${movie.Ratings.map((rating)=>{
             return `<p>${rating.Source} - ${rating.Value}</p>`;
-        }).join("")}
+        }).join('')}
         </div>
         <div>
           <h3>Actors</h3>
@@ -1067,6 +1068,6 @@ class Movie extends (0, _core.Component) {
 }
 exports.default = Movie;
 
-},{"../core/core":"3SuZC","../store/movie":"kq1bo","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["anvqh","gLLPy"], "gLLPy", "parcelRequire8a0d")
+},{"../core/core":"3SuZC","../store/movie":"kq1bo","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["h4jLA","gLLPy"], "gLLPy", "parcelRequire94c2")
 
 //# sourceMappingURL=index.4d6bcbeb.js.map

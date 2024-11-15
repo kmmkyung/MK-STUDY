@@ -94,6 +94,7 @@ header ul li a.active{
 header .user{
   width: 40px;
   height: 40px;
+  line-height: 40px;
   background-color: var(--color-area);
   cursor: pointer;
   position: absolute;
@@ -110,8 +111,7 @@ header .user:hover{
 
 header .user img{
   width: 100%;
-  height: 100%;
-  border: 1px solid red;
+  vertical-align: middle;
 }
 
 /* loading */
