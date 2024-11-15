@@ -597,18 +597,21 @@ root.append(new (0, _appJsDefault.default)().el);
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _coreJs = require("./core/core.js");
+var _headerJs = require("./components/Header.js");
+var _headerJsDefault = parcelHelpers.interopDefault(_headerJs);
 class App extends (0, _coreJs.Component) {
     constructor(){
         super();
     }
     render() {
+        const header = new (0, _headerJsDefault.default)().el;
         const routerView = document.createElement("router-view");
-        this.el.append(routerView);
+        this.el.append(header, routerView);
     }
 }
 exports.default = App;
 
-},{"./core/core.js":"3SuZC","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"3SuZC":[function(require,module,exports) {
+},{"./core/core.js":"3SuZC","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./components/Header.js":"hsJbF"}],"3SuZC":[function(require,module,exports) {
 ///// Component /////
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
@@ -727,7 +730,48 @@ exports.export = function(dest, destName, get) {
     });
 };
 
-},{}],"3L9mC":[function(require,module,exports) {
+},{}],"hsJbF":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _core = require("../core/core");
+class Header extends (0, _core.Component) {
+    constructor(){
+        super({
+            tagName: "header",
+            state: {
+                menus: [
+                    {
+                        name: "Search",
+                        href: "#/"
+                    },
+                    // { name: 'Movie', href:`#/movie?id=tt4520988`},
+                    {
+                        name: "About",
+                        href: "#/about"
+                    }
+                ]
+            }
+        });
+    }
+    render() {
+        this.el.innerHTML = /* html */ `
+      <a href='#/' class='logo'><span>OMDbAPI</span>.COM</a>
+      <nav>
+        <ul>
+          ${this.state.menus.map((menu)=>{
+            return `<li><a href='${menu.href}'>${menu.name}</a></li>`;
+        }).join("")}
+        </ul>
+      </nav>
+      <a href='#/about' class='user'>
+        <img src="../images/MK.png" alt="logo">
+      </a>
+    `;
+    }
+}
+exports.default = Header;
+
+},{"../core/core":"3SuZC","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"3L9mC":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _coreJs = require("../core/core.js");
