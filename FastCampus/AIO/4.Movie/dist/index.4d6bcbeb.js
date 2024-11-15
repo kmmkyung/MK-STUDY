@@ -764,7 +764,7 @@ class Header extends (0, _core.Component) {
         </ul>
       </nav>
       <a href='#/about' class='user'>
-        <img src="../images/MK.png" alt="logo">
+        <img src="../images/logo.png" />
       </a>
     `;
     }

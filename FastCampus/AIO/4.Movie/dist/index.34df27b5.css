@@ -91,6 +91,7 @@ header ul li a.active {
 }
 
 header .user {
+  background-color: var(--color-area);
   cursor: pointer;
   width: 40px;
   height: 40px;
@@ -107,8 +108,9 @@ header .user:hover {
 }
 
 header .user img {
+  border: 1px solid red;
   width: 100%;
-  height: auto;
+  height: 100%;
 }
 
 .the-loader {
