@@ -1,4 +1,5 @@
 import { Component } from "../core/core";
+import svgLogo from  '../data/svg'
 
 export default class Header extends Component {
   constructor(){
@@ -12,6 +13,9 @@ export default class Header extends Component {
         ]
       }
     })
+    window.addEventListener('popstate',()=>{
+      this.render()
+    })
   }
   render() {
     this.el.innerHTML = /* html */ `
@@ -19,13 +23,16 @@ export default class Header extends Component {
       <nav>
         <ul>
           ${this.state.menus.map(menu=>{
-            return `<li><a href='${menu.href}'>${menu.name}</a></li>`
+            const href = menu.href.split('?')[0]
+            const hash = location.hash.split('?')[0]
+            const isActive = href === hash
+            return `<li><a class='${isActive? 'active':''}' href='${menu.href}'>${menu.name}</a></li>`
           }).join('')}
         </ul>
       </nav>
-      <a href='#/about' class='user'>
-        <img src="/static/logo.png" alt="Image">
-      </a>
+      <a href='#/about' class='user logo-svg'></a>
     `
+    const logoSvg = this.el.querySelector('.logo-svg')
+    logoSvg.innerHTML = svgLogo.logo_w;
   }
 }
