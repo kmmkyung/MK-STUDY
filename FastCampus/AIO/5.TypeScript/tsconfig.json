@@ -11,6 +11,7 @@
     "src/**/*.ts"
   ],
   "exclude": [ // 컴파일할때 제외할 목록
-    "node_modules"
+    "node_modules",
+    "ts"
   ] 
 }

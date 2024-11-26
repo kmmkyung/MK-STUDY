@@ -22,7 +22,7 @@ let isDone:boolean = false
 /// Null / Undefined
 let nul:null
 let und:undefined
-nul = null
+nul = null // nul변수는 타입이 null이기 때문에 null 값만 받을 수 있다.
 console.log(nul) // nul 변수에 할당해야 오류가 안남(아무것도 아닌값을 지정해줘야 함) <- 명시적
 console.log(und) // 할당하지 않으면 자동으로 undefined값이 할당됨 <- 암시적
 
@@ -89,7 +89,6 @@ function helloFn2(msg:string):void{
 
 const hi:void = helloFn2('world') // 반환되는 타입은 void이기 때문에 hi도 void
 
-
 /// Never
 // 절대 발생하지 않을 값
 const ex:string[] = [] // 문자타입을 가지는 배열데이터
@@ -119,3 +118,7 @@ const UserB:User&Validation = {
   age:30,
   isValid:true
 }
+
+// html 타입
+Element // html의 요소(div, span, h1...) 더 상세하게 나눌 수 있다 예로들어 아래
+HTMLHeadElement // h1~h6까지의 h태그를 상세한 타입
