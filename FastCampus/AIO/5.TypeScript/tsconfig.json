@@ -5,7 +5,8 @@
     "moduleResolution": "Node",
     "esModuleInterop": true,
     "lib": ["ESNext","DOM"],
-    "strict": true
+    "strict": true,
+    "typeRoots":["./node_modules/@types"] // 기본값으로 설정되어 있다.
   },
   "include": [
     "src/**/*.ts"
