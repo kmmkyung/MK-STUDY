@@ -7,7 +7,7 @@ function logText(el:Element){
   console.log(el.textContent)
 }
 
-// h1El을 찾으면 값이 null 은 아닐꺼라 단언했지만
+// h1El을 찾으면 값이 null은 아닐꺼라 단언했지만
 const h1El = document.querySelector('h1') as HTMLHeadElement
 logText(h1El) // 실제 찾은 내용이 존재하지 않아 null 값이기 때문에 에러
 

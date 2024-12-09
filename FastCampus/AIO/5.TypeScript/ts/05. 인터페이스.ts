@@ -61,7 +61,7 @@ console.log(fruits) // 0:'Apple'. 1:'Banana', 2: 'Cherry' <- 이렇게 나온다
 // 객체
 // 1
 interface User3 {
-  [key: string] : unknown // 인덱스할수 있는 속성은 값을 아직 알 수 없다
+  [key: string] : unknown // 인덱스할 수 있는 속성은 값을 아직 알 수 없다
   name: string
   age: Number
 }

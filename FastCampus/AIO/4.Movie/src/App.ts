@@ -1,4 +1,4 @@
-import { Component } from "./core/core.js";
+import { Component } from "./core/core";
 import Header from "./components/Header.js";
 import Footer from './components/Footer.js'
 
