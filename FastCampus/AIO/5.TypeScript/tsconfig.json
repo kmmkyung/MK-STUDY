@@ -1,17 +1,30 @@
 {
-  "compilerOptions": {
-    "target": "ES2015",
-    "module": "ESNext",
-    "moduleResolution": "Node",
-    "esModuleInterop": true,
-    "lib": ["ESNext","DOM"],
-    "strict": true,
-    "typeRoots":["./node_modules/@types"] // 기본값으로 설정되어 있다.
+  "compilerOptions": { // typeScript -> javaScript 로 변환하기 위한 세부 옵션
+    // 필수
+    "target": "ES2015", // 컴파일될 ES(JS) 버전 명시 - ES2015" 권장 (JS ES6)
+    "module": "ESNext", // 모듈 시스템 지정 - "CommonJS", "AMD", "ESNext" | 기본값 CommonJS
+    "moduleResolution": "Node", // 모듈 해석 방식 지정 - "Node", "Classic" | 기본값 Node
+    "esModuleInterop": true, // ESM 모듈 방식 호환성 활성화 여부 | 기본값 false (CommonJs 방식을 ESM방식으로 호환하겠냐)
+    "lib": ["ESNext","DOM"], // 컴파일에서 사용할 라이브러리 지정 - "ESNext", "DOM"
+    "strict": true, // 더 엄격한 타입 검사 활성화 | 기본값 false
+    
+    /// 기타
+    "typeRoots":["./node_modules/@types"], // 컴파일러가 참조할 타입 선언(d.ts)의 경로 지정(기본값으로 설정되어 있다.)
+    "isolatedModules": true, // 모든 파일을 모듈로 컴파일한다. import 혹은 export 키워드 필수(모듈 구조와 관련된 에러를 방지) | 기본값 false
+    "baseUrl": "./", // 모듈 해석에 사용할 기준 경로 지정
+
+    /// strict(엄격타입검사)의 값이 true가 되면 아래 설정들은 자동으로 true로 바뀐다
+    "noImplicitAny": false, // 암시적 any 타입 검사 활성화
+    "noImplicitThis": false, // 암시적 this 타입 검사 활성화
+    "strictNullChecks": false, // 엄격한 Nullish 타입 검사 활성화
+    "strictFunctionTypes": false, // 엄격한 함수의 매개변수 타입 검사 활성화
+    "strictPropertyInitialization": false, // 엄격한 클래스의 속성 초기화 검사 활성화
+    "strictBindCallApply": false // 엄격한 Bind, Call, Apply 메소드의 인수 검사 활성화
   },
-  "include": [
-    "src/**/*.ts"
+  "include": [ // ts->js 컴파일할 파일 경로 목록
+    "src/**/*.ts" // src / 모든 하위 경로의 / 모든 ts파일
   ],
-  "exclude": [ // 컴파일할때 제외할 목록
+  "exclude": [ // ts->js 컴파일에서 제외할 파일 경로 목록
     "node_modules",
     "ts"
   ] 
