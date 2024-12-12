@@ -1,5 +1,5 @@
 import { Component } from "../core/core";
-import aboutStore from '../store/about.js'
+import aboutStore from '../store/about';
 
 export default class Footer extends Component {
   constructor(){

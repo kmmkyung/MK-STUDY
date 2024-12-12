@@ -1,6 +1,6 @@
 import { Component } from "./core/core";
-import Header from "./components/Header.js";
-import Footer from './components/Footer.js'
+import Header from "./components/Header";
+import Footer from './components/Footer';
 
 export default class App extends Component{
   constructor(){

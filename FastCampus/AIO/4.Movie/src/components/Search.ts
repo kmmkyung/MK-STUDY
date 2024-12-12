@@ -1,5 +1,5 @@
 import { Component } from "../core/core";
-import movieStore, { searchMovies } from '../store/movie.js'
+import movieStore, { searchMovies } from '../store/movie'
 
 export default class Search extends Component {
   render(){
@@ -12,15 +12,15 @@ export default class Search extends Component {
     const inputEl = this.el.querySelector('input')
     const btnEl = this.el.querySelector('button')
     
-    inputEl.addEventListener('input',function(){
+    inputEl?.addEventListener('input',function(){
       movieStore.state.searchText = inputEl.value
     })
-    inputEl.addEventListener('keydown',function(event){
+    inputEl?.addEventListener('keydown',function(event){
       if(event.key === 'Enter' && movieStore.state.searchText.trim()){
         searchMovies(1)
       }
     })
-    btnEl.addEventListener('click',function(){
+    btnEl?.addEventListener('click',function(){
       if(movieStore.state.searchText.trim()){
         searchMovies(1)
       }

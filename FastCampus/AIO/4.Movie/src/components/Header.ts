@@ -1,7 +1,16 @@
 import { Component } from "../core/core";
-import svgLogo from  '../data/svg'
+import svgLogo from  '../data/svg';
+
+interface State {
+  [key:string]:unknown
+  menus:{
+    name:string
+    href:string
+  }[]
+}
 
 export default class Header extends Component {
+  public state!:State
   constructor(){
     super({
       tagName: 'header',
@@ -33,6 +42,8 @@ export default class Header extends Component {
       <a href='#/about' class='user logo-svg'></a>
     `
     const logoSvg = this.el.querySelector('.logo-svg')
-    logoSvg.innerHTML = svgLogo.logo_w;
+    if(logoSvg){
+      logoSvg.innerHTML = svgLogo.logo_w;
+    }
   }
 }

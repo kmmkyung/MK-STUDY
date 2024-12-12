@@ -5,12 +5,12 @@
     "moduleResolution": "Node",
     "esModuleInterop": true,
     "lib":["ESNext","DOM"],
-    "strict": true
+    "strict": true,
   },
   "include": [
     "src/**/*.ts",
     "api/**/*.ts"
-  ],
+, "src/data/svg.ts"  ],
   "exclude": [
     "node_modules",
     "dist"

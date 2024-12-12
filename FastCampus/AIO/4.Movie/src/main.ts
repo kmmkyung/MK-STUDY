@@ -1,4 +1,4 @@
-import App from './App.js'
+import App from './App'
 import router from './routes/index'
 
 const root = document.querySelector('#root')

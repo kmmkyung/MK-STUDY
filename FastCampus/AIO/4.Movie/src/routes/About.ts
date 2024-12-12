@@ -1,5 +1,5 @@
 import { Component } from "../core/core";
-import aboutStore from '../store/about.js'
+import aboutStore from '../store/about'
 import svgLogo from  '../data/svg'
 
 export default class About extends Component {
@@ -21,6 +21,8 @@ export default class About extends Component {
     `
 
     const logoSvg = this.el.querySelector('.logo-svg')
-    logoSvg.innerHTML = svgLogo.logo_w;
+    if(logoSvg){
+      logoSvg.innerHTML = svgLogo.logo_w;
+    }
   }
 }
