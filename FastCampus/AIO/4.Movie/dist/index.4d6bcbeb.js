@@ -615,7 +615,7 @@ class App extends (0, _coreJs.Component) {
 }
 exports.default = App;
 
-},{"./core/core.js":"3SuZC","./components/Header.js":"hsJbF","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"3SuZC":[function(require,module,exports,__globalThis) {
+},{"./core/core.js":"3SuZC","./components/Header.js":"hsJbF","./components/Footer.js":"8pPOA","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"3SuZC":[function(require,module,exports,__globalThis) {
 ///// Component /////
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
@@ -786,7 +786,7 @@ class Header extends (0, _core.Component) {
 }
 exports.default = Header;
 
-},{"../core/core":"3SuZC","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../data/svg":"h6gh9"}],"h6gh9":[function(require,module,exports,__globalThis) {
+},{"../core/core":"3SuZC","../data/svg":"h6gh9","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"h6gh9":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 const svgLogo = {
@@ -825,7 +825,44 @@ const svgLogo = {
 };
 exports.default = svgLogo;
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"3L9mC":[function(require,module,exports,__globalThis) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"8pPOA":[function(require,module,exports,__globalThis) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _core = require("../core/core");
+var _aboutJs = require("../store/about.js");
+var _aboutJsDefault = parcelHelpers.interopDefault(_aboutJs);
+class Footer extends (0, _core.Component) {
+    constructor(){
+        super({
+            tagName: 'footer'
+        });
+    }
+    render() {
+        const { github, repository } = (0, _aboutJsDefault.default).state;
+        this.el.innerHTML = /* html */ `
+      <div>
+        <a href='${repository}'>GitHub Repository</a>
+      </div>
+      <div>
+        <a href='${github}'>${new Date().getFullYear()}</a>
+      </div>
+    `;
+    }
+}
+exports.default = Footer;
+
+},{"../core/core":"3SuZC","../store/about.js":"4RAJO","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"4RAJO":[function(require,module,exports,__globalThis) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _core = require("../core/core");
+exports.default = new (0, _core.Store)({
+    name: 'MK / KimMinKyung',
+    email: '01aldrn10@gmail.com',
+    github: 'https://github.com/kmmkyung',
+    repository: 'https://github.com/kmmkyung/movie-app'
+});
+
+},{"../core/core":"3SuZC","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"3L9mC":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _coreJs = require("../core/core.js");
@@ -856,7 +893,7 @@ exports.default = (0, _coreJs.createRouter)([
     }
 ]);
 
-},{"../core/core.js":"3SuZC","./Home.js":"0JSNG","./Movie.js":"1LTyN","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./About.js":"gdB30"}],"0JSNG":[function(require,module,exports,__globalThis) {
+},{"../core/core.js":"3SuZC","./Home.js":"0JSNG","./Movie.js":"1LTyN","./About.js":"gdB30","./NotFound.js":"4fDiL","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"0JSNG":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _coreJs = require("../core/core.js");
@@ -955,7 +992,14 @@ const searchMovies = async function(page) {
         store.state.message = '';
     }
     try {
-        const res = await fetch(`https://omdbapi.com?apikey=7035c60c&s=${store.state.searchText}&page=${page}`);
+        // const res = await fetch(`https://omdbapi.com?apikey=7035c60c&s=${store.state.searchText}&page=${page}`)
+        const res = await fetch('/api/movie', {
+            method: 'POST',
+            body: JSON.stringify({
+                title: store.state.searchText,
+                page: page
+            })
+        });
         const { Search, totalResults, Response, Error } = await res.json();
         if (Response === 'True') {
             store.state.movies = [
@@ -975,7 +1019,13 @@ const searchMovies = async function(page) {
 };
 const getMovieDetails = async function(id) {
     try {
-        const res = await fetch(`https://omdbapi.com?apikey=7035c60c&i=${id}&plot=full`);
+        // const res = await fetch(`https://omdbapi.com?apikey=7035c60c&i=${id}&plot=full`)
+        const res = await fetch('/api/movie', {
+            body: JSON.stringify({
+                method: "POST",
+                id: id
+            })
+        });
         store.state.movie = await res.json();
     } catch (error) {
         console.log('getMovieDetails error', error);
@@ -1161,16 +1211,22 @@ class About extends (0, _core.Component) {
 }
 exports.default = About;
 
-},{"../core/core":"3SuZC","../store/about.js":"4RAJO","../data/svg":"h6gh9","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"4RAJO":[function(require,module,exports,__globalThis) {
+},{"../core/core":"3SuZC","../store/about.js":"4RAJO","../data/svg":"h6gh9","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"4fDiL":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _core = require("../core/core");
-exports.default = new (0, _core.Store)({
-    name: 'MK / KimMinKyung',
-    email: '01aldrn10@gmail.com',
-    github: 'https://github.com/kmmkyung',
-    repository: 'https://github.com/kmmkyung/movie-app'
-});
+class NotFound extends (0, _core.Component) {
+    render() {
+        this.el.classList.add('container', 'not-found');
+        this.el.innerHTML = /* html */ `
+      <h1>
+        Sorry...<br>
+        Page Not Found
+      </h1>
+    `;
+    }
+}
+exports.default = NotFound;
 
 },{"../core/core":"3SuZC","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["h4jLA","gLLPy"], "gLLPy", "parcelRequire94c2")
 
