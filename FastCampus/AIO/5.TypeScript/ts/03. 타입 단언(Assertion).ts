@@ -19,7 +19,7 @@ el2.textContent = 'Hello world'
 const el3 = document.querySelector('body')
 el3!.textContent = 'Hello world'
 
-// 만약 없는 요소를 찾는다면? -> 1. if조건을 사용해 해결가능 -> Guards
+// 만약 없는 요소를 찾는다면 -> 1. if조건을 사용해 해결가능 -> Guards
 const el4 = document.querySelector('.title')
 if(el4){
   el4.textContent = 'Hello world'
