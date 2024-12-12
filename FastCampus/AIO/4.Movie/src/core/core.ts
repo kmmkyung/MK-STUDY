@@ -86,7 +86,7 @@ interface StoreObservers {
   [key:string]:SubscribeCallback[]
 }
 interface SubscribeCallback {
-  (age:unknown): void
+  (arg:unknown): void
 }
 export class Store<S> {
   public state = {} as S

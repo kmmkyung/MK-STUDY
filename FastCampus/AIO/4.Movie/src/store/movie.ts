@@ -1,11 +1,11 @@
 import { Store } from "../core/core";
 
 export interface SimpleMovie{
-  Title:string
-  Year:string
-  imdbID:string
-  Type:string
-  Poster:string
+  Title: string
+  Year: string
+  imdbID: string
+  Type: string
+  Poster: string
 }
 
 interface DetailMovie {
@@ -23,7 +23,10 @@ interface DetailMovie {
   Country: string
   Awards: string
   Poster: string
-  Ratings: { Source:string, Value:string }[]
+  Ratings: {
+    Source: string
+    Value: string
+  }[]
   Metascore: string
   imdbRating: string
   imdbVotes: string
@@ -57,46 +60,51 @@ const store = new Store<State>({
 })
 export default store
 
-export const searchMovies = async function(page:number){
-  store.state.loading = true;
-  store.state.page = page;
-  if(page === 1){
-    store.state.movies = [];
-    store.state.message = '';
+export const searchMovies = async (page: number) => {
+  store.state.loading = true
+  store.state.page = page
+  if (page === 1) {
+    store.state.movies = []
+    store.state.message = ''
   }
-  try{
+  try {
     // const res = await fetch(`https://omdbapi.com?apikey=7035c60c&s=${store.state.searchText}&page=${page}`)
-    const res = await fetch('/api/movie',{method:'POST', body: JSON.stringify({title:store.state.searchText, page:page})})
-    const { Search, totalResults, Response, Error } = await res.json()
-    if( Response === 'True'){
-      store.state.movies = [ ...store.state.movies, ...Search]
+    const res = await fetch('/api/movie', {
+      method: 'POST',
+      body: JSON.stringify({
+        title: store.state.searchText,
+        page
+      })
+    })
+    const { Response, Search, totalResults, Error } = await res.json()
+    if (Response === 'True') {
+      store.state.movies = [
+        ...store.state.movies,
+        ...Search
+      ]
       store.state.pageMax = Math.ceil(Number(totalResults) / 10)
-    }
-    else{
+    } else {
       store.state.message = Error
-      store.state.pageMax = 1;
+      store.state.pageMax = 1 // 버그 수정을 위해 새롭게 추가된 코드!
     }
-  }
-  catch(error){
-    console.log(error);
-  }
-  finally{
-    store.state.loading = false;
+  } catch (error) {
+    console.log('searchMovies error:', error)
+  } finally {
+    store.state.loading = false
   }
 }
 
-export const getMovieDetails = async function(id:string){
-  try{
-    // const res = await fetch(`https://omdbapi.com?apikey=7035c60c&i=${id}&plot=full`)
-    const res = await fetch('/api/movie',{
+export const getMovieDetails = async (id: string) => {
+  try {
+    // const res = await fetch(`https://omdbapi.com?apikey=${APIKEY}&i=${id}&plot=full`)
+    const res = await fetch('/api/movie', {
+      method: 'POST',
       body: JSON.stringify({
-        method:"POST",
-        id: id
+        id
       })
     })
     store.state.movie = await res.json()
-  }
-  catch(error){
-    console.log('getMovieDetails error',error);
+  } catch (error) {
+    console.log('searchMovieDetails error:', error)
   }
 }
