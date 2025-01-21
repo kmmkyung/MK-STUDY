@@ -1,10 +1,7 @@
-import React from 'react';
-import { RouterProvider } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 import { createGlobalStyle } from 'styled-components';
-import Router from './router/Router';
 
 const GlobalStyle = createGlobalStyle`
-  @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400&display=swap');
   html, body, div, span, applet, object, iframe,
   h1, h2, h3, h4, h5, h6, p, blockquote, pre,
   a, abbr, acronym, address, big, cite, code,
@@ -22,7 +19,6 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
     border: 0;
     font-size: 100%;
-    font: inherit;
     vertical-align: baseline;
   }
   /* HTML5 display-role reset for older browsers */
@@ -56,22 +52,22 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
   }
   body {
-    font-family: 'Source Sans Pro', sans-serif;
+    font-family: "Source Code Pro", sans-serif;
     background-color:${(props) => props.theme.bgColor};
     color:${(props) => props.theme.textColor}
   }
   a {
     text-decoration:none;
+    color: inherit;
   }
   html { font-size: 62.5%;}
-
-  `;
+`;
 
 function App() {
   return (
     <>
       <GlobalStyle />
-      <RouterProvider router={Router} />
+      <Outlet />
     </>
   );
 }
