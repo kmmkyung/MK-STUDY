@@ -1,11 +1,10 @@
 import { useParams } from "react-router-dom";
 
 function Coin(){
-  const params = useParams();
-  console.log(params);
+  const { coinId } = useParams<{coinId:string}>();
 
   return (
-    <h1>coin
+    <h1>coin {coinId}
     </h1>
   )
 }
