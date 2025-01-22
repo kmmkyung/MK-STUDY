@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@tanstack/react-query": "^5.64.2",
+    "@tanstack/react-query-devtools": "^5.64.2",
     "@types/react": "^19.0.7",
     "@types/react-dom": "^19.0.3",
     "cra-template-typescript": "1.2.0",
