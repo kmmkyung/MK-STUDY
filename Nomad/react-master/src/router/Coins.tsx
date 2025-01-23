@@ -98,11 +98,11 @@ function Coins(){
       {isLoading ? <Loader>Loading...</Loader> : 
       (<CoinsList>
         {data?.map((coin)=>{ return (<CoinItem key={coin.id}>
-            <Link to={`/${coin.id}`} state={{name:coin.name, id:coin.id}}>
-              <img src={coin.image} alt="coinImg"/>
-            {coin.name}</Link>
-            <span>&rarr;</span>
-          </CoinItem>)
+          <Link to={`/${coin.id}`} state={{name:coin.name}}>
+            <img src={`https://cryptocurrencyliveprices.com/img/${coin.id}.png`} alt="coinImg"/>
+          {coin.name}</Link>
+          <span>&rarr;</span>
+        </CoinItem>)
         })}
       </CoinsList>)}
     </Container>

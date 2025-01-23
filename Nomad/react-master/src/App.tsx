@@ -58,10 +58,10 @@ const GlobalStyle = createGlobalStyle`
     color:${(props) => props.theme.textColor}
   }
   a {
-    text-decoration:none;
+    /* text-decoration:none; */
     color: inherit;
   }
-  html { font-size: 62.5%;}
+  /* html { font-size: 62.5%;} */
 `;
 
 function App() {
