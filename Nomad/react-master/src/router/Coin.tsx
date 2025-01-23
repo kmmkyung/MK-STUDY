@@ -178,7 +178,7 @@ function Coin(){
               <Link to={`/${coinId}/chart`}>Chart</Link>
             </TabItem>
           </TabList>
-          <Outlet/>
+          <Outlet context={coinId}/>
         </>
       )
       }
