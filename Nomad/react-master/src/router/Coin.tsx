@@ -4,59 +4,49 @@ import styled from "styled-components";
 import { fetchInfoData, fetchPriceData } from "../api";
 
 interface InfoDataInterface {
-  id : string;
-  name : string;
-  symbol : string;
-  rank : number;
-  is_new : boolean;
-  is_active : boolean;
-  type : string;
-  logo : string;
-  description : string;
-  message : string;
-  open_source : boolean;
-  started_at : string;
-  development_status : string;
-  hardware_wallet : boolean;
-  proof_type : string;
-  org_structure : string;
-  hash_algorithm : string;
-  first_data_at : string;
-  last_data_at : string;
+  id : string ; 
+  symbol : string ; 
+  name : string ; 
+  web_slug : string ; 
+  hashing_algorithm : string ; 
+  description : { "en":string } ;
 }
 
-interface PriceDataInterface {
-id : string ;
-name : string ;
-symbol : string ;
-rank : number ;
-total_supply : number ;
-max_supply : number ;
-beta_value : number ;
-first_data_at : string ;
-last_updated : string ;
-quotes : {
-  USD :{ 
-    ath_date : string;
-    ath_price : number;
-    market_cap : number;
-    market_cap_change_24h : number;
-    percent_change_1h : number;
-    percent_change_1y : number;
-    percent_change_6h : number;
-    percent_change_7d : number;
-    percent_change_12h : number;
-    percent_change_15m : number;
-    percent_change_24h : number;
-    percent_change_30d : number;
-    percent_change_30m : number;
-    percent_from_price_ath : number;
-    price : number;
-    volume_24h : number;
-    volume_24h_change_24h : number;
-    }
-  }
-}
+
+
+
+// interface PriceDataInterface {
+// id : string ;
+// name : string ;
+// symbol : string ;
+// rank : number ;
+// total_supply : number ;
+// max_supply : number ;
+// beta_value : number ;
+// first_data_at : string ;
+// last_updated : string ;
+// quotes : {
+//   USD :{ 
+//     ath_date : string;
+//     ath_price : number;
+//     market_cap : number;
+//     market_cap_change_24h : number;
+//     percent_change_1h : number;
+//     percent_change_1y : number;
+//     percent_change_6h : number;
+//     percent_change_7d : number;
+//     percent_change_12h : number;
+//     percent_change_15m : number;
+//     percent_change_24h : number;
+//     percent_change_30d : number;
+//     percent_change_30m : number;
+//     percent_from_price_ath : number;
+//     price : number;
+//     volume_24h : number;
+//     volume_24h_change_24h : number;
+//     }
+//   }
+// }
 
 const Container = styled.div`
   padding: 0 20px;
@@ -130,16 +120,21 @@ const TabItem = styled.span<{isActive:boolean}>`
 function Coin(){
   const { coinId } = useParams() as {coinId:string};
   const location = useLocation();
-  const state = location.state as {name:string};
-  const { isLoading:infoLoading, data:infoData } = useQuery<InfoDataInterface>({queryKey:['info',coinId], queryFn:()=>fetchInfoData(coinId)})
-  const { isLoading:tickersLoading, data:tickersData } = useQuery<PriceDataInterface>({queryKey:['tickers',coinId], queryFn: ()=> fetchPriceData(coinId)})
-  const priceMatch = useMatch('/:coinId/price')
-  const chartMatch = useMatch('/:coinId/chart')
-  const loading = infoLoading|| tickersLoading;
+  const state = location.state as {name:string, id:string};
+  
+  const { isLoading:infoLoading, data:infoData } = useQuery<InfoDataInterface[]>({queryKey:['info',coinId], queryFn:()=>fetchInfoData(state.id)})
+  console.log(infoData);
+  
+  // const { isLoading:tickersLoading, data:tickersData } = useQuery({queryKey:['tickers',coinId], queryFn:()=> fetchPriceData(state.id)})
+  // const priceMatch = useMatch('/:coinId/price')
+  // const chartMatch = useMatch('/:coinId/chart')
+  const loading = infoLoading;
   return (
     <Container>
+      <title>{state?.name ? state.name : loading ? 'Loading' : infoData?.name}</title>
+      <link rel="icon" href={`https://cryptocurrencyliveprices.com/img/${coinId}.png`} />
       <Header>
-        <Title>{state?.name ? state.name : loading ? 'Loading' : infoData?.name}</Title>
+        {/* <Title>{state?.name ? state.name : loading ? 'Loading' : infoData?}</Title> */}
       </Header>
       {loading ? <Loader>Loading...</Loader> :
       (
@@ -147,43 +142,42 @@ function Coin(){
           <Overview>
             <OverviewItem>
               <span>Rank:</span>
-              <span>{infoData?.rank}</span>
+              {/* <span>{infoData.}</span> */}
             </OverviewItem>
             <OverviewItem>
               <span>Symbol:</span>
-              <span>{infoData?.symbol}</span>
+              {/* <span>{infoData}</span> */}
             </OverviewItem>
             <OverviewItem>
-              <span>Open Source:</span>
-              <span>{infoData?.open_source ? "Yes":"No"}</span>
+              <span>Price:</span>
+              {/* <span>${tickersData?.quotes.USD.price.toFixed(2)}</span> */}
             </OverviewItem>
           </Overview>
-          <Description>{infoData?.description}</Description>
+          {/* <Description>{infoData}</Description> */}
           <Overview>
             <OverviewItem>
               <span>Total Supply:</span>
-              <span>{tickersData?.total_supply}</span>
+              {/* <span>{tickersData?.total_supply}</span> */}
             </OverviewItem>
             <OverviewItem>
               <span>Supply:</span>
-              <span>{tickersData?.max_supply}</span>
+              {/* <span>{tickersData?.max_supply}</span> */}
             </OverviewItem>
           </Overview>
           
-          <TabList>
-            <TabItem isActive={priceMatch !== null}>
-              <Link to={`/${coinId}/price`}>Price</Link>
-            </TabItem>
-            <TabItem isActive={chartMatch !== null}>
-              <Link to={`/${coinId}/chart`}>Chart</Link>
-            </TabItem>
-          </TabList>
+          {/* <TabList> */}
+            {/* <TabItem isActive={priceMatch !== null}> */}
+              {/* <Link to={`/${coinId}/price`}>Price</Link> */}
+            {/* </TabItem> */}
+            {/* <TabItem isActive={chartMatch !== null}> */}
+              {/* <Link to={`/${coinId}/chart`}>Chart</Link> */}
+            {/* </TabItem> */}
+          {/* </TabList> */}
           <Outlet context={coinId}/>
         </>
       )
       }
     </Container>
-
   )
 }
 

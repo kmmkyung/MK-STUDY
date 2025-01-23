@@ -5,12 +5,31 @@ import { fetchCoins } from "../api";
 
 interface CoinInterface {
   id: string;
-  name: string;
   symbol: string;
-  rank: number;
-  is_new: boolean;
-  is_active: boolean;
-  type: string;
+  name: string;
+  image: string;
+  current_price: number;
+  market_cap: number;
+  market_cap_rank: number;
+  fully_diluted_valuation: number;
+  total_volume: number;
+  high_24h: number;
+  low_24h: number;
+  price_change_24h: number;
+  price_change_percentage_24h: number;
+  market_cap_change_24h: number;
+  market_cap_change_percentage_24h: number;
+  circulating_supply: number;
+  total_supply: number;
+  max_supply: number;
+  ath: number;
+  ath_change_percentage: number;
+  ath_date: string;
+  atl: number;
+  atl_change_percentage: number;
+  atl_date: string;
+  roi: null
+  last_updated: string;
 }
 
 const Container = styled.div`
@@ -26,7 +45,8 @@ const Header = styled.header`
   justify-content: center;
 `;
 
-const CoinsList = styled.ul``;
+const CoinsList = styled.ul`
+`;
 
 const CoinItem = styled.li`
   background-color: #fff;
@@ -34,8 +54,11 @@ const CoinItem = styled.li`
   margin-bottom: 10px;
   padding: 20px;
   border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
-  a {
+  a, span {
     transition: color 0.2s ease-in;
     display: flex;
     align-items: center;
@@ -44,7 +67,7 @@ const CoinItem = styled.li`
   }
 
   &:hover{
-    a{ color: ${props => props.theme.accentColor}}
+    a, span{ color: ${props => props.theme.accentColor}}
   }
 
   img {
@@ -63,21 +86,22 @@ const Loader = styled.div`
 `;
 
 function Coins(){
-  const {isLoading, data} = useQuery<CoinInterface[]>({
-    queryKey: ['allCoins'], queryFn: fetchCoins, select:(data)=>data.slice(0,100)
-  })
+  const {isLoading, data} = useQuery<CoinInterface[]>({ queryKey:['allCoins'], queryFn: fetchCoins})
 
   return (
     <Container>
+      <title>Coin</title>
+      <link rel="icon" href='favicon.png' />
       <Header>
-        <Title>코인</Title>
+        <Title>Coins</Title>
       </Header>
       {isLoading ? <Loader>Loading...</Loader> : 
       (<CoinsList>
         {data?.map((coin)=>{ return (<CoinItem key={coin.id}>
-            <Link to={`/${coin.id}`} state={{name:coin.name}}>
-              <img src={`https://cryptocurrencyliveprices.com/img/${coin.id}.png`} alt="coinImg"/>
-            {coin.name} &rarr;</Link>
+            <Link to={`/${coin.id}`} state={{name:coin.name, id:coin.id}}>
+              <img src={coin.image} alt="coinImg"/>
+            {coin.name}</Link>
+            <span>&rarr;</span>
           </CoinItem>)
         })}
       </CoinsList>)}
