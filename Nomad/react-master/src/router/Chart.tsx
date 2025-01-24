@@ -34,14 +34,17 @@ const ModeBtn = styled.button<{$chartMode:boolean}>`
   }
 `;
 
+const Message = styled.p`
+  font-size: 14px;
+  text-align: center;
+`;
+
 function Chart(){
   const [ chartMode, setChartMode ] = useState(true)
   const { coinId } = useOutletContext<{coinId: string}>();
   const { theme } = useOutletContext<{theme:string}>()
-  const { isLoading, data } = useQuery<HistoryInterface[]>({queryKey: ['history',coinId], queryFn: () => fetchHistoryData(coinId)})
-
-
-
+  const { isLoading , data , isError} = useQuery<HistoryInterface[]>({queryKey: ['history',coinId], queryFn: () => fetchHistoryData(coinId), retry: false, })
+  
   const lineChartsSeries:ApexAxisChartSeries = [{
       name: 'Price',
       data: data?.map(price => Number(price.close)) ?? []
@@ -120,23 +123,35 @@ function Chart(){
   }
 
   return (
-    <>
-    {isLoading? 'Loading chart...' : 
-    <>
-    <ChartModeBtn>
-      <ModeBtn $chartMode={chartMode} onClick={()=>setChartMode(true)}>
-        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="m140-220-60-60 300-300 160 160 284-320 56 56-340 384-160-160-240 240Z"/></svg>
-      </ModeBtn>
-      <ModeBtn $chartMode={!chartMode} onClick={()=>{setChartMode(false)}}>
-        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M120-160v-240h120v240H120Zm200-240v-200h120v200H320Zm200-200v-200h120v200H520Zm200 440v-640h120v640H720Z"/></svg>
-      </ModeBtn>
-    </ChartModeBtn>
-      <ReactApexChart options={chartMode?lineChartsOptions:candleChartsOptions}
-      series={chartMode?lineChartsSeries:candleChartsSeries} type={chartMode? 'line':'candlestick'}/>
-    </>
-    }
-    </>                                                                   
-  )
+    isLoading ? (
+      <Message>Loading...</Message>
+    ) : (
+      <>
+        <ChartModeBtn>
+          <ModeBtn $chartMode={chartMode} onClick={() => setChartMode(true)}>
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF">
+              <path d="m140-220-60-60 300-300 160 160 284-320 56 56-340 384-160-160-240 240Z" />
+            </svg>
+          </ModeBtn>
+          <ModeBtn $chartMode={!chartMode} onClick={() => setChartMode(false)}>
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF">
+              <path d="M120-160v-240h120v240H120Zm200-240v-200h120v200H320Zm200-200v-200h120v200H520Zm200 440v-640h120v640H720Z" />
+            </svg>
+          </ModeBtn>
+        </ChartModeBtn>
+        {isError ? (
+          <Message>데이터가 없습니다</Message>
+        ) : (
+          <ReactApexChart
+            options={chartMode ? lineChartsOptions : candleChartsOptions}
+            series={chartMode ? lineChartsSeries : candleChartsSeries}
+            type={chartMode ? 'line' : 'candlestick'}
+          />
+        )}
+      </>
+    )
+  );
+  
 }
 
 export default Chart;
