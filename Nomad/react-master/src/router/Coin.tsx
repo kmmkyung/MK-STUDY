@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { useLocation, useParams, Outlet, Link, useMatch, useNavigate } from "react-router-dom";
+import { useLocation, useParams, Outlet, Link, useMatch, useNavigate, useOutletContext } from "react-router-dom";
 import styled from "styled-components";
 import { fetchInfoData, fetchPriceData } from "../api";
 
@@ -25,7 +25,7 @@ interface InfoDataInterface {
   last_data_at : string;
 }
 
-interface PriceDataInterface {
+export interface PriceDataInterface {
 id : string ;
 name : string ;
 symbol : string ;
@@ -85,7 +85,7 @@ const Loader = styled.span`
 const Overview = styled.div`
   display: flex;
   justify-content: space-between;
-  background-color: rgba(0,0,0,0.5);
+  background-color: ${props => props.theme.boxColor};
   padding: 10px 20px;
   border-radius: 10px;
 `;
@@ -118,10 +118,10 @@ const TabItem = styled.span<{$isActive:boolean}>`
   text-align: center;
   text-transform: uppercase;
   font-size: 12px;
-  background-color: rgba(0,0,0,0.5);
+  background-color: ${props => props.theme.boxColor};
   padding: 7px 0px;
   border-radius: 10px;
-  color: ${props => props.$isActive ? props.theme.accentColor : props.theme.textcolor};
+  color: ${props => props.$isActive ? props.theme.accentColor : props.theme.textColor};
   a {
     display: block;
   }
@@ -142,10 +142,10 @@ function Coin(){
   const location = useLocation();
   const state = location.state as {name:string};
   const navigate = useNavigate();
+  const { theme } = useOutletContext<{theme:string}>()
 
   const { isLoading:infoLoading, data:infoData } = useQuery<InfoDataInterface>({queryKey:['info',coinId], queryFn:()=>fetchInfoData(coinId)})
   const { isLoading:tickersLoading, data:tickersData } = useQuery<PriceDataInterface>({queryKey:['tickers',coinId], queryFn:()=> fetchPriceData(coinId)})
-  console.log(tickersData);
   
   const priceMatch = useMatch('/:coinId/price')
   const chartMatch = useMatch('/:coinId/chart')
@@ -197,7 +197,7 @@ function Coin(){
               <Link to={`/${coinId}/chart`}>Chart</Link>
             </TabItem>
           </TabList>
-          <Outlet context={coinId}/>
+          <Outlet context={{coinId, tickersData, theme}}/>
         </>
       )
       }

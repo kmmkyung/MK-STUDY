@@ -1,6 +1,9 @@
 import { Outlet } from 'react-router-dom';
-import { createGlobalStyle } from 'styled-components';
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import { ThemeProvider } from 'styled-components';
+import { light, dark } from './theme';
+import styled, { createGlobalStyle } from 'styled-components';
+// import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import { useState } from 'react';
 
 const GlobalStyle = createGlobalStyle`
   html, body, div, span, applet, object, iframe,
@@ -53,23 +56,40 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
   }
   body {
-    font-family: "Source Code Pro", sans-serif;
+    font-family: "Roboto", serif;
     background-color:${(props) => props.theme.bgColor};
     color:${(props) => props.theme.textColor}
   }
   a {
-    /* text-decoration:none; */
+    text-decoration:none;
     color: inherit;
   }
   /* html { font-size: 62.5%;} */
 `;
 
+const ThemeBtn = styled.button`
+  border: none;
+  width: 40px;
+  height: 40px;
+  font-size: 25px;
+  border-radius: 50%;
+  position: fixed;
+  left: 20px;
+  bottom: 20px;
+`;
+
 function App() {
+  const [theme, setTheme] = useState('light')
   return (
     <>
-      <GlobalStyle />
-      <Outlet />
-      <ReactQueryDevtools initialIsOpen={true}/>
+      <ThemeProvider theme={theme === 'light'? light : dark}>
+        <GlobalStyle />
+        <Outlet context={{ theme }} />
+        <ThemeBtn onClick={() => setTheme((prv) => prv === 'light' ? 'dark' : 'light')}>
+          {theme === 'light' ? '🌝':'🌞'}
+        </ThemeBtn>
+        </ThemeProvider>
+      {/* <ReactQueryDevtools initialIsOpen={true}/> */}
     </>
   );
 }

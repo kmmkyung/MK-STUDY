@@ -30,8 +30,8 @@ const CoinsList = styled.ul`
 `;
 
 const CoinItem = styled.li`
-  background-color: #fff;
-  color: ${props => props.theme.bgColor};
+  background-color: ${props => props.theme.boxColor};
+  color: ${props => props.theme.textColor};
   margin-bottom: 10px;
   padding: 20px;
   border-radius: 10px;

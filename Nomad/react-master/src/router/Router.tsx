@@ -16,7 +16,8 @@ const Router = createBrowserRouter([
         { path:"price", element:<Price/>},
       ]},
     ]
-  }
-]);
+  }  
+],
+);
 
 export default Router;
