@@ -42,7 +42,7 @@ const Message = styled.p`
 function Chart(){
   const [ chartMode, setChartMode ] = useState(true)
   const { coinId } = useOutletContext<{coinId: string}>();
-  const { theme } = useOutletContext<{theme:string}>()
+  const { theme } = useOutletContext<{theme:boolean}>()
   const { isLoading , data , isError} = useQuery<HistoryInterface[]>({queryKey: ['history',coinId], queryFn: () => fetchHistoryData(coinId), retry: false, })
   
   const lineChartsSeries:ApexAxisChartSeries = [{
@@ -58,7 +58,7 @@ function Chart(){
       background:'transparent'
     },
     theme: {
-			mode: theme === "light" ? "light" : "dark",
+			mode: theme ? "light" : "dark",
 		},
     stroke: {
       curve:'smooth',
@@ -93,7 +93,7 @@ function Chart(){
       background:'transparent'
     },
     theme: {
-			mode: theme === "light" ? "light" : "dark",
+			mode: theme ? "light" : "dark",
 		},
     yaxis: {show:true},
     xaxis: {

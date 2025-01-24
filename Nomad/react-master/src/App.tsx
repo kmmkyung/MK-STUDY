@@ -79,14 +79,14 @@ const ThemeBtn = styled.button`
 `;
 
 function App() {
-  const [theme, setTheme] = useState('light')
+  const [theme, setTheme] = useState(true)
   return (
     <>
-      <ThemeProvider theme={theme === 'light'? light : dark}>
+      <ThemeProvider theme={theme ? light : dark}>
         <GlobalStyle />
         <Outlet context={{ theme }} />
-        <ThemeBtn onClick={() => setTheme((prv) => prv === 'light' ? 'dark' : 'light')}>
-          {theme === 'light' ? '🌝':'🌞'}
+        <ThemeBtn onClick={() => setTheme((current) => !current)}>
+          {theme ? '🌝':'🌞'}
         </ThemeBtn>
         </ThemeProvider>
       {/* <ReactQueryDevtools initialIsOpen={true}/> */}

@@ -142,7 +142,7 @@ function Coin(){
   const location = useLocation();
   const state = location.state as {name:string};
   const navigate = useNavigate();
-  const { theme } = useOutletContext<{theme:string}>()
+  const { theme } = useOutletContext<{theme:boolean}>()
 
   const { isLoading:infoLoading, data:infoData } = useQuery<InfoDataInterface>({queryKey:['info',coinId], queryFn:()=>fetchInfoData(coinId)})
   const { isLoading:tickersLoading, data:tickersData } = useQuery<PriceDataInterface>({queryKey:['tickers',coinId], queryFn:()=> fetchPriceData(coinId)})
