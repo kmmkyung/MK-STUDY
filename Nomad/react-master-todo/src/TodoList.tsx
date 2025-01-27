@@ -29,11 +29,16 @@ import { useForm } from 'react-hook-form'
 //   )
 // }
 
+interface IForm {
+  toDo: string;
+}
+
 function TodoList(){
-  const { register, handleSubmit, formState } = useForm();
+  const { register, handleSubmit, setValue } = useForm<IForm>();
   
-  function onValid(data: any){
-    console.log(data);
+  function onValid(data: IForm){
+    console.log('add to do',data.toDo);
+    setValue('toDo', '');
   }
 
 
