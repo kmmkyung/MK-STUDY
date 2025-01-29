@@ -19,7 +19,7 @@ max-age : 만료 타이머 설정
 sessionStorage : 브라우저 세션이 유지되는 동안에만 데이터 저장
 localStorage : 따로 제거하지 않으면 영구적으로 데이터 저장
 .getItem() : 데이터 조회
-.setItem() : 데이터 추기
+.setItem() : 데이터 추가
 .removeItem() : 데이터 제거
 .clear() : 스토리지 초기화
 
