@@ -33,5 +33,4 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages
-          publish_dir: ./Nomad/react-master-todo/build
-          destination_dir: Nomad/react-master-todo
+          publish_dir: Nomad/react-master-todo/build
