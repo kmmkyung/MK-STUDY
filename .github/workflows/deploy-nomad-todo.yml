@@ -1,38 +1,43 @@
-name: Deploy nomad-todo to GitHub Pages
+name: Deploy to GitHub Pages
 
 on:
   push:
     branches:
-      - main  # 메인 브랜치에 push할 때 실행
+      - main  # `main` 브랜치에 푸시될 때 배포
 
 jobs:
-  deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout Repository
+      - name: Checkout repository
         uses: actions/checkout@v3
 
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: '18'
 
-      - name: Install Dependencies
+      - name: Install dependencies
         run: |
           cd Nomad/react-master-todo
           npm install
 
-      - name: Build Project
+      - name: Build project
         run: |
           cd Nomad/react-master-todo
           npm run build
 
-      - name: Deploy to GitHub Pages
+      - name: Deploy to GitHub Pages (main branch)
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_branch: gh-pages
-          publish_dir: Nomad/react-master-todo/build
-          destination_dir: Nomad/react-master-todo/
-
+          publish_branch: gh-pages  # `gh-pages` 브랜치에 배포
+          publish_dir: Nomad/react-master-todo/build  # 빌드된 파일이 들어 있는 디렉토리
+          destination_dir: /MK-STUDY/Nomad/react-master-todo  # 서브디렉토리 경로
+          
+      - name: Deploy to GitHub Pages (main branch)
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: main  # `main` 브랜치에 배포
+          publish_dir: Nomad/react-master-todo/build  # 메인 디렉토리로 배포할 파일
