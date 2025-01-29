@@ -52,4 +52,4 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages  # 동일한 `gh-pages` 브랜치로 배포
           publish_dir: Nomad/react-master-todo/build  # 빌드된 파일 경로
-          destination_dir: /MK-STUDY/Nomad/react-master-todo  # 하위 서브디렉토리로 배포
+          destination_dir: Nomad/react-master-todo  # 하위 서브디렉토리로 배포
