@@ -1,0 +1,37 @@
+name: Deploy nomad-todo to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main  # 메인 브랜치에 push할 때 실행
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install Dependencies
+        run: |
+          cd Nomad/react-master-todo
+          npm install
+
+      - name: Build Project
+        run: |
+          cd Nomad/react-master-todo
+          npm run build
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: ./Nomad/react-master-todo/build
+          destination_dir: Nomad/react-master-todo
