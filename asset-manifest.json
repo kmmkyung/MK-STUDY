@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/MK-STUDY/static/js/main.93f9b25c.js",
-    "index.html": "/MK-STUDY/index.html",
-    "main.93f9b25c.js.map": "/MK-STUDY/static/js/main.93f9b25c.js.map"
+    "main.js": "/MK-STUDY/Nomad/react-master-todo/static/js/main.d07fae64.js",
+    "index.html": "/MK-STUDY/Nomad/react-master-todo/index.html",
+    "main.d07fae64.js.map": "/MK-STUDY/Nomad/react-master-todo/static/js/main.d07fae64.js.map"
   },
   "entrypoints": [
-    "static/js/main.93f9b25c.js"
+    "static/js/main.d07fae64.js"
   ]
 }
