@@ -36,20 +36,20 @@ jobs:
       #     publish_dir: Nomad/react-master-coin/build  # 빌드된 파일 경로
       #     destination_dir: /MK-STUDY/Nomad/react-master-coin  # 루트 경로에 배포
 
-      - name: Install dependencies for react-master-todo
-        run: |
-          cd Nomad/react-master-todo
-          npm install
+      # - name: Install dependencies for react-master-todo
+      #   run: |
+      #     cd Nomad/react-master-todo
+      #     npm install
 
-      - name: Build react-master-todo project
-        run: |
-          cd Nomad/react-master-todo
-          npm run build
+      # - name: Build react-master-todo project
+      #   run: |
+      #     cd Nomad/react-master-todo
+      #     npm run build
 
-      - name: Deploy react-master-todo to GitHub Pages (subdirectory)
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_branch: gh-pages  # 동일한 `gh-pages` 브랜치로 배포
-          publish_dir: Nomad/react-master-todo/build  # 빌드된 파일 경로
-          destination_dir: Nomad/react-master-todo  # 하위 서브디렉토리로 배포
+      # - name: Deploy react-master-todo to GitHub Pages (subdirectory)
+      #   uses: peaceiris/actions-gh-pages@v3
+      #   with:
+      #     github_token: ${{ secrets.GITHUB_TOKEN }}
+      #     publish_branch: gh-pages  # 동일한 `gh-pages` 브랜치로 배포
+      #     publish_dir: Nomad/react-master-todo/build  # 빌드된 파일 경로
+      #     destination_dir: Nomad/react-master-todo  # 하위 서브디렉토리로 배포
