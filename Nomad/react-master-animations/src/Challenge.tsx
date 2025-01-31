@@ -9,7 +9,7 @@ const Section = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 20px;
+  gap: 50px;
   background:linear-gradient(135deg,rgb(238, 0, 153),rgb(221, 0, 238));
 `;
 
@@ -18,6 +18,10 @@ const Grid = styled(motion.div)`
   grid-template-columns: repeat(2, 1fr);
   gap: 10px;
   width: 50vw;
+
+  div:first-child{
+    transform-origin: right bottom;
+  }
 `;
 
 const Box = styled(motion.div)`
@@ -52,19 +56,18 @@ const Button = styled(motion.button)`
 `;
 
 const boxVariant = {
-  initial: { backgroundColor: 'rgba(255, 255, 255, 0.5)', transformOrigin:'100% 100% 0px'},
-  hover : { scale:1.2 },
-  // box2Hover : {transformOrigin:'bottom left', scale:1.2},
-  // box3Hover : {transformOrigin:'top right', scale:1.2},
-  // box4Hover : {transformOrigin:'top left', scale:1.2},
+  initial: (custom:string) => {
+    return ({ backgroundColor:'rgba(255, 255, 255, 0.5)'})
+  },
+  hover: {scale:1.1},
 }
 
 function Challenge(){
   const arrBox = ['1','2','3','4']
-  const [ id, setId ] = useState<null|string>(null);
-  const [ transformOrigin, setTransformOrigin ] = useState<null|string>('center');
-  const [ circleId, setCircleId ] = useState(false);
+  let boxTO= ['right bottom', '0% 100%', '100% 0%', '0% 0%']
 
+  const [ id, setId ] = useState<null|string>(null);
+  const [ circleId, setCircleId ] = useState(false);
   function toggleCircle(){
     setCircleId((pre)=>!pre)
   }
@@ -74,12 +77,8 @@ function Challenge(){
       <>
       <Grid>
         {arrBox.map( (n, idx)=> {
-          if (idx === 0) setTransformOrigin('bottom left');  
-          // if (idx === 1) setTransformOrigin('bottom left');  
-          // if (idx === 2) setTransformOrigin('bottom left');  
-          // if (idx === 3) setTransformOrigin('bottom left');  
         return(
-          <Box variants={boxVariant} style={{transformOrigin}} whileHover='hover' initial='initial' onClick={()=> setId(n)} key={idx} layoutId={n}>
+          <Box custom={boxTO[idx]} variants={boxVariant} whileHover='hover' initial='initial' onClick={()=>setId(n)} key={idx} layoutId={n} style={{transformOrigin:boxTO[idx]}}>
             { !circleId && n === '2' ? <Circle layoutId="circle"/> : null }
             { circleId && n === '3' ? <Circle layoutId="circle"/>: null }
           </Box>)
