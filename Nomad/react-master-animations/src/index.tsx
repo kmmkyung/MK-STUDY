@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import { createGlobalStyle } from "styled-components";
+import Challenge from './Challenge';
 
 const GlobalStyle = createGlobalStyle`
 html, body, div, span, applet, object, iframe,
@@ -58,7 +59,6 @@ body {
   font-weight: 300;
   color:black;
   line-height: 1.2;
-  background:linear-gradient(135deg,#e09,#d0e);
 }
 a {
   text-decoration:none;
@@ -70,6 +70,7 @@ const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement 
 root.render(
   <React.StrictMode>
     <GlobalStyle/>
-    <App />
+    {/* <App /> */}
+    <Challenge/>
   </React.StrictMode>
 );
