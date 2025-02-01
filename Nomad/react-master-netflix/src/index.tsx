@@ -5,6 +5,9 @@ import { RecoilRoot } from 'recoil';
 import { theme } from './theme';
 import { RouterProvider } from 'react-router-dom';
 import Router from './router/Router';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+
+const client = new QueryClient();
 
 const GlobalStyle = createGlobalStyle`
   html, body, div, span, applet, object, iframe,
@@ -58,6 +61,9 @@ const GlobalStyle = createGlobalStyle`
   }
   body {
     font-family: "Roboto", serif;
+    color:${props => props.theme.white.darker};
+    background-color: #000;
+    overflow-x: hidden;
   }
   a {
     text-decoration:none;
@@ -70,10 +76,12 @@ const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 root.render(
   <React.StrictMode>
     <RecoilRoot>
-      <ThemeProvider theme={theme}>
-        <GlobalStyle/>
-        <RouterProvider router={Router}/>
-      </ThemeProvider>
+      <QueryClientProvider client={client}>
+        <ThemeProvider theme={theme}>
+          <GlobalStyle/>
+          <RouterProvider router={Router}/>
+        </ThemeProvider>
+      </QueryClientProvider>
     </RecoilRoot>
   </React.StrictMode>
 );
