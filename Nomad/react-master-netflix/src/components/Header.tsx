@@ -74,9 +74,12 @@ const Circle = styled(motion.span)`
   background-color: ${props => props.theme.red};
   border-radius: 2.5px;
   bottom: -8px;
-  left: 0;
+  /* left: 0;
   right: 0;
-  margin: 0 auto;
+  margin: 0 auto; */
+  left: 50%;
+  transform: translateX(-50%);
+  transform-origin: center;
 `;
 
 const navVariants = {
@@ -89,6 +92,8 @@ const navVariants = {
 }
 
 function Header() {
+  const [layoutReady, setLayoutReady] = useState(false);
+
   const homeMatch = useMatch('/')
   const tvMatch = useMatch('/tv')
   const [ hovered, setHovered ] = useState(false);
@@ -138,7 +143,7 @@ function Header() {
         <Items>
           <Item>
             <Link to={'/'}>
-              Home{homeMatch && <Circle layoutId="circle" layout='position' />}
+              Home{homeMatch && <Circle layoutId="circle" layout='position'/>}
             </Link>
           </Item>
           <Item>
