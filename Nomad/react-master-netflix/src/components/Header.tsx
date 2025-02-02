@@ -1,13 +1,15 @@
 import styled from "styled-components";
 import { motion, useAnimation, useScroll } from "motion/react";
 import { useEffect, useState } from "react";
-import { Link, useMatch } from "react-router-dom";
+import { Link, useMatch, useNavigate } from "react-router-dom";
+import { ISearchForm } from "../type";
+import { useForm } from 'react-hook-form'
 
 const Nav = styled(motion.nav)`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: fixed;
+  position: fixed; 
   width: 100%;
   top: 0;
   background-color: black;
@@ -43,7 +45,7 @@ const Item = styled.li`
   }
 `;
 
-const SearchButton = styled.span`
+const SearchButton = styled.form`
   display: flex;
   align-items: center;
   position: relative;
@@ -92,8 +94,7 @@ const navVariants = {
 }
 
 function Header() {
-  const [layoutReady, setLayoutReady] = useState(false);
-
+  const navigate = useNavigate();
   const homeMatch = useMatch('/')
   const tvMatch = useMatch('/tv')
   const [ hovered, setHovered ] = useState(false);
@@ -101,6 +102,8 @@ function Header() {
   const inputAnimation = useAnimation();
   const navAnimation = useAnimation();
   const { scrollY } = useScroll()
+  const { register, handleSubmit } = useForm<ISearchForm>()
+
   function toggleSearch(){
     if(searchOpen){
       inputAnimation.start({ scaleX: 0 })
@@ -109,6 +112,10 @@ function Header() {
       inputAnimation.start({ scaleX: 1 })
     }
     setSearchOpen((pre)=>!pre)
+  }
+
+  function oninvalid(data:ISearchForm) {
+    navigate(`/search?keyword=${data.keyWord}`)
   }
 
   useEffect(()=>{
@@ -143,24 +150,25 @@ function Header() {
         <Items>
           <Item>
             <Link to={'/'}>
-              Home{homeMatch && <Circle layoutId="circle" layout='position'/>}
+              Home{homeMatch && <Circle layoutId="circle" layout='position' initial={false}/>}
             </Link>
           </Item>
           <Item>
             <Link to={'/tv'}>
-            Tv Shows{tvMatch && <Circle layoutId='circle' layout='position'/>}
+            Tv Shows{tvMatch && <Circle layoutId='circle' layout='position' initial={false}/>}
             </Link>
           </Item>
         </Items>
       </Col>
       <Col>
-        <SearchButton >
+        <SearchButton onSubmit={handleSubmit(oninvalid)} >
           <motion.svg onClick={toggleSearch} transition={{ ease:'linear'}} animate={{x: searchOpen? -180:0}} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
             <path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"/>
           </motion.svg>
-          <SearchInput placeholder="Search for movie or Tv" transition={{ ease:'linear'}} initial={{scaleX:0}} animate={inputAnimation}/>
+          <SearchInput {...register("keyWord", {required:true, minLength:2})}
+          placeholder="Search for movie or Tv" transition={{ ease:'linear'}} initial={{scaleX:0}} animate={inputAnimation}/>
         </SearchButton>
-      </Col>
+      </Col> 
     </Nav>
   );
 }

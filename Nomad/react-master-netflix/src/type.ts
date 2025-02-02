@@ -13,3 +13,7 @@ export interface INowPlaying {
   total_pages: number;
   total_results: number;
 }
+
+export interface ISearchForm {
+  keyWord: string;
+}
