@@ -4,6 +4,7 @@ interface IMovie {
   posters_path: string;
   title: string;
   overview: string;
+  vote_average: number;
 }
 
 export interface INowPlaying {
