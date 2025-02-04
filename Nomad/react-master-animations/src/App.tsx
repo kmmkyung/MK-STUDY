@@ -135,7 +135,6 @@ function App() {
       <AnimatePresence>
         { showing ? (<Box1 variants={showVariant} initial='initial' animate='visible' exit='leaving'/>): null }
       </AnimatePresence> */}
-      {/* <Layout/> */}
     </Wrapper>
   );
 }
